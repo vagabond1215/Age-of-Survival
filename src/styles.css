@@ -75,6 +75,15 @@ button {
   border-radius: 8px;
 }
 
+.map-cell--water {
+  background: rgba(28, 49, 66, 0.85);
+  border-color: #2c5a7a;
+}
+
+.map-icon {
+  font-size: 1.5rem;
+}
+
 .map-overlay {
   font-size: 0.65rem;
   opacity: 0.8;
@@ -84,4 +93,39 @@ button {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+
+.awakening-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 12, 18, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  z-index: 100;
+}
+
+.awakening-panel {
+  max-width: 520px;
+  background: rgba(17, 23, 32, 0.95);
+  border: 1px solid #2f3e52;
+  border-radius: 18px;
+  padding: 1.75rem;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.55);
+  text-align: center;
+}
+
+.awakening-text {
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.awakening-panel button {
+  padding: 0.6rem 1.5rem;
+  border-radius: 999px;
+  border: 1px solid #4b6384;
+  background: linear-gradient(135deg, #2c3f58, #3c5878);
+  color: #f7f7f7;
+  font-weight: 600;
 }

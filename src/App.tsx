@@ -6,7 +6,9 @@ import CraftPlanner from './ui/CraftPlanner';
 import BuildQueue from './ui/BuildQueue';
 import MapGrid from './ui/MapGrid';
 import Notifications from './ui/Notifications';
+import AwakeningPrompt from './ui/AwakeningPrompt';
 import { createDefaultState, type GameState } from './game/state';
+import { composeAwakeningNarrative } from './game/narrative';
 import { tickDay, tickThreeDays } from './game/engine';
 import { assignJob } from './game/systems/jobs';
 import { ensureCraftTarget } from './game/systems/crafting';
@@ -80,8 +82,23 @@ function App() {
     setState((current) => ({ ...current, buildQueue: current.buildQueue.filter((item) => item.id !== id) }));
   }, []);
 
+  const handleAwakeningBegin = useCallback(() => {
+    setState((current) => {
+      const narrative = current.awakening?.narrative ?? composeAwakeningNarrative(current.biome, current.features);
+      return { ...current, awakening: { seen: true, narrative } };
+    });
+  }, []);
+
   return (
     <div className="App">
+      {!state.awakening?.seen && (
+        <AwakeningPrompt
+          biome={state.biome}
+          features={state.features}
+          narrative={state.awakening?.narrative}
+          onBegin={handleAwakeningBegin}
+        />
+      )}
       <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div>
           <h1>Village of Haven</h1>
@@ -114,7 +131,7 @@ function App() {
       <JobManager villagers={state.villagers} stateForCaps={state} onAssign={handleAssign} />
       <CraftPlanner crafting={state.crafting} onUpdate={handleCraftTarget} />
       <BuildQueue queue={state.buildQueue} buildings={state.buildings} onCancel={cancelBuild} />
-      <MapGrid buildings={state.buildings} features={state.features} />
+      <MapGrid buildings={state.buildings} tiles={state.map} />
       <Notifications notifications={state.notifications} />
     </div>
   );

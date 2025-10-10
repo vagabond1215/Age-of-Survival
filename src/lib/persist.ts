@@ -1,4 +1,6 @@
-import { isGameState, type GameState } from '../game/state';
+import { composeAwakeningNarrative } from '../game/narrative';
+import { generateMap } from '../game/map';
+import { createDefaultState, isGameState, type GameState } from '../game/state';
 
 const STORAGE_KEY = 'haven-savegame';
 
@@ -11,8 +13,9 @@ export function loadFromLocalStorage(): GameState | null {
   if (!raw) return null;
   try {
     const parsed = JSON.parse(raw);
-    if (isGameState(parsed)) {
-      return parsed;
+    const migrated = migrateState(parsed);
+    if (migrated) {
+      return migrated;
     }
     console.warn('Save did not match schema, ignoring');
     return null;
@@ -35,12 +38,59 @@ export function exportToFile(state: GameState): void {
 export async function importFromFile(file: File): Promise<GameState> {
   const text = await file.text();
   const parsed = JSON.parse(text);
-  if (!isGameState(parsed)) {
+  const migrated = migrateState(parsed);
+  if (!migrated) {
     throw new Error('Imported save failed validation');
   }
-  return parsed;
+  return migrated;
 }
 
 export function resetSave(): void {
   localStorage.removeItem(STORAGE_KEY);
+}
+
+function migrateState(value: unknown): GameState | null {
+  const defaults = createDefaultState();
+  if (!value || typeof value !== 'object') {
+    return isGameState(value) ? (value as GameState) : null;
+  }
+
+  const candidate = value as Partial<GameState> & Record<string, unknown>;
+  const biome = (candidate.biome as GameState['biome']) ?? defaults.biome;
+  const features = Array.isArray(candidate.features) ? (candidate.features as GameState['features']) : defaults.features;
+  const rngSeed = typeof candidate.rngSeed === 'number' ? candidate.rngSeed : defaults.rngSeed;
+  const map = Array.isArray((candidate as { map?: unknown }).map)
+    ? (candidate.map as GameState['map'])
+    : generateMap(biome, features, rngSeed);
+
+  const hasProgress = typeof candidate.day === 'number' && candidate.day > 1;
+  const awakening = candidate.awakening && typeof candidate.awakening === 'object'
+    ? {
+        seen: Boolean((candidate.awakening as { seen?: unknown }).seen),
+        narrative:
+          typeof (candidate.awakening as { narrative?: unknown }).narrative === 'string'
+            ? ((candidate.awakening as { narrative: string }).narrative)
+            : composeAwakeningNarrative(biome, features)
+      }
+    : {
+        seen: hasProgress,
+        narrative: composeAwakeningNarrative(biome, features)
+      };
+
+  const merged: unknown = {
+    ...defaults,
+    ...candidate,
+    biome,
+    features,
+    rngSeed,
+    map,
+    awakening,
+    notifications: Array.isArray(candidate.notifications) ? candidate.notifications : defaults.notifications
+  };
+
+  if (isGameState(merged)) {
+    return merged;
+  }
+
+  return null;
 }
