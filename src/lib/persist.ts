@@ -113,7 +113,7 @@ function migrateState(value: unknown): GameState | null {
             : null
       }
     : hasProgress
-      ? { ...defaults.creation, stage: 'complete', selectedBiome: candidate.biome }
+      ? { ...defaults.creation, stage: 'complete', selectedBiome: biome }
       : defaults.creation;
 
   const merged: unknown = {
