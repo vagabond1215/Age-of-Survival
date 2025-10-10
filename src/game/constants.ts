@@ -26,7 +26,19 @@ export const RESOURCE_ICONS: Record<ResourceId, string> = {
   armor: '🛡️'
 };
 
-export const BIOMES = ['temperate', 'boreal', 'desert', 'coastal', 'alpine'] as const;
+export const BIOMES = [
+  'temperate_forest',
+  'taiga',
+  'rainforest',
+  'desert',
+  'tundra',
+  'alpine',
+  'coast',
+  'savanna',
+  'wetlands',
+  'steppe',
+  'volcanic'
+] as const;
 export type BiomeId = (typeof BIOMES)[number];
 
 export const FEATURES = ['river', 'lake', 'mine', 'dense_forest'] as const;

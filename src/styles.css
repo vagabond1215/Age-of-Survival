@@ -95,37 +95,149 @@ button {
   gap: 0.5rem;
 }
 
-.awakening-backdrop {
+.creation-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(8, 12, 18, 0.85);
+  background: radial-gradient(circle at top, rgba(8, 14, 22, 0.96), rgba(4, 6, 10, 0.96));
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  z-index: 100;
+  z-index: 200;
 }
 
-.awakening-panel {
-  max-width: 520px;
-  background: rgba(17, 23, 32, 0.95);
-  border: 1px solid #2f3e52;
-  border-radius: 18px;
-  padding: 1.75rem;
-  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.55);
-  text-align: center;
+.creation-panel {
+  width: min(960px, 100%);
+  background: rgba(17, 22, 32, 0.95);
+  border: 1px solid rgba(82, 120, 158, 0.45);
+  border-radius: 22px;
+  padding: 2rem;
+  box-shadow: 0 22px 68px rgba(0, 0, 0, 0.55);
+  display: grid;
+  gap: 1.5rem;
 }
 
-.awakening-text {
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
+.creation-panel h2 {
+  margin: 0;
+  font-size: 1.9rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
-.awakening-panel button {
-  padding: 0.6rem 1.5rem;
-  border-radius: 999px;
-  border: 1px solid #4b6384;
-  background: linear-gradient(135deg, #2c3f58, #3c5878);
+.creation-narrative {
+  margin: 0;
+  line-height: 1.7;
+  color: #e2e7f0;
+}
+
+.biome-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.biome-card {
+  display: grid;
+  gap: 0.4rem;
+  padding: 1rem;
+  border: 2px solid transparent;
+  border-radius: 16px;
   color: #f7f7f7;
+  text-align: left;
+  background: rgba(40, 54, 69, 0.45);
+  transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
+}
+
+.biome-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+.biome-card--selected {
+  border-color: rgba(255, 255, 255, 0.85) !important;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.45);
+}
+
+.biome-name {
+  font-size: 1.2rem;
   font-weight: 600;
+}
+
+.biome-weather,
+.biome-geography,
+.biome-resources {
+  font-size: 0.95rem;
+  color: #d1d9e4;
+}
+
+.selected-biome-callout {
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 18px;
+  padding: 1rem 1.25rem;
+  background: rgba(32, 42, 58, 0.7);
+  display: grid;
+  gap: 0.5rem;
+}
+
+.selected-biome-callout h3 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.gather-button {
+  justify-self: center;
+  padding: 0.75rem 2.5rem;
+  border-radius: 999px;
+  border: 1px solid #6f8fbd;
+  background: linear-gradient(135deg, #274164, #375780);
+  color: #f1f5fa;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.creation-hardship {
+  margin: 0;
+  font-style: italic;
+  color: #c8d3e6;
+}
+
+.creation-thought-intro {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #f0f5ff;
+}
+
+.thought-grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.thought-card {
+  border-radius: 16px;
+  border: 1px solid rgba(109, 142, 192, 0.4);
+  padding: 1rem;
+  background: rgba(29, 39, 54, 0.8);
+  color: #f7f9ff;
+  text-align: left;
+  display: grid;
+  gap: 0.45rem;
+  transition: transform 150ms ease, border-color 150ms ease;
+}
+
+.thought-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(198, 218, 255, 0.75);
+}
+
+.thought-label {
+  font-weight: 600;
+}
+
+.thought-description {
+  font-size: 0.95rem;
+  color: #d7deec;
 }

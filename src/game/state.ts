@@ -3,6 +3,7 @@ import jobs from '../data/jobs.json';
 import { BIOMES, DEFAULT_BED_CAPACITY, FEATURES, MAP_SIZE, RESOURCES, type BiomeId, type FeatureId, type ResourceId } from './constants';
 import { generateMap } from './map';
 import { composeAwakeningNarrative } from './narrative';
+import { getBiomeDetail } from '../data/biomes';
 
 const resourceIdSchema = z.enum(RESOURCES);
 const biomeIdSchema = z.enum(BIOMES);
@@ -70,6 +71,14 @@ export const AwakeningStateSchema = z.object({
 });
 export type AwakeningState = z.infer<typeof AwakeningStateSchema>;
 
+export const CreationStateSchema = z.object({
+  stage: z.enum(['biome_selection', 'awaiting_focus', 'event', 'complete']),
+  selectedBiome: biomeIdSchema.nullable(),
+  eventId: z.string().nullable(),
+  chosenThought: z.string().nullable()
+});
+export type CreationState = z.infer<typeof CreationStateSchema>;
+
 export const GameStateSchema = z.object({
   day: z.number().int().min(1),
   biome: biomeIdSchema,
@@ -91,7 +100,8 @@ export const GameStateSchema = z.object({
   rngSeed: z.number().int(),
   lastEventId: z.string().nullable(),
   map: z.array(MapTileSchema),
-  awakening: AwakeningStateSchema
+  awakening: AwakeningStateSchema,
+  creation: CreationStateSchema
 });
 export type GameState = z.infer<typeof GameStateSchema>;
 
@@ -155,11 +165,12 @@ export function createDefaultResources(): Record<ResourceId, number> {
 }
 
 export function createDefaultState(): GameState {
-  const defaultFeatures: FeatureId[] = ['river', 'dense_forest', 'mine'];
+  const defaultBiome: BiomeId = 'temperate_forest';
+  const defaultFeatures: FeatureId[] = getBiomeDetail(defaultBiome).defaultFeatures;
   const rngSeed = 12345;
   return {
     day: 1,
-    biome: 'temperate',
+    biome: defaultBiome,
     features: defaultFeatures,
     villagers: cloneVillagers(),
     jobs: jobs.map((job) => job.id),
@@ -177,10 +188,16 @@ export function createDefaultState(): GameState {
     pauseOnSummon: true,
     rngSeed,
     lastEventId: null,
-    map: generateMap('temperate', defaultFeatures, rngSeed),
+    map: generateMap(defaultBiome, defaultFeatures, rngSeed),
     awakening: {
       seen: false,
-      narrative: composeAwakeningNarrative('temperate', defaultFeatures)
+      narrative: composeAwakeningNarrative(defaultBiome, defaultFeatures)
+    },
+    creation: {
+      stage: 'biome_selection',
+      selectedBiome: null,
+      eventId: null,
+      chosenThought: null
     }
   };
 }
