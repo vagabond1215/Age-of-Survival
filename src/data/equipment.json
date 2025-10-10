@@ -1,0 +1,115 @@
+[
+  {
+    "id": "gambeson",
+    "name": "Gambeson",
+    "category": "armor",
+    "slot": "torso",
+    "workstation": "tailor_workshop",
+    "skill": "textilecraft",
+    "recipe": {
+      "ingredients": [
+        { "options": ["flax_linen", "hemp_linen"], "amount": 4 },
+        { "options": ["wool_batting", "sheep_wool", "alpaca_wool"], "amount": 2 },
+        { "options": ["thin_leather_panel", "hare_hide"], "amount": 1 }
+      ],
+      "notes": "Stuffed textile armor assembled in layered panels."
+    },
+    "effects": {
+      "defense": 3,
+      "damage_reduction": { "blunt": 0.1 },
+      "special": ["-20% cold exposure", "+5% parry when paired with a shield"]
+    }
+  },
+  {
+    "id": "lamellar_cuirass",
+    "name": "Lamellar Cuirass",
+    "category": "armor",
+    "slot": "torso",
+    "workstation": "armorer_bench",
+    "skill": "leatherworking",
+    "recipe": {
+      "ingredients": [
+        { "options": ["caribou_hide", "yak_hide", "aurochs_hide"], "amount": 3 },
+        { "options": ["thin_leather_panel", "boar_hide"], "amount": 2 },
+        { "options": ["bronze_ingot", "iron_ingot"], "amount": 2 }
+      ],
+      "notes": "Interlaced plates strung across leather backing."
+    },
+    "effects": {
+      "defense": 5,
+      "damage_reduction": { "slash": 0.15 },
+      "special": ["+10% parry", "-5% movement speed"]
+    }
+  },
+  {
+    "id": "riveted_mail",
+    "name": "Riveted Mail",
+    "category": "armor",
+    "slot": "torso",
+    "workstation": "smithy",
+    "skill": "metalworking",
+    "recipe": {
+      "ingredients": [
+        { "options": ["bog_iron", "magnetite", "hematite"], "amount": 5 },
+        { "options": ["iron_ingot"], "amount": 3 },
+        { "options": ["linen_thread", "flax_linen"], "amount": 2 },
+        { "options": [
+          "beech_charcoal",
+          "birch_charcoal",
+          "acacia_charcoal",
+          "alder_charcoal",
+          "larch_charcoal"
+        ], "amount": 2 }
+      ],
+      "notes": "Linked rings forged, punched, and riveted closed." 
+    },
+    "effects": {
+      "defense": 6,
+      "damage_reduction": { "pierce": 0.2 },
+      "special": ["-10% stamina regeneration"]
+    }
+  },
+  {
+    "id": "oak_shield",
+    "name": "Oak Shield",
+    "category": "shield",
+    "slot": "offhand",
+    "workstation": "carpenter_shop",
+    "skill": "woodworking",
+    "recipe": {
+      "ingredients": [
+        { "options": ["oak", "ironwood", "maple"], "amount": 2 },
+        { "options": ["linen_thread", "flax_linen"], "amount": 1 },
+        { "options": ["boar_hide", "bear_pelt"], "amount": 1 },
+        { "options": ["bronze_ingot", "iron_ingot"], "amount": 1 }
+      ],
+      "notes": "Board-laminated round shield with metal boss."
+    },
+    "effects": {
+      "defense": 4,
+      "parry": 0.15,
+      "damage_reduction": { "ranged": 0.1 }
+    }
+  },
+  {
+    "id": "bone_spear",
+    "name": "Bone Spear",
+    "category": "weapon",
+    "slot": "hands",
+    "workstation": "bonecarver_hut",
+    "skill": "bonecraft",
+    "recipe": {
+      "ingredients": [
+        { "options": ["caribou_longbone"], "amount": 1 },
+        { "options": ["juniper", "birch", "rowan"], "amount": 1 },
+        { "options": ["linen_thread", "hare_hide"], "amount": 1 },
+        { "options": ["seal_hide", "fox_hide"], "amount": 1 }
+      ],
+      "notes": "Knapped bone blade hafted onto a seasoned shaft."
+    },
+    "effects": {
+      "attack": 4,
+      "special": ["+10% hunting yield", "+5% initiative" ]
+    }
+  }
+]
