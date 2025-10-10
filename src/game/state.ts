@@ -131,6 +131,14 @@ export const DEFAULT_VILLAGERS: Villager[] = [
   { id: 'v-3', name: 'Caro', jobId: 'hunter', efficiency: 0.8, bed: 'hall' }
 ];
 
+function cloneVillagers(): Villager[] {
+  return DEFAULT_VILLAGERS.map((villager) => ({ ...villager }));
+}
+
+function cloneBuildings(): Building[] {
+  return DEFAULT_BUILDINGS.map((building) => ({ ...building }));
+}
+
 export function createDefaultResources(): Record<ResourceId, number> {
   const stock: Record<ResourceId, number> = { ...DEFAULT_RESOURCES };
   stock.food = 30;
@@ -153,11 +161,11 @@ export function createDefaultState(): GameState {
     day: 1,
     biome: 'temperate',
     features: defaultFeatures,
-    villagers: DEFAULT_VILLAGERS,
+    villagers: cloneVillagers(),
     jobs: jobs.map((job) => job.id),
     resources: createDefaultResources(),
     deltas: { ...DEFAULT_DELTAS },
-    buildings: DEFAULT_BUILDINGS,
+    buildings: cloneBuildings(),
     buildQueue: [],
     crafting: [],
     logistics: { carts: 1, packAnimals: 0, roadBonus: 1 },
