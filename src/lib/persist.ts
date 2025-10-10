@@ -1,6 +1,7 @@
+import { BIOMES, FEATURES, type FeatureId } from '../game/constants';
 import { composeAwakeningNarrative } from '../game/narrative';
 import { generateMap } from '../game/map';
-import { createDefaultState, isGameState, type GameState } from '../game/state';
+import { MapTileSchema, createDefaultState, isGameState, type GameState } from '../game/state';
 
 const STORAGE_KEY = 'haven-savegame';
 
@@ -49,6 +50,20 @@ export function resetSave(): void {
   localStorage.removeItem(STORAGE_KEY);
 }
 
+function isBiome(value: unknown): value is GameState['biome'] {
+  return typeof value === 'string' && BIOMES.includes(value as GameState['biome']);
+}
+
+function sanitizeFeatures(value: unknown, fallback: GameState['features']): GameState['features'] {
+  if (!Array.isArray(value)) {
+    return fallback;
+  }
+  const filtered = value.filter((feature): feature is FeatureId => {
+    return typeof feature === 'string' && FEATURES.includes(feature as FeatureId);
+  });
+  return filtered.length > 0 ? filtered : fallback;
+}
+
 function migrateState(value: unknown): GameState | null {
   const defaults = createDefaultState();
   if (!value || typeof value !== 'object') {
@@ -56,11 +71,13 @@ function migrateState(value: unknown): GameState | null {
   }
 
   const candidate = value as Partial<GameState> & Record<string, unknown>;
-  const biome = (candidate.biome as GameState['biome']) ?? defaults.biome;
-  const features = Array.isArray(candidate.features) ? (candidate.features as GameState['features']) : defaults.features;
+  const biome = isBiome(candidate.biome) ? candidate.biome : defaults.biome;
+  const features = sanitizeFeatures(candidate.features, defaults.features);
   const rngSeed = typeof candidate.rngSeed === 'number' ? candidate.rngSeed : defaults.rngSeed;
   const map = Array.isArray((candidate as { map?: unknown }).map)
-    ? (candidate.map as GameState['map'])
+    ? (candidate.map as unknown[]).every((tile) => MapTileSchema.safeParse(tile).success)
+      ? (candidate.map as GameState['map'])
+      : generateMap(biome, features, rngSeed)
     : generateMap(biome, features, rngSeed);
 
   const hasProgress = typeof candidate.day === 'number' && candidate.day > 1;
