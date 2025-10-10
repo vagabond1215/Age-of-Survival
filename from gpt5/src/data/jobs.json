@@ -1,0 +1,12 @@
+{
+  "farmer": {
+    "prod": {
+      "food": 2
+    }
+  },
+  "miner": {
+    "prod": {
+      "stone": 2
+    }
+  }
+}
