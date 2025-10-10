@@ -1,0 +1,2591 @@
+{
+  "raw_resources": {
+    "food": {
+      "categories": {
+        "meat": {
+          "description": "Wild game and livestock meat harvested by hunters and trappers.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "white_tailed_deer",
+                "name": "white-tailed deer"
+              },
+              {
+                "id": "wild_boar",
+                "name": "wild boar"
+              },
+              {
+                "id": "pheasant",
+                "name": "pheasant"
+              },
+              {
+                "id": "hare",
+                "name": "hare"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "caribou",
+                "name": "caribou"
+              },
+              {
+                "id": "moose",
+                "name": "moose"
+              },
+              {
+                "id": "snowshoe_hare",
+                "name": "snowshoe hare"
+              },
+              {
+                "id": "spruce_grouse",
+                "name": "spruce grouse"
+              }
+            ],
+            "desert": [
+              {
+                "id": "dromedary_goat",
+                "name": "dromedary goat"
+              },
+              {
+                "id": "fennec_fox",
+                "name": "fennec fox"
+              },
+              {
+                "id": "sand_grouse",
+                "name": "sand grouse"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "harbor_seal",
+                "name": "harbor seal"
+              },
+              {
+                "id": "sea_duck",
+                "name": "sea duck"
+              },
+              {
+                "id": "feral_pig",
+                "name": "feral pig"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "ibex",
+                "name": "ibex"
+              },
+              {
+                "id": "chamois",
+                "name": "chamois"
+              },
+              {
+                "id": "ptarmigan",
+                "name": "ptarmigan"
+              }
+            ]
+          }
+        },
+        "fish": {
+          "description": "Freshwater and saltwater fish gathered from nearby waters.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "trout",
+                "name": "trout"
+              },
+              {
+                "id": "pike",
+                "name": "pike"
+              },
+              {
+                "id": "perch",
+                "name": "perch"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "arctic_char",
+                "name": "arctic char"
+              },
+              {
+                "id": "grayling",
+                "name": "grayling"
+              },
+              {
+                "id": "whitefish",
+                "name": "whitefish"
+              }
+            ],
+            "desert": [
+              {
+                "id": "tilapia",
+                "name": "tilapia"
+              },
+              {
+                "id": "catfish",
+                "name": "catfish"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "mackerel",
+                "name": "mackerel"
+              },
+              {
+                "id": "cod",
+                "name": "cod"
+              },
+              {
+                "id": "flounder",
+                "name": "flounder"
+              },
+              {
+                "id": "eel",
+                "name": "eel"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "mountain_trout",
+                "name": "mountain trout"
+              },
+              {
+                "id": "grayling",
+                "name": "grayling"
+              }
+            ]
+          }
+        },
+        "fruit": {
+          "description": "Tree fruit, berries, and other naturally occurring sweets.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "wild_apple",
+                "name": "wild apple"
+              },
+              {
+                "id": "blackberry",
+                "name": "blackberry"
+              },
+              {
+                "id": "elderberry",
+                "name": "elderberry"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "lingonberry",
+                "name": "lingonberry"
+              },
+              {
+                "id": "cloudberry",
+                "name": "cloudberry"
+              },
+              {
+                "id": "crowberry",
+                "name": "crowberry"
+              }
+            ],
+            "desert": [
+              {
+                "id": "date",
+                "name": "date"
+              },
+              {
+                "id": "desert_fig",
+                "name": "desert fig"
+              },
+              {
+                "id": "prickly_pear",
+                "name": "prickly pear"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "sea_buckthorn",
+                "name": "sea buckthorn"
+              },
+              {
+                "id": "salal_berry",
+                "name": "salal berry"
+              },
+              {
+                "id": "wild_plum",
+                "name": "wild plum"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "alpine_strawberry",
+                "name": "alpine strawberry"
+              },
+              {
+                "id": "currant",
+                "name": "currant"
+              },
+              {
+                "id": "bilberry",
+                "name": "bilberry"
+              }
+            ]
+          }
+        },
+        "grain": {
+          "description": "Cereal grasses gathered, threshed, and milled for storage.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "wild_rye",
+                "name": "wild rye"
+              },
+              {
+                "id": "barley",
+                "name": "barley"
+              },
+              {
+                "id": "oats",
+                "name": "oats"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "hair_grass",
+                "name": "hair grass"
+              },
+              {
+                "id": "bluejoint_reed",
+                "name": "bluejoint reed"
+              },
+              {
+                "id": "barnyard_millet",
+                "name": "barnyard millet"
+              }
+            ],
+            "desert": [
+              {
+                "id": "teff",
+                "name": "teff"
+              },
+              {
+                "id": "foxtail_millet",
+                "name": "foxtail millet"
+              },
+              {
+                "id": "sorghum",
+                "name": "sorghum"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "sea_barley",
+                "name": "sea barley"
+              },
+              {
+                "id": "wild_rice",
+                "name": "wild rice"
+              },
+              {
+                "id": "quinoa",
+                "name": "quinoa"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "einkorn",
+                "name": "einkorn"
+              },
+              {
+                "id": "spelt",
+                "name": "spelt"
+              },
+              {
+                "id": "timothy",
+                "name": "timothy"
+              }
+            ]
+          }
+        },
+        "legumes": {
+          "description": "Pods and pulses for stews and long-term nutrition.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "field_pea",
+                "name": "field pea"
+              },
+              {
+                "id": "broad_bean",
+                "name": "broad bean"
+              },
+              {
+                "id": "lentil",
+                "name": "lentil"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "tundra_pea",
+                "name": "tundra pea"
+              },
+              {
+                "id": "wild_lupin",
+                "name": "wild lupin"
+              }
+            ],
+            "desert": [
+              {
+                "id": "chickpea",
+                "name": "chickpea"
+              },
+              {
+                "id": "desert_lentil",
+                "name": "desert lentil"
+              },
+              {
+                "id": "mesquite_bean",
+                "name": "mesquite bean"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "sea_pea",
+                "name": "sea pea"
+              },
+              {
+                "id": "lathyrus",
+                "name": "lathyrus"
+              },
+              {
+                "id": "cowpea",
+                "name": "cowpea"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "alpine_lupine",
+                "name": "alpine lupine"
+              },
+              {
+                "id": "mountain_pea",
+                "name": "mountain pea"
+              }
+            ]
+          }
+        },
+        "pasta": {
+          "description": "Prepared staple foods shaped from milled grains and water.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "egg_noodles",
+                "name": "egg noodles"
+              },
+              {
+                "id": "durum_ribbons",
+                "name": "durum ribbons"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "buckwheat_noodles",
+                "name": "buckwheat noodles"
+              },
+              {
+                "id": "rye_dumplings",
+                "name": "rye dumplings"
+              }
+            ],
+            "desert": [
+              {
+                "id": "semolina_couscous",
+                "name": "semolina couscous"
+              },
+              {
+                "id": "millet_flat_noodles",
+                "name": "millet flat noodles"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "seaweed_soba",
+                "name": "seaweed soba"
+              },
+              {
+                "id": "rice_noodles",
+                "name": "rice noodles"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "spelt_spaetzle",
+                "name": "spelt spaetzle"
+              },
+              {
+                "id": "barley_dumplings",
+                "name": "barley dumplings"
+              }
+            ]
+          }
+        },
+        "dairy": {
+          "description": "Milk and cultured products derived from domesticated stock.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "cow_milk",
+                "name": "cow milk"
+              },
+              {
+                "id": "aged_cheese",
+                "name": "aged cheese"
+              },
+              {
+                "id": "butter",
+                "name": "butter"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "reindeer_milk",
+                "name": "reindeer milk"
+              },
+              {
+                "id": "kefir",
+                "name": "kefir"
+              },
+              {
+                "id": "smoked_cheese",
+                "name": "smoked cheese"
+              }
+            ],
+            "desert": [
+              {
+                "id": "camel_milk",
+                "name": "camel milk"
+              },
+              {
+                "id": "labneh",
+                "name": "labneh"
+              },
+              {
+                "id": "ghee",
+                "name": "ghee"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "goat_milk",
+                "name": "goat milk"
+              },
+              {
+                "id": "salted_cheese",
+                "name": "salted cheese"
+              },
+              {
+                "id": "cream",
+                "name": "cream"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "yak_milk",
+                "name": "yak milk"
+              },
+              {
+                "id": "hard_cheese",
+                "name": "hard cheese"
+              },
+              {
+                "id": "clarified_butter",
+                "name": "clarified butter"
+              }
+            ]
+          }
+        },
+        "eggs": {
+          "description": "Bird and reptile eggs collected from nests or coops.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "chicken_egg",
+                "name": "chicken egg"
+              },
+              {
+                "id": "duck_egg",
+                "name": "duck egg"
+              },
+              {
+                "id": "goose_egg",
+                "name": "goose egg"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "ptarmigan_egg",
+                "name": "ptarmigan egg"
+              },
+              {
+                "id": "duck_egg",
+                "name": "duck egg"
+              }
+            ],
+            "desert": [
+              {
+                "id": "guinea_fowl_egg",
+                "name": "guinea fowl egg"
+              },
+              {
+                "id": "ostrich_egg",
+                "name": "ostrich egg"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "gull_egg",
+                "name": "gull egg"
+              },
+              {
+                "id": "tern_egg",
+                "name": "tern egg"
+              },
+              {
+                "id": "duck_egg",
+                "name": "duck egg"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "chough_egg",
+                "name": "chough egg"
+              },
+              {
+                "id": "grouse_egg",
+                "name": "grouse egg"
+              }
+            ]
+          }
+        },
+        "herbs": {
+          "description": "Fresh greens used for medicine and seasoning.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "wild_garlic",
+                "name": "wild garlic"
+              },
+              {
+                "id": "parsley",
+                "name": "parsley"
+              },
+              {
+                "id": "thyme",
+                "name": "thyme"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "spruce_tip",
+                "name": "spruce tip"
+              },
+              {
+                "id": "labrador_tea",
+                "name": "labrador tea"
+              },
+              {
+                "id": "angelica",
+                "name": "angelica"
+              }
+            ],
+            "desert": [
+              {
+                "id": "desert_basil",
+                "name": "desert basil"
+              },
+              {
+                "id": "za_atar_thyme",
+                "name": "za'atar thyme"
+              },
+              {
+                "id": "sagebrush",
+                "name": "sagebrush"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "sea_fennel",
+                "name": "sea fennel"
+              },
+              {
+                "id": "samphire",
+                "name": "samphire"
+              },
+              {
+                "id": "wild_dill",
+                "name": "wild dill"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "edelweiss_leaf",
+                "name": "edelweiss leaf"
+              },
+              {
+                "id": "mountain_sorrel",
+                "name": "mountain sorrel"
+              },
+              {
+                "id": "oregano",
+                "name": "oregano"
+              }
+            ]
+          }
+        },
+        "spices": {
+          "description": "Seeds, barks, and roots that impart distinctive flavors.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "juniper_berry",
+                "name": "juniper berry"
+              },
+              {
+                "id": "mustard_seed",
+                "name": "mustard seed"
+              },
+              {
+                "id": "horseradish_root",
+                "name": "horseradish root"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "sweet_gale",
+                "name": "sweet gale"
+              },
+              {
+                "id": "mountain_pepper",
+                "name": "mountain pepper"
+              }
+            ],
+            "desert": [
+              {
+                "id": "cumin",
+                "name": "cumin"
+              },
+              {
+                "id": "coriander",
+                "name": "coriander"
+              },
+              {
+                "id": "fenugreek",
+                "name": "fenugreek"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "sea_pepper",
+                "name": "sea pepper"
+              },
+              {
+                "id": "kelp_flake",
+                "name": "kelp flake"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "stone_pine_nut",
+                "name": "stone pine nut"
+              },
+              {
+                "id": "caraway",
+                "name": "caraway"
+              }
+            ]
+          }
+        },
+        "oils": {
+          "description": "Pressed fats for cooking, preservation, and lighting.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "flax_oil",
+                "name": "flax oil"
+              },
+              {
+                "id": "walnut_oil",
+                "name": "walnut oil"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "birch_tar",
+                "name": "birch tar"
+              },
+              {
+                "id": "hemp_seed_oil",
+                "name": "hemp seed oil"
+              }
+            ],
+            "desert": [
+              {
+                "id": "argan_oil",
+                "name": "argan oil"
+              },
+              {
+                "id": "sesame_oil",
+                "name": "sesame oil"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "fish_oil",
+                "name": "fish oil"
+              },
+              {
+                "id": "sea_buckthorn_oil",
+                "name": "sea buckthorn oil"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "linseed_oil",
+                "name": "linseed oil"
+              },
+              {
+                "id": "pine_nut_oil",
+                "name": "pine nut oil"
+              }
+            ]
+          }
+        },
+        "stocks": {
+          "description": "Bone, vegetable, and fish reductions used as soup bases.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "bone_broth",
+                "name": "bone broth"
+              },
+              {
+                "id": "vegetable_stock",
+                "name": "vegetable stock"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "moose_bone_stock",
+                "name": "moose bone stock"
+              },
+              {
+                "id": "spruce_needle_broth",
+                "name": "spruce needle broth"
+              }
+            ],
+            "desert": [
+              {
+                "id": "goat_bone_broth",
+                "name": "goat bone broth"
+              },
+              {
+                "id": "date_pit_stock",
+                "name": "date pit stock"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "fish_fumet",
+                "name": "fish fumet"
+              },
+              {
+                "id": "shellfish_stock",
+                "name": "shellfish stock"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "ibex_bone_stock",
+                "name": "ibex bone stock"
+              },
+              {
+                "id": "herb_broth",
+                "name": "herb broth"
+              }
+            ]
+          }
+        },
+        "doughs": {
+          "description": "Prepared doughs ready for baking or frying.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "sourdough_starter",
+                "name": "sourdough starter"
+              },
+              {
+                "id": "barley_flatbread_dough",
+                "name": "barley flatbread dough"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "rye_bannock_dough",
+                "name": "rye bannock dough"
+              },
+              {
+                "id": "spruce_tip_batter",
+                "name": "spruce tip batter"
+              }
+            ],
+            "desert": [
+              {
+                "id": "khobz_dough",
+                "name": "khobz dough"
+              },
+              {
+                "id": "date_sweet_bread_dough",
+                "name": "date sweet bread dough"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "seaweed_cracker_dough",
+                "name": "seaweed cracker dough"
+              },
+              {
+                "id": "oatcake_dough",
+                "name": "oatcake dough"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "spelt_loaf_dough",
+                "name": "spelt loaf dough"
+              },
+              {
+                "id": "cheese_pastry_dough",
+                "name": "cheese pastry dough"
+              }
+            ]
+          }
+        },
+        "sweeteners": {
+          "description": "Natural sugars collected for use in preserves and baking.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "maple_syrup",
+                "name": "maple syrup"
+              },
+              {
+                "id": "beet_sugar",
+                "name": "beet sugar"
+              },
+              {
+                "id": "apple_molasses",
+                "name": "apple molasses"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "birch_syrup",
+                "name": "birch syrup"
+              },
+              {
+                "id": "spruce_honeydew",
+                "name": "spruce honeydew"
+              }
+            ],
+            "desert": [
+              {
+                "id": "date_syrup",
+                "name": "date syrup"
+              },
+              {
+                "id": "agave_nectar",
+                "name": "agave nectar"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "sea_beet_syrup",
+                "name": "sea beet syrup"
+              },
+              {
+                "id": "seagrass_nectar",
+                "name": "seagrass nectar"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "alpine_honey",
+                "name": "alpine honey"
+              },
+              {
+                "id": "beech_sugar",
+                "name": "beech sugar"
+              }
+            ]
+          }
+        },
+        "honey": {
+          "description": "Honey varieties prized for medicinal and culinary uses.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "wildflower_honey",
+                "name": "wildflower honey"
+              },
+              {
+                "id": "heather_honey",
+                "name": "heather honey"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "fireweed_honey",
+                "name": "fireweed honey"
+              },
+              {
+                "id": "clover_honey",
+                "name": "clover honey"
+              }
+            ],
+            "desert": [
+              {
+                "id": "acacia_honey",
+                "name": "acacia honey"
+              },
+              {
+                "id": "sidr_honey",
+                "name": "sidr honey"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "sea_lavender_honey",
+                "name": "sea lavender honey"
+              },
+              {
+                "id": "saltmarsh_honey",
+                "name": "saltmarsh honey"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "mountain_blossom_honey",
+                "name": "mountain blossom honey"
+              },
+              {
+                "id": "rhododendron_honey",
+                "name": "rhododendron honey"
+              }
+            ]
+          }
+        },
+        "sauces": {
+          "description": "Prepared condiments to elevate meals and preserve goods.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "mushroom_gravy",
+                "name": "mushroom gravy"
+              },
+              {
+                "id": "berry_chutney",
+                "name": "berry chutney"
+              },
+              {
+                "id": "mustard",
+                "name": "mustard"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "lingonberry_jam",
+                "name": "lingonberry jam"
+              },
+              {
+                "id": "spruce_glaze",
+                "name": "spruce glaze"
+              }
+            ],
+            "desert": [
+              {
+                "id": "tamarind_sauce",
+                "name": "tamarind sauce"
+              },
+              {
+                "id": "harissa",
+                "name": "harissa"
+              },
+              {
+                "id": "date_relish",
+                "name": "date relish"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "fish_sauce",
+                "name": "fish sauce"
+              },
+              {
+                "id": "kelp_relish",
+                "name": "kelp relish"
+              },
+              {
+                "id": "pickled_roe",
+                "name": "pickled roe"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "herb_cream_sauce",
+                "name": "herb cream sauce"
+              },
+              {
+                "id": "cheese_fondue",
+                "name": "cheese fondue"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "firewood": {
+      "categories": {
+        "kindling": {
+          "description": "Small twigs and shavings ideal for starting fires.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "birch_bark",
+                "name": "birch bark"
+              },
+              {
+                "id": "hazel_twig",
+                "name": "hazel twig"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "spruce_twig",
+                "name": "spruce twig"
+              },
+              {
+                "id": "tamarack_shaving",
+                "name": "tamarack shaving"
+              }
+            ],
+            "desert": [
+              {
+                "id": "mesquite_twig",
+                "name": "mesquite twig"
+              },
+              {
+                "id": "saltbush_clipping",
+                "name": "saltbush clipping"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "driftwood_splinter",
+                "name": "driftwood splinter"
+              },
+              {
+                "id": "alder_twig",
+                "name": "alder twig"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "juniper_shaving",
+                "name": "juniper shaving"
+              },
+              {
+                "id": "fir_twig",
+                "name": "fir twig"
+              }
+            ]
+          }
+        },
+        "seasoned_logs": {
+          "description": "Split wood cured for efficient burning.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "oak_split",
+                "name": "oak split"
+              },
+              {
+                "id": "maple_split",
+                "name": "maple split"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "spruce_round",
+                "name": "spruce round"
+              },
+              {
+                "id": "larch_split",
+                "name": "larch split"
+              }
+            ],
+            "desert": [
+              {
+                "id": "mesquite_billet",
+                "name": "mesquite billet"
+              },
+              {
+                "id": "ironwood_split",
+                "name": "ironwood split"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "cedar_split",
+                "name": "cedar split"
+              },
+              {
+                "id": "alder_billet",
+                "name": "alder billet"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "pine_split",
+                "name": "pine split"
+              },
+              {
+                "id": "fir_billet",
+                "name": "fir billet"
+              }
+            ]
+          }
+        },
+        "charcoal": {
+          "description": "Low-smoke fuel made from controlled burns.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "beech_charcoal",
+                "name": "beech charcoal"
+              },
+              {
+                "id": "hazel_charcoal",
+                "name": "hazel charcoal"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "birch_charcoal",
+                "name": "birch charcoal"
+              },
+              {
+                "id": "spruce_charcoal",
+                "name": "spruce charcoal"
+              }
+            ],
+            "desert": [
+              {
+                "id": "acacia_charcoal",
+                "name": "acacia charcoal"
+              },
+              {
+                "id": "mesquite_charcoal",
+                "name": "mesquite charcoal"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "alder_charcoal",
+                "name": "alder charcoal"
+              },
+              {
+                "id": "driftwood_charcoal",
+                "name": "driftwood charcoal"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "larch_charcoal",
+                "name": "larch charcoal"
+              },
+              {
+                "id": "pine_charcoal",
+                "name": "pine charcoal"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "logs": {
+      "wood_types": {
+        "softwood": {
+          "description": "Conifer trunks that are light and easy to work.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "scots_pine",
+                "name": "scots pine"
+              },
+              {
+                "id": "norway_spruce",
+                "name": "norway spruce"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "black_spruce",
+                "name": "black spruce"
+              },
+              {
+                "id": "tamarack",
+                "name": "tamarack"
+              }
+            ],
+            "desert": [
+              {
+                "id": "juniper",
+                "name": "juniper"
+              },
+              {
+                "id": "cypress",
+                "name": "cypress"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "western_red_cedar",
+                "name": "western red cedar"
+              },
+              {
+                "id": "shore_pine",
+                "name": "shore pine"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "mountain_pine",
+                "name": "mountain pine"
+              },
+              {
+                "id": "silver_fir",
+                "name": "silver fir"
+              }
+            ]
+          }
+        },
+        "wood": {
+          "description": "Mixed hardwoods and softwoods of medium density.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "birch",
+                "name": "birch"
+              },
+              {
+                "id": "alder",
+                "name": "alder"
+              },
+              {
+                "id": "beech",
+                "name": "beech"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "aspen",
+                "name": "aspen"
+              },
+              {
+                "id": "birch",
+                "name": "birch"
+              }
+            ],
+            "desert": [
+              {
+                "id": "acacia",
+                "name": "acacia"
+              },
+              {
+                "id": "palo_verde",
+                "name": "palo verde"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "sitka_spruce",
+                "name": "sitka spruce"
+              },
+              {
+                "id": "hemlock",
+                "name": "hemlock"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "rowan",
+                "name": "rowan"
+              },
+              {
+                "id": "larch",
+                "name": "larch"
+              }
+            ]
+          }
+        },
+        "hardwood": {
+          "description": "Dense broadleaf trees suited for durable structures.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "oak",
+                "name": "oak"
+              },
+              {
+                "id": "hickory",
+                "name": "hickory"
+              },
+              {
+                "id": "maple",
+                "name": "maple"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "birch",
+                "name": "birch"
+              },
+              {
+                "id": "mountain_ash",
+                "name": "mountain ash"
+              }
+            ],
+            "desert": [
+              {
+                "id": "ironwood",
+                "name": "ironwood"
+              },
+              {
+                "id": "mesquite",
+                "name": "mesquite"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "garry_oak",
+                "name": "garry oak"
+              },
+              {
+                "id": "pacific_yew",
+                "name": "pacific yew"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "beech",
+                "name": "beech"
+              },
+              {
+                "id": "mountain_maple",
+                "name": "mountain maple"
+              }
+            ]
+          }
+        }
+      },
+      "timber_grades": {
+        "pole": {
+          "description": "Slim, straight cuts used whole for scaffolding and fencing.",
+          "diameter_range_cm": "5-15",
+          "applications": [
+            "fence posts",
+            "rafters",
+            "tool handles"
+          ]
+        },
+        "bolt": {
+          "description": "Short sections in varied diameters useful for firewood and carving.",
+          "length_range_m": "0.4-1.0",
+          "applications": [
+            "firewood billets",
+            "turned bowls",
+            "peg stock"
+          ]
+        },
+        "log": {
+          "description": "Long trunks intended for milling into beams and boards.",
+          "length_range_m": "2.5-6.0",
+          "applications": [
+            "beams",
+            "planks",
+            "ship ribs"
+          ]
+        }
+      }
+    },
+    "stone": {
+      "categories": {
+        "rubble": {
+          "description": "Small fragments useful for infill and drainage.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "shale_chips",
+                "name": "shale chips"
+              },
+              {
+                "id": "flint_flakes",
+                "name": "flint flakes"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "schist_shards",
+                "name": "schist shards"
+              },
+              {
+                "id": "granite_grit",
+                "name": "granite grit"
+              }
+            ],
+            "desert": [
+              {
+                "id": "sandstone_chips",
+                "name": "sandstone chips"
+              },
+              {
+                "id": "basalt_gravel",
+                "name": "basalt gravel"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "beach_cobble",
+                "name": "beach cobble"
+              },
+              {
+                "id": "sea_worn_basalt",
+                "name": "sea-worn basalt"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "slate_fragments",
+                "name": "slate fragments"
+              },
+              {
+                "id": "gneiss_rubble",
+                "name": "gneiss rubble"
+              }
+            ]
+          }
+        },
+        "fieldstone": {
+          "description": "Rounded stones suited for dry-stacked walls.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "river_cobble",
+                "name": "river cobble"
+              },
+              {
+                "id": "glacial_erratic",
+                "name": "glacial erratic"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "granite_cobble",
+                "name": "granite cobble"
+              },
+              {
+                "id": "gneiss_boulder",
+                "name": "gneiss boulder"
+              }
+            ],
+            "desert": [
+              {
+                "id": "limestone_nodule",
+                "name": "limestone nodule"
+              },
+              {
+                "id": "sandstone_boulder",
+                "name": "sandstone boulder"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "tide_rounded_granite",
+                "name": "tide-rounded granite"
+              },
+              {
+                "id": "limestone_cobble",
+                "name": "limestone cobble"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "gneiss_block",
+                "name": "gneiss block"
+              },
+              {
+                "id": "quartzite_boulder",
+                "name": "quartzite boulder"
+              }
+            ]
+          }
+        },
+        "block": {
+          "description": "Cut blocks for masonry and load-bearing structures.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "limestone_block",
+                "name": "limestone block"
+              },
+              {
+                "id": "granite_block",
+                "name": "granite block"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "basalt_block",
+                "name": "basalt block"
+              },
+              {
+                "id": "diorite_block",
+                "name": "diorite block"
+              }
+            ],
+            "desert": [
+              {
+                "id": "sandstone_block",
+                "name": "sandstone block"
+              },
+              {
+                "id": "travertine_slab",
+                "name": "travertine slab"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "marble_block",
+                "name": "marble block"
+              },
+              {
+                "id": "chalk_block",
+                "name": "chalk block"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "granite_ashlar",
+                "name": "granite ashlar"
+              },
+              {
+                "id": "schist_block",
+                "name": "schist block"
+              }
+            ]
+          }
+        },
+        "slab": {
+          "description": "Broad, flat cuts for flooring and roofing.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "flagstone",
+                "name": "flagstone"
+              },
+              {
+                "id": "slate_slab",
+                "name": "slate slab"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "basalt_slab",
+                "name": "basalt slab"
+              },
+              {
+                "id": "gneiss_flag",
+                "name": "gneiss flag"
+              }
+            ],
+            "desert": [
+              {
+                "id": "sandstone_flag",
+                "name": "sandstone flag"
+              },
+              {
+                "id": "gypsum_slab",
+                "name": "gypsum slab"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "whinstone_slab",
+                "name": "whinstone slab"
+              },
+              {
+                "id": "limestone_flag",
+                "name": "limestone flag"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "quartzite_slab",
+                "name": "quartzite slab"
+              },
+              {
+                "id": "schist_tile",
+                "name": "schist tile"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "clay": {
+      "categories": {
+        "earthenware": {
+          "description": "Low-fire clay ideal for pottery and bricks.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "red_river_clay",
+                "name": "red river clay"
+              },
+              {
+                "id": "brown_loam",
+                "name": "brown loam"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "glacial_clay",
+                "name": "glacial clay"
+              },
+              {
+                "id": "blue_clay",
+                "name": "blue clay"
+              }
+            ],
+            "desert": [
+              {
+                "id": "wadi_clay",
+                "name": "wadi clay"
+              },
+              {
+                "id": "alluvial_clay",
+                "name": "alluvial clay"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "estuary_clay",
+                "name": "estuary clay"
+              },
+              {
+                "id": "saltmarsh_clay",
+                "name": "saltmarsh clay"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "mountain_loam",
+                "name": "mountain loam"
+              },
+              {
+                "id": "silt_clay",
+                "name": "silt clay"
+              }
+            ]
+          }
+        },
+        "stoneware": {
+          "description": "Dense clay for durable vessels and pipes.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "buff_clay",
+                "name": "buff clay"
+              },
+              {
+                "id": "fireclay",
+                "name": "fireclay"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "gray_stoneware_clay",
+                "name": "gray stoneware clay"
+              }
+            ],
+            "desert": [
+              {
+                "id": "kaolinitic_clay",
+                "name": "kaolinitic clay"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "blue_clay",
+                "name": "blue clay"
+              },
+              {
+                "id": "riverine_stoneware",
+                "name": "riverine stoneware"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "iron_rich_clay",
+                "name": "iron-rich clay"
+              }
+            ]
+          }
+        },
+        "refractory": {
+          "description": "High-temperature clay suited for kilns and forges.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "fireclay",
+                "name": "fireclay"
+              },
+              {
+                "id": "ball_clay",
+                "name": "ball clay"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "chromite_clay",
+                "name": "chromite clay"
+              }
+            ],
+            "desert": [
+              {
+                "id": "alumina_clay",
+                "name": "alumina clay"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "silica_rich_clay",
+                "name": "silica-rich clay"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "magnesite_clay",
+                "name": "magnesite clay"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "ore": {
+      "categories": {
+        "ferrous": {
+          "description": "Iron-bearing ores for tools and armor.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "bog_iron",
+                "name": "bog iron"
+              },
+              {
+                "id": "hematite",
+                "name": "hematite"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "magnetite",
+                "name": "magnetite"
+              },
+              {
+                "id": "siderite",
+                "name": "siderite"
+              }
+            ],
+            "desert": [
+              {
+                "id": "hematite",
+                "name": "hematite"
+              },
+              {
+                "id": "goethite",
+                "name": "goethite"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "iron_sand",
+                "name": "iron sand"
+              },
+              {
+                "id": "limonite",
+                "name": "limonite"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "magnetite_vein",
+                "name": "magnetite vein"
+              },
+              {
+                "id": "pyrite",
+                "name": "pyrite"
+              }
+            ]
+          }
+        },
+        "nonferrous": {
+          "description": "Copper, tin, and other metals for alloys.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "malachite",
+                "name": "malachite"
+              },
+              {
+                "id": "cassiterite",
+                "name": "cassiterite"
+              },
+              {
+                "id": "galena",
+                "name": "galena"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "chalcopyrite",
+                "name": "chalcopyrite"
+              },
+              {
+                "id": "sphalerite",
+                "name": "sphalerite"
+              }
+            ],
+            "desert": [
+              {
+                "id": "azurite",
+                "name": "azurite"
+              },
+              {
+                "id": "native_copper",
+                "name": "native copper"
+              },
+              {
+                "id": "stibnite",
+                "name": "stibnite"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "tetrahedrite",
+                "name": "tetrahedrite"
+              },
+              {
+                "id": "argentite",
+                "name": "argentite"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "bornite",
+                "name": "bornite"
+              },
+              {
+                "id": "cinnabar",
+                "name": "cinnabar"
+              }
+            ]
+          }
+        },
+        "precious": {
+          "description": "Rare ores valued for trade and ornamentation.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "native_silver",
+                "name": "native silver"
+              },
+              {
+                "id": "electrum",
+                "name": "electrum"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "placer_gold",
+                "name": "placer gold"
+              },
+              {
+                "id": "platinum_flake",
+                "name": "platinum flake"
+              }
+            ],
+            "desert": [
+              {
+                "id": "desert_gold",
+                "name": "desert gold"
+              },
+              {
+                "id": "opal",
+                "name": "opal"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "pearlescent_shell",
+                "name": "pearlescent shell"
+              },
+              {
+                "id": "amber",
+                "name": "amber"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "ruby_bearing_schist",
+                "name": "ruby-bearing schist"
+              },
+              {
+                "id": "sapphire_vein",
+                "name": "sapphire vein"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "leather": {
+      "hides": {
+        "thin": {
+          "description": "Light hides suitable for clothing and fine goods.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "hare_hide",
+                "name": "hare hide"
+              },
+              {
+                "id": "fox_hide",
+                "name": "fox hide"
+              },
+              {
+                "id": "roe_deer_hide",
+                "name": "roe deer hide"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "ermine_pelt",
+                "name": "ermine pelt"
+              },
+              {
+                "id": "willow_ptarmigan_skin",
+                "name": "willow ptarmigan skin"
+              }
+            ],
+            "desert": [
+              {
+                "id": "gazelle_hide",
+                "name": "gazelle hide"
+              },
+              {
+                "id": "fennec_hide",
+                "name": "fennec hide"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "otter_pelt",
+                "name": "otter pelt"
+              },
+              {
+                "id": "seal_pup_hide",
+                "name": "seal pup hide"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "marmot_hide",
+                "name": "marmot hide"
+              },
+              {
+                "id": "ibex_kid_hide",
+                "name": "ibex kid hide"
+              }
+            ]
+          }
+        },
+        "medium": {
+          "description": "Versatile hides used for armor and tack.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "boar_hide",
+                "name": "boar hide"
+              },
+              {
+                "id": "stag_hide",
+                "name": "stag hide"
+              },
+              {
+                "id": "wolf_pelt",
+                "name": "wolf pelt"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "caribou_hide",
+                "name": "caribou hide"
+              },
+              {
+                "id": "lynx_pelt",
+                "name": "lynx pelt"
+              }
+            ],
+            "desert": [
+              {
+                "id": "dromedary_hide",
+                "name": "dromedary hide"
+              },
+              {
+                "id": "oryx_hide",
+                "name": "oryx hide"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "seal_hide",
+                "name": "seal hide"
+              },
+              {
+                "id": "wild_boar_hide",
+                "name": "wild boar hide"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "chamois_hide",
+                "name": "chamois hide"
+              },
+              {
+                "id": "red_deer_hide",
+                "name": "red deer hide"
+              }
+            ]
+          }
+        },
+        "thick": {
+          "description": "Heavy hides suited for shields and winter gear.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "aurochs_hide",
+                "name": "aurochs hide"
+              },
+              {
+                "id": "bear_pelt",
+                "name": "bear pelt"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "moose_hide",
+                "name": "moose hide"
+              },
+              {
+                "id": "muskox_pelt",
+                "name": "muskox pelt"
+              }
+            ],
+            "desert": [
+              {
+                "id": "buffalo_hide",
+                "name": "buffalo hide"
+              },
+              {
+                "id": "thick_camel_hide",
+                "name": "thick camel hide"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "walrus_hide",
+                "name": "walrus hide"
+              },
+              {
+                "id": "sea_lion_hide",
+                "name": "sea lion hide"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "yak_hide",
+                "name": "yak hide"
+              },
+              {
+                "id": "brown_bear_pelt",
+                "name": "brown bear pelt"
+              }
+            ]
+          }
+        }
+      },
+      "processing": {
+        "tanning_methods": [
+          "vegetable tanning",
+          "smoke curing",
+          "oil tanning"
+        ],
+        "derived_products": [
+          "furs",
+          "rawhide thongs",
+          "leather armor"
+        ]
+      }
+    },
+    "cloth": {
+      "textiles": {
+        "wool": {
+          "description": "Animal fibers spun into insulating yarns.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "sheep_wool",
+                "name": "sheep wool"
+              },
+              {
+                "id": "goat_wool",
+                "name": "goat wool"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "muskox_qiviut",
+                "name": "muskox qiviut"
+              },
+              {
+                "id": "reindeer_wool",
+                "name": "reindeer wool"
+              }
+            ],
+            "desert": [
+              {
+                "id": "dromedary_wool",
+                "name": "dromedary wool"
+              },
+              {
+                "id": "angora_goat_fiber",
+                "name": "angora goat fiber"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "sea_island_sheep_wool",
+                "name": "sea island sheep wool"
+              },
+              {
+                "id": "alpaca_wool",
+                "name": "alpaca wool"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "yak_wool",
+                "name": "yak wool"
+              },
+              {
+                "id": "cashmere",
+                "name": "cashmere"
+              }
+            ]
+          }
+        },
+        "linen": {
+          "description": "Plant fibers retted and woven into cool fabric.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "flax_linen",
+                "name": "flax linen"
+              },
+              {
+                "id": "hemp_linen",
+                "name": "hemp linen"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "nettle_fiber",
+                "name": "nettle fiber"
+              },
+              {
+                "id": "fireweed_fiber",
+                "name": "fireweed fiber"
+              }
+            ],
+            "desert": [
+              {
+                "id": "sisal_linen",
+                "name": "sisal linen"
+              },
+              {
+                "id": "agave_fiber",
+                "name": "agave fiber"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "sea_flax_linen",
+                "name": "sea flax linen"
+              },
+              {
+                "id": "ramie",
+                "name": "ramie"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "mountain_flax_linen",
+                "name": "mountain flax linen"
+              },
+              {
+                "id": "stinging_nettle_cloth",
+                "name": "stinging nettle cloth"
+              }
+            ]
+          }
+        },
+        "silk": {
+          "description": "Fine filament fibers harvested from insects.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "mulberry_silk",
+                "name": "mulberry silk"
+              },
+              {
+                "id": "oak_silk",
+                "name": "oak silk"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "tussah_silk",
+                "name": "tussah silk"
+              }
+            ],
+            "desert": [
+              {
+                "id": "wild_silkmoth_silk",
+                "name": "wild silkmoth silk"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "sea_silkworm_thread",
+                "name": "sea silkworm thread"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "rock_silkmoth_silk",
+                "name": "rock silkmoth silk"
+              }
+            ]
+          }
+        },
+        "blends": {
+          "description": "Mixed textiles combining strength and comfort.",
+          "biome_distribution": {
+            "temperate": [
+              {
+                "id": "linsey_woolsey",
+                "name": "linsey-woolsey"
+              },
+              {
+                "id": "hemp_cotton",
+                "name": "hemp-cotton"
+              }
+            ],
+            "boreal": [
+              {
+                "id": "qiviut_linen_blend",
+                "name": "qiviut-linen blend"
+              }
+            ],
+            "desert": [
+              {
+                "id": "camel_hair_cotton",
+                "name": "camel hair-cotton"
+              },
+              {
+                "id": "agave_wool",
+                "name": "agave-wool"
+              }
+            ],
+            "coastal": [
+              {
+                "id": "wool_silk",
+                "name": "wool-silk"
+              },
+              {
+                "id": "ramie_cotton",
+                "name": "ramie-cotton"
+              }
+            ],
+            "alpine": [
+              {
+                "id": "yak_wool_blend",
+                "name": "yak-wool blend"
+              },
+              {
+                "id": "nettlesilk",
+                "name": "nettlesilk"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "crafted_goods": {
+    "armor": {
+      "categories": {
+        "padded": {
+          "description": "Layered textiles and hides for flexible defense tailored to available fibers.",
+          "compatible_materials": [
+            "flax_linen",
+            "hemp_linen",
+            "sheep_wool",
+            "hare_hide"
+          ],
+          "variant_guidance": [
+            {
+              "name": "Gambeson",
+              "material_emphasis": [
+                "flax_linen",
+                "wool_batting"
+              ],
+              "notes": "Baseline padded armor that scales with textile quality; insert thin leather for extra durability."
+            },
+            {
+              "name": "Winter Padding",
+              "material_emphasis": [
+                "muskox_qiviut",
+                "seal_hide"
+              ],
+              "notes": "Fur-lined padding that adds insulation with minor agility penalties."
+            }
+          ]
+        },
+        "leather": {
+          "description": "Hardened or layered hides shaped into shells or lamellae.",
+          "compatible_materials": [
+            "boar_hide",
+            "caribou_hide",
+            "yak_hide",
+            "aurochs_hide"
+          ],
+          "variant_guidance": [
+            {
+              "name": "Cuir Bouilli Cuirass",
+              "material_emphasis": [
+                "boar_hide",
+                "bear_pelt"
+              ],
+              "notes": "Boiled medium hides offer balanced defense; thick hides add weight but boost durability."
+            },
+            {
+              "name": "Lamellar Vest",
+              "material_emphasis": [
+                "caribou_hide",
+                "yak_hide"
+              ],
+              "notes": "Scale pattern accepts bone or metal inserts when available."
+            }
+          ]
+        },
+        "metal": {
+          "description": "Mail, scale, or plate built from smelted metals and reinforced leather.",
+          "compatible_materials": [
+            "bog_iron",
+            "magnetite",
+            "malachite",
+            "cassiterite"
+          ],
+          "variant_guidance": [
+            {
+              "name": "Riveted Mail",
+              "material_emphasis": [
+                "bog_iron",
+                "flax_linen"
+              ],
+              "notes": "Iron links with linen padding for general-purpose defense."
+            },
+            {
+              "name": "Scale Harness",
+              "material_emphasis": [
+                "cassiterite",
+                "boar_hide"
+              ],
+              "notes": "Copper-tin alloys riveted over leather to resist cutting blows."
+            }
+          ]
+        }
+      },
+      "material_modifiers": {
+        "thin_leather": "Lightweight; +agility, -durability.",
+        "medium_leather": "Balanced protection and flexibility.",
+        "thick_leather": "Heavy; +durability, -agility.",
+        "bronze": "Resists corrosion; moderate defense.",
+        "iron": "High defense with notable weight.",
+        "steel": "Masterwork protection; requires advanced smelting."
+      }
+    },
+    "tools": {
+      "qualities": [
+        "crude",
+        "standard",
+        "fine",
+        "masterwork"
+      ],
+      "materials": {
+        "wood": {
+          "examples": [
+            "spruce mallet",
+            "ash rake",
+            "oak wedge"
+          ],
+          "notes": "Used for handles, frames, and simple implements."
+        },
+        "bone": {
+          "examples": [
+            "caribou bone awl",
+            "fishbone needle",
+            "antler pick"
+          ],
+          "notes": "Lightweight tools suited for sewing and light carving."
+        },
+        "stone": {
+          "examples": [
+            "flint axe",
+            "obsidian knife",
+            "granite hammer"
+          ],
+          "notes": "Durable edges forged through knapping and grinding."
+        },
+        "bronze": {
+          "examples": [
+            "bronze chisel",
+            "bronze saw",
+            "bronze drawknife"
+          ],
+          "notes": "Alloy of copper and tin valued for resilience."
+        },
+        "iron": {
+          "examples": [
+            "iron axe",
+            "iron spade",
+            "iron plane"
+          ],
+          "notes": "Primary workhorse metal for settlement industry."
+        },
+        "steel": {
+          "examples": [
+            "steel adze",
+            "steel hammer",
+            "steel froe"
+          ],
+          "notes": "Masterwork material created through high heat refining."
+        }
+      },
+      "quality_modifiers": {
+        "crude": "Hand-hewn with minimal refinement; reduced efficiency and durability.",
+        "standard": "Well-balanced tools produced by trained smiths.",
+        "fine": "Carefully tuned implements that boost productivity.",
+        "masterwork": "Artisan-crafted with superior materials and finish."
+      }
+    },
+    "woodcraft": {
+      "applications": [
+        "construction frameworks",
+        "implements",
+        "furniture"
+      ],
+      "material_variants": {
+        "softwood": {
+          "compatible_resources": [
+            "scots_pine",
+            "norway_spruce",
+            "juniper"
+          ],
+          "notes": "Lightweight and easy to work; best for roofing, masts, and disposable tooling."
+        },
+        "mixed_wood": {
+          "compatible_resources": [
+            "birch",
+            "alder",
+            "acacia"
+          ],
+          "notes": "Versatile stock for planking and cabinetry."
+        },
+        "hardwood": {
+          "compatible_resources": [
+            "oak",
+            "hickory",
+            "ironwood"
+          ],
+          "notes": "Dense and resilient; ideal for beams, wagon axles, and weapon hafts."
+        }
+      }
+    },
+    "bonecraft": {
+      "applications": [
+        "needles and awls",
+        "light weapons",
+        "decorative inlays"
+      ],
+      "material_variants": {
+        "small_game": {
+          "compatible_resources": [
+            "hare_hide",
+            "ermine_pelt",
+            "fox_hide"
+          ],
+          "notes": "Bones suited for sewing tools and jewelry."
+        },
+        "large_game": {
+          "compatible_resources": [
+            "caribou_hide",
+            "moose_hide",
+            "aurochs_hide"
+          ],
+          "notes": "Long bones carve into spear shafts and club cores."
+        },
+        "marine": {
+          "compatible_resources": [
+            "walrus_hide",
+            "sea_lion_hide",
+            "harbor_seal"
+          ],
+          "notes": "Dense marine bones resist splintering; excellent for harpoons."
+        }
+      }
+    }
+  }
+}

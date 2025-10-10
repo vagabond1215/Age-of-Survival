@@ -10,6 +10,10 @@
     "id": "hunter",
     "name": "Hunter",
     "production": { "food": 2, "leather": 1 },
+    "byproducts": {
+      "hides": ["thin", "medium", "thick"],
+      "notes": "Game yields hides that can be dressed into furs or tanned into leather of matching thickness."
+    },
     "consumption": {},
     "cap": 2
   },
