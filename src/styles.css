@@ -216,6 +216,15 @@ button {
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
+.thought-grid--scrollable {
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.thought-grid--scrollable::-webkit-scrollbar {
+  display: none;
+}
+
 .thought-card {
   border-radius: 16px;
   border: 1px solid rgba(109, 142, 192, 0.4);
@@ -235,9 +244,4 @@ button {
 
 .thought-label {
   font-weight: 600;
-}
-
-.thought-description {
-  font-size: 0.95rem;
-  color: #d7deec;
 }
