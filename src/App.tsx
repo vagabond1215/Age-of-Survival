@@ -6,13 +6,17 @@ import CraftPlanner from './ui/CraftPlanner';
 import BuildQueue from './ui/BuildQueue';
 import MapGrid from './ui/MapGrid';
 import Notifications from './ui/Notifications';
-import AwakeningPrompt from './ui/AwakeningPrompt';
+import CharacterCreation from './ui/CharacterCreation';
 import { createDefaultState, type GameState } from './game/state';
 import { composeAwakeningNarrative } from './game/narrative';
 import { tickDay, tickThreeDays } from './game/engine';
 import { assignJob } from './game/systems/jobs';
 import { ensureCraftTarget } from './game/systems/crafting';
 import { loadFromLocalStorage, saveToLocalStorage, exportToFile, importFromFile, resetSave } from './lib/persist';
+import { getBiomeDetail } from './data/biomes';
+import { generateMap } from './game/map';
+import { createRng } from './lib/rng';
+import { getCreationEventById, getCreationEventsForBiome, getThoughtById } from './data/creationEvents';
 
 function App() {
   const [state, setState] = useState<GameState>(() => {
@@ -82,23 +86,90 @@ function App() {
     setState((current) => ({ ...current, buildQueue: current.buildQueue.filter((item) => item.id !== id) }));
   }, []);
 
-  const handleAwakeningBegin = useCallback(() => {
+  const handleSelectBiome = useCallback((biomeId: GameState['biome']) => {
     setState((current) => {
-      const narrative = current.awakening?.narrative ?? composeAwakeningNarrative(current.biome, current.features);
-      return { ...current, awakening: { seen: true, narrative } };
+      const detail = getBiomeDetail(biomeId);
+      const features = detail.defaultFeatures;
+      const narrative = composeAwakeningNarrative(biomeId, features);
+      return {
+        ...current,
+        biome: biomeId,
+        features,
+        map: generateMap(biomeId, features, current.rngSeed),
+        awakening: { seen: false, narrative },
+        creation: {
+          ...current.creation,
+          stage: 'awaiting_focus',
+          selectedBiome: biomeId,
+          eventId: null,
+          chosenThought: null
+        }
+      };
     });
   }, []);
 
+  const handleGather = useCallback(() => {
+    setState((current) => {
+      if (current.creation.stage !== 'awaiting_focus' || !current.creation.selectedBiome) {
+        return current;
+      }
+      const rng = createRng(current.rngSeed);
+      const events = getCreationEventsForBiome(current.creation.selectedBiome);
+      const index = events.length > 0 ? Math.floor(rng.next() * events.length) % events.length : 0;
+      const selectedEvent = events[index] ?? null;
+      return {
+        ...current,
+        rngSeed: rng.seed,
+        creation: {
+          ...current.creation,
+          stage: 'event',
+          eventId: selectedEvent?.id ?? null
+        }
+      };
+    });
+  }, []);
+
+  const handleResolveThought = useCallback((thoughtId: string) => {
+    setState((current) => {
+      if (current.creation.stage !== 'event') {
+        return current;
+      }
+      const event = getCreationEventById(current.creation.eventId);
+      const thought = getThoughtById(event, thoughtId);
+      const narrative = current.awakening?.narrative ?? composeAwakeningNarrative(current.biome, current.features);
+      const notifications = thought && !current.notifications.includes(thought.result)
+        ? [...current.notifications, thought.result]
+        : current.notifications;
+      return {
+        ...current,
+        notifications,
+        awakening: { seen: true, narrative },
+        creation: {
+          ...current.creation,
+          stage: 'complete',
+          chosenThought: thoughtId
+        }
+      };
+    });
+  }, []);
+
+  if (state.creation.stage !== 'complete') {
+    return (
+      <div className="App">
+        <CharacterCreation
+          creation={state.creation}
+          currentBiome={state.biome}
+          features={state.features}
+          onSelectBiome={handleSelectBiome}
+          onGather={handleGather}
+          onResolveThought={handleResolveThought}
+        />
+      </div>
+    );
+  }
+
   return (
     <div className="App">
-      {!state.awakening?.seen && (
-        <AwakeningPrompt
-          biome={state.biome}
-          features={state.features}
-          narrative={state.awakening?.narrative}
-          onBegin={handleAwakeningBegin}
-        />
-      )}
       <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div>
           <h1>Village of Haven</h1>

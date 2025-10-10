@@ -94,6 +94,28 @@ function migrateState(value: unknown): GameState | null {
         narrative: composeAwakeningNarrative(biome, features)
       };
 
+  const creationStages = new Set(['biome_selection', 'awaiting_focus', 'event', 'complete']);
+  const creation = candidate.creation && typeof candidate.creation === 'object'
+    ? {
+        stage: creationStages.has(String((candidate.creation as { stage?: unknown }).stage))
+          ? ((candidate.creation as { stage: GameState['creation']['stage'] }).stage)
+          : (hasProgress ? 'complete' : defaults.creation.stage),
+        selectedBiome: isBiome((candidate.creation as { selectedBiome?: unknown }).selectedBiome)
+          ? ((candidate.creation as { selectedBiome: GameState['biome'] }).selectedBiome)
+          : null,
+        eventId:
+          typeof (candidate.creation as { eventId?: unknown }).eventId === 'string'
+            ? ((candidate.creation as { eventId: string }).eventId)
+            : null,
+        chosenThought:
+          typeof (candidate.creation as { chosenThought?: unknown }).chosenThought === 'string'
+            ? ((candidate.creation as { chosenThought: string }).chosenThought)
+            : null
+      }
+    : hasProgress
+      ? { ...defaults.creation, stage: 'complete', selectedBiome: candidate.biome }
+      : defaults.creation;
+
   const merged: unknown = {
     ...defaults,
     ...candidate,
@@ -102,6 +124,7 @@ function migrateState(value: unknown): GameState | null {
     rngSeed,
     map,
     awakening,
+    creation,
     notifications: Array.isArray(candidate.notifications) ? candidate.notifications : defaults.notifications
   };
 
