@@ -79,6 +79,26 @@ Players define targets like `iron_axe → 6` in the Craft Planner. The crafting 
 - Players may export a `savegame.json` file (`savegame.example.json` provides a template) and import it later after schema validation.
 - A **Reset** button clears localStorage and restores the default seed state after confirmation.
 
+## Project Structure
+
+The repository keeps a single authoritative implementation under `src/` and related configuration files:
+
+- `src/` – React UI, game engine systems, and supporting utilities.
+- `tests/` – Vitest suites covering the tick order, crafting targets, replacement rules, and schema guards.
+- `savegame.example.json` – Sample export illustrating the persistence format.
+- `vite.config.ts`, `tsconfig*.json` – Build and tooling configuration pre-set for GitHub Pages deployments.
+
+Legacy alternates (such as the previous `from gpt5` directory) have been removed to avoid drift; the files in the repository root are the canonical versions to edit.
+
+## Development
+
+Install dependencies once and use Vite for local development:
+
+```bash
+npm install
+npm run dev
+```
+
 ## GitHub Pages Deployment
 
 1. `vite.config.ts` sets `base: '/Age-of-Survival/'` to serve correctly from GitHub Pages.
