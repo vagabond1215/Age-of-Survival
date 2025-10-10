@@ -1,6 +1,8 @@
 import { z } from 'zod';
 import jobs from '../data/jobs.json';
 import { BIOMES, DEFAULT_BED_CAPACITY, FEATURES, MAP_SIZE, RESOURCES, type BiomeId, type FeatureId, type ResourceId } from './constants';
+import { generateMap } from './map';
+import { composeAwakeningNarrative } from './narrative';
 
 const resourceIdSchema = z.enum(RESOURCES);
 const biomeIdSchema = z.enum(BIOMES);
@@ -53,6 +55,21 @@ export const LogisticsStateSchema = z.object({
 });
 export type LogisticsState = z.infer<typeof LogisticsStateSchema>;
 
+export const MapTileSchema = z.object({
+  x: z.number().int(),
+  y: z.number().int(),
+  biome: biomeIdSchema,
+  features: z.array(featureIdSchema),
+  label: z.string().optional()
+});
+export type MapTile = z.infer<typeof MapTileSchema>;
+
+export const AwakeningStateSchema = z.object({
+  seen: z.boolean(),
+  narrative: z.string()
+});
+export type AwakeningState = z.infer<typeof AwakeningStateSchema>;
+
 export const GameStateSchema = z.object({
   day: z.number().int().min(1),
   biome: biomeIdSchema,
@@ -72,7 +89,9 @@ export const GameStateSchema = z.object({
   summonPaused: z.boolean(),
   pauseOnSummon: z.boolean(),
   rngSeed: z.number().int(),
-  lastEventId: z.string().nullable()
+  lastEventId: z.string().nullable(),
+  map: z.array(MapTileSchema),
+  awakening: AwakeningStateSchema
 });
 export type GameState = z.infer<typeof GameStateSchema>;
 
@@ -128,10 +147,12 @@ export function createDefaultResources(): Record<ResourceId, number> {
 }
 
 export function createDefaultState(): GameState {
+  const defaultFeatures: FeatureId[] = ['river', 'dense_forest', 'mine'];
+  const rngSeed = 12345;
   return {
     day: 1,
     biome: 'temperate',
-    features: ['river', 'dense_forest', 'mine'],
+    features: defaultFeatures,
     villagers: DEFAULT_VILLAGERS,
     jobs: jobs.map((job) => job.id),
     resources: createDefaultResources(),
@@ -146,8 +167,13 @@ export function createDefaultState(): GameState {
     notifications: ['Welcome to the Village of Haven.'],
     summonPaused: true,
     pauseOnSummon: true,
-    rngSeed: 12345,
-    lastEventId: null
+    rngSeed,
+    lastEventId: null,
+    map: generateMap('temperate', defaultFeatures, rngSeed),
+    awakening: {
+      seen: false,
+      narrative: composeAwakeningNarrative('temperate', defaultFeatures)
+    }
   };
 }
 

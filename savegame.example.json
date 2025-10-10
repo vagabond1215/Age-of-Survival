@@ -47,6 +47,37 @@
     "summonPaused": false,
     "pauseOnSummon": true,
     "rngSeed": 4567,
-    "lastEventId": null
+    "lastEventId": null,
+    "map": [
+      { "x": -2, "y": 2, "biome": "temperate", "features": [] },
+      { "x": -1, "y": 2, "biome": "temperate", "features": [] },
+      { "x": 0, "y": 2, "biome": "temperate", "features": [] },
+      { "x": 1, "y": 2, "biome": "temperate", "features": [] },
+      { "x": 2, "y": 2, "biome": "temperate", "features": [] },
+      { "x": -2, "y": 1, "biome": "temperate", "features": [] },
+      { "x": -1, "y": 1, "biome": "temperate", "features": [] },
+      { "x": 0, "y": 1, "biome": "temperate", "features": [] },
+      { "x": 1, "y": 1, "biome": "temperate", "features": [] },
+      { "x": 2, "y": 1, "biome": "temperate", "features": [] },
+      { "x": -2, "y": 0, "biome": "temperate", "features": [] },
+      { "x": -1, "y": 0, "biome": "temperate", "features": ["dense_forest"] },
+      { "x": 0, "y": 0, "biome": "temperate", "features": [] },
+      { "x": 1, "y": 0, "biome": "temperate", "features": ["dense_forest"] },
+      { "x": 2, "y": 0, "biome": "temperate", "features": [] },
+      { "x": -2, "y": -1, "biome": "temperate", "features": [] },
+      { "x": -1, "y": -1, "biome": "temperate", "features": [] },
+      { "x": 0, "y": -1, "biome": "temperate", "features": ["dense_forest"] },
+      { "x": 1, "y": -1, "biome": "temperate", "features": [] },
+      { "x": 2, "y": -1, "biome": "temperate", "features": [] },
+      { "x": -2, "y": -2, "biome": "temperate", "features": ["river"] },
+      { "x": -1, "y": -2, "biome": "temperate", "features": ["river"] },
+      { "x": 0, "y": -2, "biome": "temperate", "features": ["river"] },
+      { "x": 1, "y": -2, "biome": "temperate", "features": ["mine", "river"], "label": "Mine" },
+      { "x": 2, "y": -2, "biome": "temperate", "features": ["dense_forest", "river"] }
+    ],
+    "awakening": {
+      "seen": true,
+      "narrative": "You wake amidst gentle hills where dew-soaked grasses bend beneath the breeze. A nearby river murmurs over stone, promising fish and clay alike. An ancient wood crowds close, trunks thick with moss and stories untold. A scar of exposed rock reveals an old mine mouth, whispering of ore and hidden danger."
+    }
   }
 }
