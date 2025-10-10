@@ -1,0 +1,58 @@
+[
+  {
+    "id": "forager",
+    "name": "Forager",
+    "production": { "food": 3 },
+    "consumption": {},
+    "cap": 4
+  },
+  {
+    "id": "hunter",
+    "name": "Hunter",
+    "production": { "food": 2, "leather": 1 },
+    "consumption": {},
+    "cap": 2
+  },
+  {
+    "id": "woodcutter",
+    "name": "Woodcutter",
+    "production": { "logs": 3 },
+    "consumption": { "food": 1 },
+    "cap": 3
+  },
+  {
+    "id": "mason",
+    "name": "Mason",
+    "production": { "stone": 2 },
+    "consumption": { "food": 1 },
+    "cap": 2
+  },
+  {
+    "id": "smith",
+    "name": "Smith",
+    "production": { "tools": 1 },
+    "consumption": { "food": 1, "ore": 1 },
+    "cap": 1
+  },
+  {
+    "id": "tailor",
+    "name": "Tailor",
+    "production": { "cloth": 1 },
+    "consumption": { "food": 1, "leather": 1 },
+    "cap": 1
+  },
+  {
+    "id": "builder",
+    "name": "Builder",
+    "production": {},
+    "consumption": { "food": 1 },
+    "cap": 2
+  },
+  {
+    "id": "quartermaster",
+    "name": "Quartermaster",
+    "production": {},
+    "consumption": { "food": 1 },
+    "cap": 1
+  }
+]

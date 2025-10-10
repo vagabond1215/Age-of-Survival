@@ -1,0 +1,52 @@
+{
+  "meta": "Example save for Village of Haven",
+  "state": {
+    "day": 5,
+    "biome": "temperate",
+    "features": ["river", "dense_forest", "mine"],
+    "villagers": [
+      { "id": "v-1", "name": "Aela", "jobId": "forager", "efficiency": 1, "bed": "hall" },
+      { "id": "v-2", "name": "Bran", "jobId": "woodcutter", "efficiency": 1, "bed": "hall" },
+      { "id": "v-3", "name": "Caro", "jobId": "hunter", "efficiency": 0.8, "bed": "hall" }
+    ],
+    "jobs": ["forager", "hunter", "woodcutter", "mason", "smith", "tailor", "builder", "quartermaster"],
+    "resources": {
+      "food": 26,
+      "firewood": 15,
+      "logs": 12,
+      "stone": 9,
+      "clay": 4,
+      "ore": 4,
+      "leather": 2,
+      "cloth": 1,
+      "tools": 2,
+      "armor": 0
+    },
+    "deltas": {
+      "food": 1,
+      "firewood": 0,
+      "logs": 1,
+      "stone": 1,
+      "clay": 0,
+      "ore": 0,
+      "leather": 0,
+      "cloth": 0,
+      "tools": 0,
+      "armor": 0
+    },
+    "buildings": [
+      { "id": "hall", "slug": "town_hall", "x": 0, "y": 0, "tier": 1, "status": "active", "capacity": 4 }
+    ],
+    "buildQueue": [],
+    "crafting": [],
+    "logistics": { "carts": 1, "packAnimals": 0, "roadBonus": 1 },
+    "morale": 52,
+    "stability": 51,
+    "readiness": 12,
+    "notifications": ["Imported save example"],
+    "summonPaused": false,
+    "pauseOnSummon": true,
+    "rngSeed": 4567,
+    "lastEventId": null
+  }
+}
