@@ -1,0 +1,8 @@
+[
+  { "id": "log", "name": "Logs", "resource": "logs" },
+  { "id": "stone_block", "name": "Stone Block", "resource": "stone" },
+  { "id": "iron_ingot", "name": "Iron Ingot", "resource": "ore" },
+  { "id": "leather_roll", "name": "Leather Roll", "resource": "leather" },
+  { "id": "cloth_bolt", "name": "Cloth Bolt", "resource": "cloth" },
+  { "id": "iron_axe", "name": "Iron Axe", "resource": "tools" }
+]

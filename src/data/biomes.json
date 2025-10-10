@@ -1,0 +1,27 @@
+[
+  {
+    "id": "temperate",
+    "name": "Temperate",
+    "modifiers": { "food": 1 }
+  },
+  {
+    "id": "boreal",
+    "name": "Boreal",
+    "modifiers": { "firewood": 1 }
+  },
+  {
+    "id": "desert",
+    "name": "Desert",
+    "modifiers": { "food": -1, "firewood": -1 }
+  },
+  {
+    "id": "coastal",
+    "name": "Coastal",
+    "modifiers": { "food": 2 }
+  },
+  {
+    "id": "alpine",
+    "name": "Alpine",
+    "modifiers": { "stone": 1 }
+  }
+]

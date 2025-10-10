@@ -1,0 +1,23 @@
+[
+  {
+    "id": "planks",
+    "name": "Plane Logs",
+    "inputs": { "logs": 2 },
+    "outputs": { "tools": 0, "firewood": 3 },
+    "until": null
+  },
+  {
+    "id": "stone_block",
+    "name": "Cut Stone",
+    "inputs": { "stone": 2 },
+    "outputs": { "stone": 1 },
+    "until": null
+  },
+  {
+    "id": "iron_axe",
+    "name": "Forge Iron Axe",
+    "inputs": { "ore": 2, "logs": 1 },
+    "outputs": { "tools": 1 },
+    "until": 6
+  }
+]
