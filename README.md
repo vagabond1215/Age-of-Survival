@@ -117,3 +117,34 @@ npm run build
 
 Vitest tests cover deterministic ticks, crafting targets, replacement accounting, and schema guards. Contributions should maintain determinism, update documentation, and respect the single-writer architecture.
 
+## Preferred Git Workflow
+
+- **Branch naming:** use short, kebab-case branches with a ticket or topic prefix such as `feature/ui-polish`, `chore/deps-update`, or `fix/save-import`. Avoid working directly on `main`.
+- **Commit scope:** keep commits narrowly focused (one feature or fix per commit) with imperative subject lines and meaningful body context when needed. Favor smaller, reviewable commits over broad snapshots.
+- **Rebasing:** rebase feature branches onto the latest `main` before opening a PR to keep history linear and avoid merge commits. Resolve conflicts locally and rerun lint/tests after rebasing.
+
+## Code Annotations & Comments
+
+- Prefer self-documenting code through clear naming; add inline comments only where intent or invariants are non-obvious.
+- Use block comments to describe algorithms, edge cases, and determinism requirements in engine systems.
+- Mark temporary workarounds with `TODO:` plus an owner or ticket when known. Use `FIXME:` only for correctness issues that must be addressed soon.
+- Keep comments in sync with code; remove outdated guidance rather than adding more clutter.
+
+## Assets Policy
+
+- Do not commit generated binaries, large media, or build artifacts. If the project needs manual assets, place placeholders under `assets/` with a `.gitkeep` file to keep the directory tracked.
+- Checklist for manual assets (add items as needed):
+  - [] UI icons (SVG/PNG) sized for light/dark modes
+  - [] Background ambience loops (OGG/MP3) under 1 MB
+  - [] Save/load example JSONs beyond `savegame.example.json`
+  - [] Preview screenshots for README or marketing
+- Suggested generation prompts: describe the desired mood, palette, and resolution (e.g., “minimalist line-art camp icon, 64×64, transparent background”) and note any licensing constraints. Save prompts alongside assets when possible (e.g., `assets/prompts.md`).
+
+## Indexing & Search Tips
+
+- Use `rg` for fast searches. Common filters:
+  - `rg "tick" src/game` to search only gameplay systems.
+  - `rg --glob "*.ts" "TODO" src` to find TypeScript TODOs.
+  - `rg --type-add 'vitest:*.spec.ts' --type vitest "describe" tests` for test suites.
+- Follow path conventions: gameplay logic lives under `src/game/`, UI components under `src/components/`, and test helpers under `tests/`. Keep new files aligned with these conventions to make navigation predictable.
+
