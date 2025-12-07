@@ -7,16 +7,7 @@ import { enforceBedAssignments } from './systems/jobs';
 import { createDefaultState, type GameState } from './state';
 
 function cloneState(state: GameState): GameState {
-  return {
-    ...state,
-    resources: { ...state.resources },
-    deltas: { ...state.deltas },
-    villagers: state.villagers.map((v) => ({ ...v })),
-    buildings: state.buildings.map((b) => ({ ...b })),
-    buildQueue: state.buildQueue.map((b) => ({ ...b })),
-    crafting: state.crafting.map((c) => ({ ...c })),
-    notifications: [...state.notifications]
-  };
+  return structuredClone(state);
 }
 
 function applyMorale(state: GameState): GameState {
