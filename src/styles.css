@@ -245,3 +245,135 @@ button {
 .thought-label {
   font-weight: 600;
 }
+
+.thought-description {
+  font-size: 0.95rem;
+  color: #dfe8f5;
+}
+
+.thought-helper {
+  border-top: 1px solid rgba(109, 142, 192, 0.25);
+  padding-top: 0.5rem;
+  display: grid;
+  gap: 0.25rem;
+  font-size: 0.9rem;
+}
+
+.thought-helper__name {
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.thought-helper__role {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: #bcd2f1;
+}
+
+.thought-helper__summary {
+  color: #d1dded;
+}
+
+.thought-helper__skills {
+  font-size: 0.85rem;
+  color: #c4d5ee;
+}
+
+.helper-card {
+  border: 1px solid rgba(109, 142, 192, 0.45);
+  border-radius: 12px;
+  padding: 1rem;
+  background: rgba(26, 37, 54, 0.9);
+  display: grid;
+  gap: 0.35rem;
+}
+
+.helper-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.helper-name {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.helper-role {
+  font-size: 0.85rem;
+  color: #bcd2f1;
+  text-transform: uppercase;
+}
+
+.helper-summary {
+  color: #d8e4f7;
+}
+
+.helper-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.helper-skill {
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(111, 143, 189, 0.2);
+  color: #d8e4f7;
+  font-size: 0.85rem;
+}
+
+.villager-name-button {
+  background: none;
+  border: none;
+  color: #f7f9ff;
+  text-align: left;
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+  transition: background 120ms ease;
+}
+
+.villager-name-button:hover,
+.villager-name-button:focus-visible {
+  background: rgba(111, 143, 189, 0.2);
+  outline: 1px solid rgba(111, 143, 189, 0.4);
+}
+
+.villager-tooltip {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 2;
+  background: rgba(18, 26, 38, 0.95);
+  border: 1px solid rgba(109, 142, 192, 0.6);
+  border-radius: 12px;
+  padding: 0.75rem;
+  margin-top: 0.25rem;
+  width: min(280px, 90vw);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.villager-tooltip__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.villager-tooltip__name {
+  font-weight: 700;
+}
+
+.villager-tooltip__role {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: #bcd2f1;
+}
+
+.villager-tooltip__line,
+.villager-tooltip__skills {
+  font-size: 0.9rem;
+  color: #dfe8f5;
+}

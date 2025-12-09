@@ -7,9 +7,9 @@ import BuildQueue from './ui/BuildQueue';
 import MapGrid from './ui/MapGrid';
 import Notifications from './ui/Notifications';
 import CharacterCreation from './ui/CharacterCreation';
-import { createDefaultState, type GameState } from './game/state';
+import { createDefaultState, type GameState, type Villager } from './game/state';
 import { composeAwakeningNarrative } from './game/narrative';
-import { tickDay, tickThreeDays } from './game/engine';
+import { tickDay } from './game/engine';
 import { assignJob } from './game/systems/jobs';
 import { ensureCraftTarget } from './game/systems/crafting';
 import { loadFromLocalStorage, saveToLocalStorage, exportToFile, importFromFile, resetSave } from './lib/persist';
@@ -35,15 +35,6 @@ function App() {
         return { ...current, summonPaused: false };
       }
       return tickDay({ ...current, summonPaused: false }, 1);
-    });
-  }, []);
-
-  const handleAdvanceThree = useCallback(() => {
-    setState((current) => {
-      if (current.pauseOnSummon && current.summonPaused) {
-        return { ...current, summonPaused: false };
-      }
-      return tickThreeDays({ ...current, summonPaused: false });
     });
   }, []);
 
@@ -136,18 +127,60 @@ function App() {
       }
       const event = getCreationEventById(current.creation.eventId);
       const thought = getThoughtById(event, thoughtId);
-      const narrative = current.awakening?.narrative ?? composeAwakeningNarrative(current.biome, current.features);
-      const notifications = thought && !current.notifications.includes(thought.result)
-        ? [...current.notifications, thought.result]
-        : current.notifications;
+      if (!thought) {
+        return current;
+      }
       return {
         ...current,
-        notifications,
-        awakening: { seen: true, narrative },
+        notifications: current.notifications,
+        awakening: current.awakening,
         creation: {
           ...current.creation,
-          stage: 'complete',
+          stage: 'arrival',
           chosenThought: thoughtId
+        }
+      };
+    });
+  }, []);
+
+  const handleConfirmArrival = useCallback(() => {
+    setState((current) => {
+      if (current.creation.stage !== 'arrival') {
+        return current;
+      }
+      const event = getCreationEventById(current.creation.eventId);
+      const thought = getThoughtById(event, current.creation.chosenThought ?? '');
+      if (!thought) {
+        return current;
+      }
+
+      const helper: Villager = {
+        id: `v-${Date.now()}`,
+        name: thought.villager.name,
+        jobId: thought.villager.jobId,
+        efficiency: thought.villager.efficiency,
+        bed: current.buildings[0]?.id ?? null,
+        skills: thought.villager.skills,
+        summary: thought.villager.summary
+      };
+
+      const awakening = {
+        seen: true,
+        narrative: thought.arrival
+      };
+
+      const notifications = current.notifications.includes(thought.result)
+        ? current.notifications
+        : [...current.notifications, thought.result];
+
+      return {
+        ...current,
+        villagers: [...current.villagers, helper],
+        notifications,
+        awakening,
+        creation: {
+          ...current.creation,
+          stage: 'complete'
         }
       };
     });
@@ -163,6 +196,7 @@ function App() {
           onSelectBiome={handleSelectBiome}
           onGather={handleGather}
           onResolveThought={handleResolveThought}
+          onConfirmArrival={handleConfirmArrival}
         />
       </div>
     );
@@ -195,7 +229,6 @@ function App() {
       <ResourceBar resources={state.resources} deltas={state.deltas} />
       <DayControls
         onAdvanceDay={handleAdvanceDay}
-        onAdvanceThree={handleAdvanceThree}
         onTogglePause={handleTogglePauseOnSummon}
         pauseOnSummon={state.pauseOnSummon}
       />

@@ -94,7 +94,7 @@ function migrateState(value: unknown): GameState | null {
         narrative: composeAwakeningNarrative(biome, features)
       };
 
-  const creationStages = new Set(['biome_selection', 'awaiting_focus', 'event', 'complete']);
+  const creationStages = new Set(['biome_selection', 'awaiting_focus', 'event', 'arrival', 'complete']);
   const creation = candidate.creation && typeof candidate.creation === 'object'
     ? {
         stage: creationStages.has(String((candidate.creation as { stage?: unknown }).stage))

@@ -23,7 +23,7 @@ describe('morale adjustments', () => {
     state.morale = 99;
     state.resources.food = 10;
     state.villagers = [
-      { id: 'v-boost', name: 'Positive Pete', jobId: 'forager', efficiency: 1, bed: 'hall' }
+      { id: 'v-boost', name: 'Positive Pete', jobId: 'forager', efficiency: 1, bed: 'camp', skills: [] }
     ];
 
     const snapshot = structuredClone(state);

@@ -1,10 +1,20 @@
 import { type BiomeId } from '../game/constants';
 
+export interface HelperProfile {
+  name: string;
+  jobId: string;
+  efficiency: number;
+  skills: string[];
+  summary: string;
+}
+
 export interface ThoughtOption {
   id: string;
   label: string;
   description: string;
+  arrival: string;
   result: string;
+  villager: HelperProfile;
 }
 
 export interface CreationEvent {
@@ -16,252 +26,596 @@ export interface CreationEvent {
   thoughts: ThoughtOption[];
 }
 
-const BASE_THOUGHTS: ThoughtOption[] = [
-  {
-    id: 'warrior',
-    label: '"A strong warrior would best this foe with ease... yet I..."',
-    description: 'Imagine the poise of a warrior and meet the danger head-on.',
-    result: 'You brace with a warrior\'s resolve, refusing to yield.'
-  },
-  {
-    id: 'gatherer',
-    label: '"A skilled gatherer would know which was poisonous or edible..."',
-    description: 'Remember every lesson in caution, scavenging, and patience.',
-    result: 'You catalogue the land like a careful gatherer, mindful of each step.'
-  },
-  {
-    id: 'fisher',
-    label: '"A seasoned fisher would read the currents and cast with patience..."',
-    description: 'Feel the tug of tide and time, trusting the waters to reveal their rhythm.',
-    result: 'You breathe with a fisher\'s patience, letting the moment carry you to safety.'
-  },
-  {
-    id: 'farmer',
-    label: '"A devoted farmer would know how to tend even the harshest soil..."',
-    description: 'Recall the seasons of toil, coaxing life where none wished to grow.',
-    result: 'You steady yourself like a farmer, cultivating resolve from barren fear.'
-  },
-  {
-    id: 'miner',
-    label: '"A seasoned miner would read the stone for hidden strength..."',
-    description: 'Hear the groan of the earth and chart a path through shadowed veins.',
-    result: 'You test each hold like a miner, trusting the bedrock to bear your weight.'
-  },
-  {
-    id: 'hunter',
-    label: '"A true hunter could fell such game even from here..."',
-    description: 'Envision the stillness of a hunter, ready to move with purpose.',
-    result: 'You settle into a hunter\'s focus, letting instinct guide you.'
-  },
-  {
-    id: 'herbalist',
-    label: '"An herbalist would know how to craft a poultice for this wound..."',
-    description: 'Call upon knowledge of roots, salves, and quiet resilience.',
-    result: 'You gather yourself like an herbalist, intent on mending what is broken.'
-  },
-  {
-    id: 'rogue',
-    label: '"A cunning rogue would find a foothold where others fall..."',
-    description: 'Picture nimble hands and quick wit, ever seeking the unseen path.',
-    result: 'You slip into a rogue\'s mindset, finding holds where none should exist.'
-  },
-  {
-    id: 'cleric',
-    label: '"A devoted cleric would pray, and the light itself would lend them strength..."',
-    description: 'Summon faith like fire in your chest and let it drive back despair.',
-    result: 'You let a cleric\'s prayer kindle strength, warmth flooding your limbs.'
-  },
-  {
-    id: 'mage',
-    label: '"A disciplined mage would speak the words to bend the elements themselves..."',
-    description: 'Feel the arcane currents stir, whispering for control and focus.',
-    result: 'You draw on a mage\'s discipline, shaping raw power into a shield of intent.'
-  },
-  {
-    id: 'paladin',
-    label: '"A steadfast paladin would raise shield and vow never to yield..."',
-    description: 'Swear silently to stand firm against the abyss, as light and oath entwine.',
-    result: 'You raise an unseen shield, a paladin\'s oath holding the darkness at bay.'
-  },
-  {
-    id: 'bard',
-    label: '"A wandering bard would turn fear into song, weaving courage from melody..."',
-    description: 'Hear the rhythm of your heartbeat — your own tale refusing to end here.',
-    result: 'You weave dread into cadence, a bard\'s song steadying every breath.'
-  },
-  {
-    id: 'ranger',
-    label: '"A practiced ranger would find the path that others miss..."',
-    description: 'Trust the land itself to guide you, your instincts sharp as the fletching of an arrow.',
-    result: 'You move like a ranger on the trail, guided by the whispers of the wilds.'
-  },
-  {
-    id: 'blacksmith',
-    label: '"A tireless blacksmith would see strength in what can be reforged..."',
-    description: 'Feel the grit in your palms, the will to shape ruin into something enduring.',
-    result: 'You channel a blacksmith\'s grit, forging resolve from the raw ore of fear.'
-  },
-  {
-    id: 'alchemist',
-    label: '"A learned alchemist would know how to transmute danger into opportunity..."',
-    description: 'Let reason temper fear, and the impossible might just yield to you.',
-    result: 'You calculate like an alchemist, transmuting peril into a plan.'
-  },
-  {
-    id: 'monk',
-    label: '"A quiet monk would breathe deeply, and fall like water, not stone..."',
-    description: 'Center yourself — the fall may be long, but serenity knows no bottom.',
-    result: 'You flow with a monk\'s grace, letting calm turn the fall into a glide.'
-  },
-  {
-    id: 'merchant',
-    label: '"A shrewd merchant would weigh every risk, and find the profit even in peril..."',
-    description: 'See value where others see loss, and your wits will buy your survival.',
-    result: 'You bargain with fate itself, a merchant\'s cunning buying precious moments.'
-  },
-  {
-    id: 'carpenter',
-    label: '"A careful carpenter would measure twice before daring a leap..."',
-    description: 'Picture steady hands shaping beams, aligning each choice with precision.',
-    result: 'You gauge angles like a carpenter, fashioning a path plank by plank.'
-  },
-  {
-    id: 'cook',
-    label: '"A resourceful cook would make do with whatever the wilds provide..."',
-    description: 'Imagine a hearth conjured anywhere, every scrap turned toward survival.',
-    result: 'You improvise like a cook, blending scarce chances into sustaining hope.'
-  },
-  {
-    id: 'berserker',
-    label: '"A relentless berserker would greet the fall as a challenge, not a curse..."',
-    description: 'Welcome the rush, the chaos — for only through fury does one rise again.',
-    result: 'You welcome the plunge as a berserker, turning terror into driving force.'
-  },
-  {
-    id: 'druid',
-    label: '"A faithful druid would call upon root and branch to cradle their descent..."',
-    description: 'Feel the whisper of the wild, life itself answering your unspoken plea.',
-    result: 'You attune like a druid, senses entwining with root and leaf for aid.'
-  },
-  {
-    id: 'scholar',
-    label: '"A wise scholar would recall the stories of those who survived before..."',
-    description: 'In memory lies knowledge — in knowledge, the faint light of hope.',
-    result: 'You recall a scholar\'s lore, letting past lessons chart your escape.'
-  },
-  {
-    id: 'artisan',
-    label: '"A steadfast artisan would trust in craft and ingenuity to find a way out..."',
-    description: 'See not the drop, but the problem to be solved — and make it so.',
-    result: 'You improvise like an artisan, shaping adversity into workable design.'
-  },
-  {
-    id: 'peasant',
-    label: '"A humble peasant would pray to live another day... and sometimes, that\'s enough."',
-    description: 'For courage is not only might — it is the will to keep breathing, even now.',
-    result: 'You cling to quiet hope, a peasant\'s prayer keeping your heart steady.'
-  }
-];
-
 export const CREATION_EVENTS: CreationEvent[] = [
   {
     id: 'ravine_plunge',
-    title: 'The Ravine\'s Edge',
+    title: "The Ravine's Edge",
     description:
-      'Loose earth crumbles beneath your heel and the world lurches. Branches claw at you as you tumble toward a shadowed ravine.',
+      'The ground shears open beneath you and you skid toward a ragged ravine. Cold spray rises from the torrent below while needles of shale and pine bark rattle down the slope.',
     hardship:
-      'Jagged stone waits below and the roar of unseen water thunders up from the depths.',
+      'A narrow ledge and a tangle of roots are all that slow your fall. A blink too long and the next rockslide will finish what the drop began.',
     biomes: ['temperate_forest', 'taiga', 'alpine'],
-    thoughts: BASE_THOUGHTS
+    thoughts: [
+      {
+        id: 'ravine_builder_anchor',
+        label: 'Signal Lysa, the rope-slinging builder, before the ledge splinters.',
+        description:
+          'She braces a piton between slick roots, ready to swing a knotted line past you if she can reach you before the gravel gives way.',
+        arrival:
+          'Lysa barrels out of the fog with a fistful of iron spikes. The line hisses past your ear, catches, and she hauls you up while shards cascade into the ravine. She wastes no time, rigging those same ropes into a tripod shelter against the wind, promising a sturdier hall once your stores allow.',
+        result:
+          'Lysa pulls you clear of the ravine and lashes together a rough shelter from the rescue rigging.',
+        villager: {
+          name: 'Lysa',
+          jobId: 'builder',
+          efficiency: 1.05,
+          skills: ['Ropework', 'Improvised scaffolding', 'Quick repairs'],
+          summary: 'A wiry builder who trusts knots more than luck.'
+        }
+      },
+      {
+        id: 'ravine_hunter_ledges',
+        label: 'Wave to Rusk, the cliff-runner hunter tracking shaggy goats.',
+        description:
+          'He dances along the ledges with a hooked spear, able to snag you or distract whatever claws its way up toward you.',
+        arrival:
+          'Rusk vaults from rock to root, planting his spear and giving you a handhold that drags you out of the slide. His goat hide cloak becomes a windbreak as he drives stakes into the soil, promising to scout a proper town center once you can spare timber.',
+        result: 'Rusk steadies the ledge, hauls you free, and throws up a hide break to weather the night.',
+        villager: {
+          name: 'Rusk',
+          jobId: 'hunter',
+          efficiency: 1,
+          skills: ['Tracking', 'Climbing', 'Spearwork'],
+          summary: 'A cliff-runner who reads stone like a trail map.'
+        }
+      },
+      {
+        id: 'ravine_mason_steps',
+        label: 'Flag Tor, the stone mason, before the shale wall peels away.',
+        description:
+          'He carries chisels and wedges, able to carve shallow steps or shore the roots holding you in place.',
+        arrival:
+          'Tor sets his chisel without a word, hammering quick steps that let you clamber back to solid ground. With the same calm rhythm he stacks flat stones into a lean-to, noting that a true town center will have to wait until you quarry more rock.',
+        result: 'Tor carves footholds, guides you up, and stacks a low stone shelter from the debris.',
+        villager: {
+          name: 'Tor',
+          jobId: 'mason',
+          efficiency: 0.95,
+          skills: ['Stonecutting', 'Shoring', 'Load-bearing sense'],
+          summary: 'A stoic mason who trusts weight and angle over luck.'
+        }
+      }
+    ]
   },
   {
     id: 'labyrinth_grove',
     title: 'The Labyrinth Grove',
     description:
-      'Mist thickens between towering trunks until every direction mirrors the last. The forest hums, alive with hidden whispers.',
+      'Mist swallows the trunks until every path looks the same. Wet bark glistens, and low shapes prowl between ferns as if daring you to choose wrong.',
     hardship:
-      'Without a landmark you could wander for days, swallowed whole by the green.',
+      'Whispers echo through the undergrowth and tangled briars hide sinkholes. Stay in place and you starve; pick wrong and the forest closes around you.',
     biomes: ['temperate_forest', 'taiga', 'rainforest'],
-    thoughts: BASE_THOUGHTS
+    thoughts: [
+      {
+        id: 'grove_forager_mark',
+        label: 'Trust Iri the forager to mark a trail through the whispering trees.',
+        description:
+          'She carries resin and chalk, able to scar trunks and read the subtle tilt of moss that hints at safe footing.',
+        arrival:
+          'Iri appears with soft steps, daubing resin on bark to steer you between the prowling silhouettes. She leads you out of the maze and weaves saplings into a rough shelter, promising to guide you back here with real walls once supplies grow.',
+        result: 'Iri guides you past lurking shapes and knots saplings into a rain-shedding lean-to.',
+        villager: {
+          name: 'Iri',
+          jobId: 'forager',
+          efficiency: 1.1,
+          skills: ['Trail marking', 'Herbal lore', 'Silent movement'],
+          summary: 'A patient forager who paints safe paths on living bark.'
+        }
+      },
+      {
+        id: 'grove_hunter_decoy',
+        label: 'Let Kael the hunter draw the shadow-cat away from your route.',
+        description:
+          'A shadow cat stalks the mist ahead. Kael carries scent-lures and a shortbow, willing to taunt the predator while you slip by.',
+        arrival:
+          'Kael whistles sharply, luring glowing eyes toward him before vanishing into the fog. Moments later he ushers you along a safer trail, stringing his cloak between roots to roof a crude shelter until you can raise a hall.',
+        result: 'Kael distracts a stalking cat and helps you settle beneath a hurried canvas lean-to.',
+        villager: {
+          name: 'Kael',
+          jobId: 'hunter',
+          efficiency: 1,
+          skills: ['Luring prey', 'Bowmanship', 'Silent steps'],
+          summary: 'A hunter who turns predators into decoys.'
+        }
+      },
+      {
+        id: 'grove_tailor_lines',
+        label: 'Ask Sena the tailor to weave a guide line through the briars.',
+        description:
+          'She threads cord between trunks, keeping you tethered as the mist churns and the forest shifts around you.',
+        arrival:
+          'Sena tosses you a length of braided cord, knotting it around her waist as she threads through the thorns. Her lines keep you from straying, then become ridge poles for a fabric lean-to. A true town center can wait until you can spare better cloth.',
+        result: 'Sena’s woven lines keep you steady and stretch into a quick canvas shelter.',
+        villager: {
+          name: 'Sena',
+          jobId: 'tailor',
+          efficiency: 0.9,
+          skills: ['Weaving', 'Field repairs', 'Knotwork'],
+          summary: 'A tailor who treats paths like seams to be stitched.'
+        }
+      }
+    ]
   },
   {
     id: 'shifting_dunes',
     title: 'Shifting Dunes',
     description:
-      'A desert gale rises without warning, sheets of sand blotting out the sun as dunes collapse and reform around you.',
+      'Sand roars up like surf, erasing the horizon. Glassy scorpions skitter for shade while a distant dune ripples with something burrowing beneath.',
     hardship:
-      'The storm steals your bearings, threatening to bury you beneath the drift.',
+      'Every breath is grit and static. Stay still and you will be buried; move blindly and the dune beast may surface beneath you.',
     biomes: ['desert'],
-    thoughts: BASE_THOUGHTS
+    thoughts: [
+      {
+        id: 'dunes_quartermaster_charts',
+        label: 'Unfurl Sel the quartermaster’s wind charts before the storm shifts.',
+        description:
+          'Sel tracks the pull of the gale and knows where the sand will thin. Her canvas and poles could become both signal and shelter.',
+        arrival:
+          'Sel shoves a compass into your palm and angles a wide tarp against the gusts, guiding you along the lee of a dune away from the burrowing threat. She stakes that same tarp into a snug shelter, noting you will need timber and nails before a real town center rises.',
+        result: 'Sel plots a lee-side escape and pins a windbreak shelter into the sand.',
+        villager: {
+          name: 'Sel',
+          jobId: 'quartermaster',
+          efficiency: 1,
+          skills: ['Navigation', 'Rationing', 'Camp logistics'],
+          summary: 'A quartermaster who reads storms like ledgers.'
+        }
+      },
+      {
+        id: 'dunes_hunter_bolas',
+        label: 'Let Nima the hunter snare the dune wyrm if it surfaces.',
+        description:
+          'Nima carries weighted bolas and scent-dousing resin, ready to trip the sand-stirring beast long enough to sprint for cover.',
+        arrival:
+          'Nima hurls her bolas as the sand bulges, tangling the wyrm’s rise and buying you moments to follow her into a rocky hollow. She props driftwood and hides into a low shelter, promising sturdier walls after the first haul of lumber.',
+        result: 'Nima tangles the dune threat and throws together a hide-draped refuge.',
+        villager: {
+          name: 'Nima',
+          jobId: 'hunter',
+          efficiency: 1.05,
+          skills: ['Bolas', 'Camouflage', 'Quick strikes'],
+          summary: 'A hunter who trips monsters before they can surge.'
+        }
+      },
+      {
+        id: 'dunes_builder_screen',
+        label: 'Let Jace the builder rig a sled-screen against the flying grit.',
+        description:
+          'He lugs salvaged planks and sailcloth, able to create a moving barrier while you angle away from the storm eye.',
+        arrival:
+          'Jace plants his planks into the sand, turning them into a rolling shield that shepherds you toward calmer ground. The boards become the spine of a makeshift shelter, and he sketches where a town center will stand once stone and nails are stockpiled.',
+        result: 'Jace shields you from the gale and builds a plank-framed shelter on the far side.',
+        villager: {
+          name: 'Jace',
+          jobId: 'builder',
+          efficiency: 0.95,
+          skills: ['Framing', 'Bracing', 'Desert survival'],
+          summary: 'A builder who can turn scrap into a moving wall.'
+        }
+      }
+    ]
   },
   {
     id: 'frozen_whiteout',
     title: 'Frozen Whiteout',
     description:
-      'Needle-fine snow lashes your face as clouds swallow the tundra. Every breath crystallizes, every step sinks into crusted drifts.',
+      'Snow needles your skin as slate clouds whirl overhead. White wolves pace the edge of your vision, their eyes the only color in the blizzard.',
     hardship:
-      'The wind keens like a beast, and frostbite nips at any exposed skin.',
+      'The wind howls like a thing alive, stealing heat and hiding the crevasses that could swallow you. The pack grows bolder with every staggered step.',
     biomes: ['tundra', 'alpine'],
-    thoughts: BASE_THOUGHTS
+    thoughts: [
+      {
+        id: 'whiteout_hunter_flare',
+        label: 'Have Eryk the hunter loose a flare arrow between the circling wolves.',
+        description:
+          'Eryk carries pitch-soaked shafts and knows how to fire blind by sound alone, buying you room to breathe.',
+        arrival:
+          'A red streak hisses through the snow, and the wolves scatter. Eryk reaches you with a rough cloak, guiding you into a shallow drift where he props shields of ice into a cramped shelter. He swears a proper hall will come once you can cut timber without freezing.',
+        result: 'Eryk scatters the wolves with firelight and shapes an ice-walled windbreak.',
+        villager: {
+          name: 'Eryk',
+          jobId: 'hunter',
+          efficiency: 1,
+          skills: ['Archery', 'Frost tracking', 'Firecraft'],
+          summary: 'A hunter who reads wind and howls alike.'
+        }
+      },
+      {
+        id: 'whiteout_mason_cave',
+        label: 'Let Brida the mason carve a snow cave before the frostbite sets in.',
+        description:
+          'Brida knows where the ice crust is thickest and how to vent it before the drift collapses, even with wolves nearby.',
+        arrival:
+          'Brida’s pick bites into the drift, carving a hollow that muffles the wind. She braces the entrance with cut blocks and says the real town center will need quarried stone after this storm passes.',
+        result: 'Brida cuts you a snug ice cave and braces it against prowling wolves.',
+        villager: {
+          name: 'Brida',
+          jobId: 'mason',
+          efficiency: 1.05,
+          skills: ['Snow carving', 'Stone sense', 'Cold endurance'],
+          summary: 'A mason who sculpts refuge out of ice and silence.'
+        }
+      },
+      {
+        id: 'whiteout_forager_paths',
+        label: 'Follow Una the forager along the wind-sheltered lichen ridge.',
+        description:
+          'Una reads the way the snow drifts around low rock, keeping you off cracking ice and away from the hungriest wolves.',
+        arrival:
+          'Una appears wrapped in furs, tapping the snow with a staff to reveal a narrow ridge. She ushers you along it to a nook between boulders, pulling furs and branches into a dome that will serve until you can raise warmer walls.',
+        result: 'Una threads you past the wolves and domes the ridge with furs for shelter.',
+        villager: {
+          name: 'Una',
+          jobId: 'forager',
+          efficiency: 0.95,
+          skills: ['Snow reading', 'Foraged fuels', 'Pack keeping'],
+          summary: 'A forager who follows lichen and wind-scour alike.'
+        }
+      }
+    ]
   },
   {
     id: 'tidal_hunt',
     title: 'The Tidal Hunt',
     description:
-      'Foam-flecked waves slam against slick rocks as a sea-beast hauls itself ashore, hunger burning in its eyes.',
+      'Foam-flecked waves slam against black rock. A razortoothed sea-beast drags itself ashore, gulls scattering as it blocks the only safe climb.',
     hardship:
-      'The tide surges at your back while the creature snarls, blocking the only path to safety.',
+      'The tide surges behind you and slick stones pitch underfoot. The beast’s tail sweeps wide, ready to drag you back into the surf.',
     biomes: ['coast'],
-    thoughts: BASE_THOUGHTS
+    thoughts: [
+      {
+        id: 'tidal_woodcutter_wedge',
+        label: 'Have Mara the woodcutter wedge driftwood under the beast’s bulk.',
+        description:
+          'She eyes a fallen spar that could jam the creature’s advance long enough to slip past.',
+        arrival:
+          'Mara charges with a sun-bleached spar, ramming it beneath the beast’s jaw to pry space open. She hauls you up the rocks and lashes the spar into a salt-stiff shelter, vowing to frame a town center once lumber and nails arrive.',
+        result: 'Mara jacks the beast aside and raises a salt-scoured lean-to above the tide.',
+        villager: {
+          name: 'Mara',
+          jobId: 'woodcutter',
+          efficiency: 1.05,
+          skills: ['Felling', 'Lever work', 'Drift salvage'],
+          summary: 'A woodcutter who treats driftwood like levers and beams.'
+        }
+      },
+      {
+        id: 'tidal_smith_brand',
+        label: 'Let Tomas the smith brand the beast with a heated spearhead.',
+        description:
+          'He keeps an ember-pot and can sear the creature’s snout, buying you seconds before the tide closes in.',
+        arrival:
+          'Tomas plunges his spear into the ember-pot, then slams the glowing tip into the beast. The thing recoils and he yanks you toward higher ground. His shield and sailcloth become a slanted shelter; the forge for a town center will wait until ore and fuel are stockpiled.',
+        result: 'Tomas scorches the sea-beast and throws up a shielded shelter above the spray.',
+        villager: {
+          name: 'Tomas',
+          jobId: 'smith',
+          efficiency: 0.95,
+          skills: ['Forgecraft', 'Tool upkeep', 'Close-quarters'],
+          summary: 'A smith who keeps heat even in salt wind.'
+        }
+      },
+      {
+        id: 'tidal_builder_reef',
+        label: 'Ask Cal the builder to turn the reef into a trap.',
+        description:
+          'He sees where the barnacled rocks pinch together and can lash spars across them to bar the creature’s path.',
+        arrival:
+          'Cal splashes into the shallows, wedging spars and rope between reef teeth until the beast thrashes itself still. He guides you past and repurposes the lashings into a cliffside shelter, noting that real foundations will come once you ferry stone inland.',
+        result: 'Cal cages the beast between rocks and hangs a quick shelter on the cliff.',
+        villager: {
+          name: 'Cal',
+          jobId: 'builder',
+          efficiency: 1,
+          skills: ['Rigging', 'Bracing', 'Coastal footing'],
+          summary: 'A builder who knows how to lash a reef into a wall.'
+        }
+      }
+    ]
   },
   {
     id: 'savanna_wildfire',
     title: 'Savanna Wildfire',
     description:
-      'Lightning splits a distant storm and, moments later, a wall of flame races through the tall grasses toward you.',
+      'Lightning splits the anvil clouds and a wall of flame races through waist-high grass. A spooked herd of sable antelope stampedes alongside the fire line.',
     hardship:
-      'Smoke blinds you as sparks leap ahead of the blaze, threatening to engulf the lone path to shelter.',
+      'Heat scorches your lungs while embers leap ahead of the blaze. A wrong sprint could put you between hooves and flame.',
     biomes: ['savanna'],
-    thoughts: BASE_THOUGHTS
+    thoughts: [
+      {
+        id: 'savanna_woodcutter_break',
+        label: 'Have Garran the woodcutter fell an acacia to carve a firebreak.',
+        description:
+          'Garran’s axe can drop a green-limbed tree to slow the grass-fire, if he moves before the herd reaches you.',
+        arrival:
+          'Garran swings once, twice, and the acacia crashes down, splitting the flame front. He guides you along the blackened strip and props the wide trunk into a shaded shelter, swearing a town center will rise once you gather sturdier timber.',
+        result: 'Garran splits the fireline and props an acacia trunk into a smoking shelter.',
+        villager: {
+          name: 'Garran',
+          jobId: 'woodcutter',
+          efficiency: 1.05,
+          skills: ['Felling', 'Firebreaks', 'Axe work'],
+          summary: 'A woodcutter who thinks in wind and grain.'
+        }
+      },
+      {
+        id: 'savanna_forager_low',
+        label: 'Let Ayo the forager lead you into a damp reed gully.',
+        description:
+          'Ayo knows the low places where the fire thins and the herd will not trample.',
+        arrival:
+          'Ayo whistles and cuts through the smoke toward a damp gully, yanking you into the mud as flames roar overhead. She weaves reeds into a shaded lean-to, noting that a true town center needs more than reeds and hope.',
+        result: 'Ayo shelters you in a damp gully beneath a reed-woven roof.',
+        villager: {
+          name: 'Ayo',
+          jobId: 'forager',
+          efficiency: 1,
+          skills: ['Herbcraft', 'Waterfinding', 'Quick weaving'],
+          summary: 'A forager who reads the land for cool breath.'
+        }
+      },
+      {
+        id: 'savanna_hunter_drive',
+        label: 'Ask Isi the hunter to turn the stampede back on itself.',
+        description:
+          'Isi carries signal whistles and a sling; with luck she can bend the herd away from you and toward the rocky rise.',
+        arrival:
+          'Isi’s whistles scatter the front-runners, and a snapped slingstone starts the herd curving away. She pulls you toward the rocks and rigs hides between stones for cover, promising to raise a central hall once the fires die and supplies pile up.',
+        result: 'Isi redirects the herd and hangs hides into a fast shelter among the rocks.',
+        villager: {
+          name: 'Isi',
+          jobId: 'hunter',
+          efficiency: 0.95,
+          skills: ['Whistling signals', 'Slingstones', 'Herd sense'],
+          summary: 'A hunter who reads hooves like weather.'
+        }
+      }
+    ]
   },
   {
     id: 'sinking_mire',
     title: 'The Sinking Mire',
     description:
-      'A misstep sends you waist-deep into a peat bog while will-o\'-wisps flicker between the trees, luring you deeper.',
+      "Brown water gurgles around your waist as reeds sway with unseen movement. Leeches cling to your boots while bubbles hint at something larger stirring beneath.",
     hardship:
-      'The muck grips your legs as insects swarm and unseen currents tug you sideways.',
+      'Each struggle drags you deeper. Mangrove roots loom nearby, but one wrong pull could snap them and dump you under.',
     biomes: ['wetlands'],
-    thoughts: BASE_THOUGHTS
+    thoughts: [
+      {
+        id: 'mire_builder_planks',
+        label: 'Let Kesh the builder lay salvaged planks toward you.',
+        description:
+          'Kesh carries a bundle of split boards and knows how to float them on the mire without sinking with you.',
+        arrival:
+          'Kesh slides planks ahead of him like stepping stones, his weight spreading across the mire. He drags you onto the boards and then props them into a slatted shelter above the muck, pointing out where a real town center will need piles sunk deep.',
+        result: 'Kesh bridges the mire with planks and props them into a stilted shelter.',
+        villager: {
+          name: 'Kesh',
+          jobId: 'builder',
+          efficiency: 1,
+          skills: ['Stiltwork', 'Weight spreading', 'Rapid framing'],
+          summary: 'A builder who knows how to float lumber over mud.'
+        }
+      },
+      {
+        id: 'mire_forager_tussock',
+        label: 'Follow Lin the forager across the hidden tussocks.',
+        description:
+          'Lin reads the tremor of reeds and the shimmer that betrays firm ground in the swamp.',
+        arrival:
+          'Lin taps the surface with a willow pole, finds the path of firmer tussocks, and hauls you along it. She mats reeds into a domed shelter, promising a raised town center once you can cut enough poles.',
+        result: 'Lin guides you over reed hummocks and domes them into shelter.',
+        villager: {
+          name: 'Lin',
+          jobId: 'forager',
+          efficiency: 1.05,
+          skills: ['Swamp lore', 'Pole probing', 'Reed weaving'],
+          summary: 'A forager who hears the swamp breathe.'
+        }
+      },
+      {
+        id: 'mire_hunter_hook',
+        label: 'Reach for Pavel the hunter’s barbed hook before the mire claims you.',
+        description:
+          'He hunts river eels and keeps a barbed gaff; with it he can snag you or the croc-eyes rising nearby.',
+        arrival:
+          'Pavel sets his feet against a root, plants the gaff, and yanks you free as bubbles erupt. He then drives the hook into a trunk to anchor a canvas shelter above the muck, muttering that a proper hall will wait until you gather stone and dry timber.',
+        result: 'Pavel hauls you out with his gaff and anchors a canvas shelter to the roots.',
+        villager: {
+          name: 'Pavel',
+          jobId: 'hunter',
+          efficiency: 0.95,
+          skills: ['River hunting', 'Hooks and lines', 'Patient strikes'],
+          summary: 'A hunter who keeps his footing in sucking mud.'
+        }
+      }
+    ]
   },
   {
     id: 'steppe_tempest',
     title: 'Steppe Tempest',
     description:
-      'Thunderheads collide above the plains, unleashing a stampede of startled beasts that thunder toward your position.',
+      'Thunderheads collide above the plains, spooking shaggy aurochs and stone-helmed boar into a wild stampede. Lightning pries trenches in the soil as the herd bears down.',
     hardship:
-      'Hooves shake the ground and debris turns the wind into a hail of splinters and stone.',
+      'Hooves shake the ground and shards of ice ride the wind like blades. One slip and the herd or the hail will break you.',
     biomes: ['steppe'],
-    thoughts: BASE_THOUGHTS
+    thoughts: [
+      {
+        id: 'steppe_hunter_outrider',
+        label: 'Flag down Olek the outrider before the aurochs close.',
+        description:
+          'He heels his pony through storms, carrying signal banners and a horn to swing the herd aside.',
+        arrival:
+          'Olek wheels his pony between you and the stampede, horn blaring until the lead bulls veer. He hauls you up behind him, then pitches his storm cloak over bent spears to form a windbreak. The ride to a town center can wait until you gather the timber to raise one.',
+        result: 'Olek diverts the herd and throws up a storm-cloak shelter after the charge.',
+        villager: {
+          name: 'Olek',
+          jobId: 'hunter',
+          efficiency: 1.05,
+          skills: ['Mounted hunting', 'Signal horns', 'Herding'],
+          summary: 'An outrider who reads hooves and lightning alike.'
+        }
+      },
+      {
+        id: 'steppe_forager_smoke',
+        label: 'Wave to Mira the steppe forager with her smoke pots.',
+        description:
+          'Mira mixes pungent herbs that beast herds hate; one toss could split the charge around you.',
+        arrival:
+          'Mira dashes upwind and hurls smoking pots that peel the boars away. She drapes her herb-scented tarps over spare poles, making a low shelter until you can erect something sturdier at the future town center.',
+        result: 'Mira’s smoke parts the herd and her tarps become a fragrant refuge.',
+        villager: {
+          name: 'Mira',
+          jobId: 'forager',
+          efficiency: 1,
+          skills: ['Herbal smoke', 'Steppe lore', 'Quick knots'],
+          summary: 'A forager who turns scent into safety.'
+        }
+      },
+      {
+        id: 'steppe_quartermaster_shield',
+        label: 'Call Dagan the quartermaster to brace a shield wall against the hail.',
+        description:
+          'He hauls a folding sled and spare shields, able to dig in and weather both ice shards and stray hooves.',
+        arrival:
+          'Dagan slams his sled into the dirt and stacks shields into a low wall, catching the hail as the herd splits around you. Once calm, he props those shields into a slanted shelter and marks the spot for a true town center once supplies pile up.',
+        result: 'Dagan walls you off from hail and crafts a shield-sled shelter afterward.',
+        villager: {
+          name: 'Dagan',
+          jobId: 'quartermaster',
+          efficiency: 0.95,
+          skills: ['Logistics', 'Shield drills', 'Digging in'],
+          summary: 'A quartermaster who fortifies even open plains.'
+        }
+      }
+    ]
   },
   {
     id: 'volcanic_awakening',
     title: 'Volcanic Awakening',
     description:
-      'The earth bucks as a fissure tears open, venting superheated steam while molten rock seeps toward your feet.',
+      'The earth bucks as a fissure yawns wide, coughing ash and fireflies of magma. Ash hounds slink from the smoke, their eyes bright as coals.',
     hardship:
-      'Toxic fumes sting your lungs and the ground threatens to crumble into the magma below.',
+      'Hot cinders rain down while sulfur claws at your lungs. The ground trembles, threatening to drop you into the newborn vent.',
     biomes: ['volcanic'],
-    thoughts: BASE_THOUGHTS
+    thoughts: [
+      {
+        id: 'volcanic_mason_ridge',
+        label: 'Follow Vera the mason along the cooling basalt ridge.',
+        description:
+          'She knows which black stone will hold and which will crumble, even with ash hounds prowling.',
+        arrival:
+          'Vera taps the basalt with her hammer, steering you across the solid ridges and batting aside an ash hound with her chisel. She stacks flat stones into a heat-shielded shelter, marking out where a real hall will rise once ore and clay are plentiful.',
+        result: 'Vera guides you over cooling stone and stacks a heat-shielding shelter.',
+        villager: {
+          name: 'Vera',
+          jobId: 'mason',
+          efficiency: 1,
+          skills: ['Basalt reading', 'Heat tolerance', 'Stacking'],
+          summary: 'A mason who works where the world still glows.'
+        }
+      },
+      {
+        id: 'volcanic_smith_quench',
+        label: 'Let Kato the smith raise his quenched shield against the ash.',
+        description:
+          'Kato carries a metal shield soaked in water and a hammer that can ring the ash hounds back.',
+        arrival:
+          'Kato slams his quenched shield over your head as ash hisses down, driving the hounds away with ringing blows. He props the shield and spare timbers into a sloped shelter, promising a forge-fed town center after you bank enough ore.',
+        result: 'Kato wards off ash and beasts, then roofs you under his quenched shield.',
+        villager: {
+          name: 'Kato',
+          jobId: 'smith',
+          efficiency: 1.05,
+          skills: ['Metalwork', 'Heat management', 'Close defense'],
+          summary: 'A smith who carries the forge into the field.'
+        }
+      },
+      {
+        id: 'volcanic_builder_route',
+        label: 'Ask Nessa the builder to rig a path over the fissure.',
+        description:
+          'She carries planks and hooks to bridge the crack before it widens and belches more fumes.',
+        arrival:
+          'Nessa tosses hooked planks across the fissure, snatching you across before the next tremor. Those boards become a rough shelter against the sulfur wind, and she sketches where a town center will sit once the ground stops shaking and stores are stocked.',
+        result: 'Nessa bridges the fissure and leans her planks into a sulfur-screened shelter.',
+        villager: {
+          name: 'Nessa',
+          jobId: 'builder',
+          efficiency: 0.95,
+          skills: ['Bridging', 'Tool improvisation', 'Steady hands'],
+          summary: 'A builder who spans cracks faster than they widen.'
+        }
+      }
+    ]
   },
   {
     id: 'subterranean_glow',
     title: 'Subterranean Glow',
     description:
-      'A sinkhole yawns underfoot and you spill into a cavern lit by ghostly fungi. The air pulses with distant growls.',
+      'A sinkhole swallows you into a cavern lit by ghostly fungi. The light pulses with every distant growl, and slick tunnels branch in all directions.',
     hardship:
-      'Passages twist in every direction, and you can sense something stirring in the dark.',
-    thoughts: BASE_THOUGHTS
+      'The footing is wet and the air vibrates with unseen movement. Choose the wrong tunnel and whatever is growling will find you first.',
+    thoughts: [
+      {
+        id: 'glow_mason_shore',
+        label: 'Let Niall the mason shore the nearest tunnel before it collapses.',
+        description:
+          'He can wedge stone and fungus logs to keep the ceiling from shedding shards as you escape.',
+        arrival:
+          'Niall slides down beside you, jamming braces into the ceiling and waving you toward a steadier tunnel. He walls off the growling echo and props the braces into a low shelter, promising proper stonework once you haul materials to daylight.',
+        result: 'Niall shores the tunnel and walls off a nook for shelter underground.',
+        villager: {
+          name: 'Niall',
+          jobId: 'mason',
+          efficiency: 1,
+          skills: ['Bracing', 'Stone wedges', 'Calm focus'],
+          summary: 'A mason who steadies stone even in the dark.'
+        }
+      },
+      {
+        id: 'glow_hunter_echo',
+        label: 'Let Sive the hunter track the growl by echo and scent.',
+        description:
+          'She listens for airflow and knows which tunnel breathes fresh air instead of predator musk.',
+        arrival:
+          'Sive sniffs, tilts her head, and pulls you toward a tunnel that exhales cool air. Her cloak becomes a curtain across the passage, turning the corner into a sheltered alcove until you can build aboveground.',
+        result: 'Sive guides you by echo to a safe passage and curtains it into shelter.',
+        villager: {
+          name: 'Sive',
+          jobId: 'hunter',
+          efficiency: 0.95,
+          skills: ['Echolocation', 'Scent reading', 'Knife work'],
+          summary: 'A hunter who hears what the dark hides.'
+        }
+      },
+      {
+        id: 'glow_forager_fungi',
+        label: 'Ask Pree the forager which fungi lead to surface drafts.',
+        description:
+          'She knows which glow-moss grows only where wind creeps through cracks, hinting at the exit route.',
+        arrival:
+          'Pree points out pale fungi bending toward a hidden draft and guides you that way. She pulls broad caps into a layered shelter against the damp, noting that a proper town center will wait for sunlight and timber.',
+        result: 'Pree follows the glow-moss draft and layers fungi caps into a dry shelter.',
+        villager: {
+          name: 'Pree',
+          jobId: 'forager',
+          efficiency: 1.05,
+          skills: ['Fungus lore', 'Draft finding', 'Campcraft'],
+          summary: 'A forager who reads fungi like a compass.'
+        }
+      }
+    ]
   }
 ];
 
