@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { MAP_SIZE, type BiomeId, type FeatureId } from '../game/constants';
 import { type Building, type MapTile } from '../game/state';
 
@@ -14,35 +15,55 @@ const featureIcons: Partial<Record<FeatureId, string>> = {
 };
 
 const biomeIcons: Record<BiomeId, string> = {
-  temperate: '🌾',
-  boreal: '🌲',
+  temperate_forest: '🌾',
+  taiga: '🌲',
+  rainforest: '🌳',
   desert: '🏜️',
-  coastal: '🌊',
-  alpine: '⛰️'
+  tundra: '❄️',
+  alpine: '⛰️',
+  coast: '🌊',
+  savanna: '🦒',
+  wetlands: '🪷',
+  steppe: '🌾',
+  volcanic: '🌋'
 };
 
 export function MapGrid({ buildings, tiles }: MapGridProps) {
-  const half = Math.floor(MAP_SIZE / 2);
-  const coords: Array<{ x: number; y: number; key: string }> = [];
-  const tileMap = new Map<string, MapTile>();
-  const fallbackBiome: BiomeId = tiles[0]?.biome ?? 'temperate';
+  const fallbackBiome: BiomeId = tiles[0]?.biome ?? 'temperate_forest';
 
-  for (const tile of tiles) {
-    tileMap.set(`${tile.x},${tile.y}`, tile);
-  }
-
-  for (let y = half; y >= -half; y -= 1) {
-    for (let x = -half; x <= half; x += 1) {
-      coords.push({ x, y, key: `${x},${y}` });
+  const coords = useMemo(() => {
+    const half = Math.floor(MAP_SIZE / 2);
+    const result: Array<{ x: number; y: number; key: string }> = [];
+    for (let y = half; y >= -half; y -= 1) {
+      for (let x = -half; x <= half; x += 1) {
+        result.push({ x, y, key: `${x},${y}` });
+      }
     }
-  }
+    return result;
+  }, []);
+
+  const tileMap = useMemo(() => {
+    const map = new Map<string, MapTile>();
+    for (const tile of tiles) {
+      map.set(`${tile.x},${tile.y}`, tile);
+    }
+    return map;
+  }, [tiles]);
+
+  const buildingMap = useMemo(() => {
+    const map = new Map<string, Building>();
+    for (const building of buildings) {
+      map.set(`${building.x},${building.y}`, building);
+    }
+    return map;
+  }, [buildings]);
 
   return (
     <div className="panel">
       <h2>Settlement Map</h2>
       <div className="map-grid">
         {coords.map(({ x, y, key }) => {
-          const building = buildings.find((b) => b.x === x && b.y === y);
+          const building = buildingMap.get(key);
           const tile = tileMap.get(key) ?? { x, y, biome: fallbackBiome, features: [] };
           const icons = tile.features
             .map((feature) => featureIcons[feature])

@@ -137,10 +137,20 @@ export const DEFAULT_BUILDINGS: Building[] = [
   }
 ];
 
-export const DEFAULT_VILLAGERS: Villager[] = [];
+export const DEFAULT_VILLAGERS: Villager[] = [
+  {
+    id: 'v-aela',
+    name: 'Aela',
+    jobId: 'forager',
+    efficiency: 1,
+    bed: 'camp',
+    skills: ['tracking', 'foraging'],
+    summary: 'A resourceful pathfinder who kept the fire lit before your arrival.'
+  }
+];
 
 function cloneVillagers(): Villager[] {
-  return DEFAULT_VILLAGERS.map((villager) => ({ ...villager }));
+  return DEFAULT_VILLAGERS.map((villager) => ({ ...villager, skills: [...villager.skills] }));
 }
 
 function cloneBuildings(): Building[] {
