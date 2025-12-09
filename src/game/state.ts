@@ -16,7 +16,9 @@ export const VillagerSchema = z.object({
   name: z.string(),
   jobId: z.string(),
   efficiency: z.number().min(0),
-  bed: z.string().nullable()
+  bed: z.string().nullable(),
+  skills: z.array(z.string()).default([]),
+  summary: z.string().optional()
 });
 export type Villager = z.infer<typeof VillagerSchema>;
 
@@ -72,7 +74,7 @@ export const AwakeningStateSchema = z.object({
 export type AwakeningState = z.infer<typeof AwakeningStateSchema>;
 
 export const CreationStateSchema = z.object({
-  stage: z.enum(['biome_selection', 'awaiting_focus', 'event', 'complete']),
+  stage: z.enum(['biome_selection', 'awaiting_focus', 'event', 'arrival', 'complete']),
   selectedBiome: biomeIdSchema.nullable(),
   eventId: z.string().nullable(),
   chosenThought: z.string().nullable()
@@ -125,8 +127,8 @@ export const DEFAULT_DELTAS: Record<ResourceId, number> = RESOURCES.reduce(
 
 export const DEFAULT_BUILDINGS: Building[] = [
   {
-    id: 'hall',
-    slug: 'town_hall',
+    id: 'camp',
+    slug: 'makeshift_shelter',
     x: 0,
     y: 0,
     tier: 1,
@@ -135,11 +137,7 @@ export const DEFAULT_BUILDINGS: Building[] = [
   }
 ];
 
-export const DEFAULT_VILLAGERS: Villager[] = [
-  { id: 'v-1', name: 'Aela', jobId: 'forager', efficiency: 1, bed: 'hall' },
-  { id: 'v-2', name: 'Bran', jobId: 'woodcutter', efficiency: 1, bed: 'hall' },
-  { id: 'v-3', name: 'Caro', jobId: 'hunter', efficiency: 0.8, bed: 'hall' }
-];
+export const DEFAULT_VILLAGERS: Villager[] = [];
 
 function cloneVillagers(): Villager[] {
   return DEFAULT_VILLAGERS.map((villager) => ({ ...villager }));
@@ -183,7 +181,7 @@ export function createDefaultState(): GameState {
     morale: 50,
     stability: 50,
     readiness: 10,
-    notifications: ['Welcome to the Village of Haven.'],
+    notifications: ['A lone campfire waits for your first ally.'],
     summonPaused: true,
     pauseOnSummon: true,
     rngSeed,

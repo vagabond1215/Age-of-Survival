@@ -39,8 +39,4 @@ export function tickDay(state: GameState, days = 1): GameState {
   return current;
 }
 
-export function tickThreeDays(state: GameState): GameState {
-  return tickDay(state, 3);
-}
-
 export { createDefaultState };

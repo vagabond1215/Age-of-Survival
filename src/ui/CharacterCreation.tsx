@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { type BiomeId, type FeatureId } from '../game/constants';
 import { composeAwakeningNarrative } from '../game/narrative';
 import { BIOME_LIST, getBiomeDetail } from '../data/biomes';
-import { getCreationEventById, getCreationEventsForBiome } from '../data/creationEvents';
+import { getCreationEventById, getCreationEventsForBiome, getThoughtById } from '../data/creationEvents';
 import { type CreationState } from '../game/state';
 
 interface CharacterCreationProps {
@@ -12,6 +12,7 @@ interface CharacterCreationProps {
   onSelectBiome: (biome: BiomeId) => void;
   onGather: () => void;
   onResolveThought: (thoughtId: string) => void;
+  onConfirmArrival: () => void;
 }
 
 export function CharacterCreation({
@@ -20,7 +21,8 @@ export function CharacterCreation({
   features,
   onSelectBiome,
   onGather,
-  onResolveThought
+  onResolveThought,
+  onConfirmArrival
 }: CharacterCreationProps) {
   const panelRef = useRef<HTMLDivElement | null>(null);
   const [thoughtListHeight, setThoughtListHeight] = useState<number | null>(null);
@@ -64,7 +66,7 @@ export function CharacterCreation({
 
   if (creation.stage === 'event') {
     const event = getCreationEventById(creation.eventId) ?? getCreationEventsForBiome(currentBiome)[0];
-    const intro = 'All of a sudden you find yourself thinking...';
+    const intro = 'Who will brave this dilemma at your side? Choose the first to answer your call.';
 
     return (
       <div className="creation-backdrop">
@@ -86,6 +88,15 @@ export function CharacterCreation({
                     onClick={() => onResolveThought(thought.id)}
                   >
                     <span className="thought-label">{thought.label}</span>
+                    <span className="thought-description">{thought.description}</span>
+                    <div className="thought-helper">
+                      <div className="thought-helper__name">{thought.villager.name}</div>
+                      <div className="thought-helper__role">{thought.villager.jobId}</div>
+                      <div className="thought-helper__summary">{thought.villager.summary}</div>
+                      <div className="thought-helper__skills">
+                        {thought.villager.skills.join(' · ')}
+                      </div>
+                    </div>
                   </button>
                 ))}
               </div>
@@ -95,6 +106,43 @@ export function CharacterCreation({
               The world holds its breath, awaiting the choice that will define your next step.
             </p>
           )}
+        </div>
+      </div>
+    );
+  }
+
+  if (creation.stage === 'arrival') {
+    const event = getCreationEventById(creation.eventId);
+    const thought = getThoughtById(event, creation.chosenThought ?? '');
+    const helper = thought?.villager;
+    return (
+      <div className="creation-backdrop">
+        <div className="creation-panel">
+          <h2>First Ally</h2>
+          <p className="creation-narrative">{thought?.arrival ?? 'Aid arrives just as the danger peaks.'}</p>
+          {helper && (
+            <div className="helper-card">
+              <div className="helper-header">
+                <span className="helper-name">{helper.name}</span>
+                <span className="helper-role">{helper.jobId}</span>
+              </div>
+              <p className="helper-summary">{helper.summary}</p>
+              <div className="helper-skills" aria-label="Helper skills">
+                {helper.skills.map((skill) => (
+                  <span key={skill} className="helper-skill">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+          <p className="creation-hardship">
+            Together you push past the crisis, throwing up a rough shelter to catch your breath. A true town center will have to
+            wait until you gather enough hands and resources.
+          </p>
+          <button className="gather-button" onClick={onConfirmArrival}>
+            Begin Shelter
+          </button>
         </div>
       </div>
     );

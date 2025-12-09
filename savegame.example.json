@@ -1,22 +1,28 @@
 {
   "meta": "Example save for Village of Haven",
   "state": {
-    "day": 5,
-    "biome": "temperate",
-    "features": ["river", "dense_forest", "mine"],
+    "day": 3,
+    "biome": "temperate_forest",
+    "features": ["river", "dense_forest"],
     "villagers": [
-      { "id": "v-1", "name": "Aela", "jobId": "forager", "efficiency": 1, "bed": "hall" },
-      { "id": "v-2", "name": "Bran", "jobId": "woodcutter", "efficiency": 1, "bed": "hall" },
-      { "id": "v-3", "name": "Caro", "jobId": "hunter", "efficiency": 0.8, "bed": "hall" }
+      {
+        "id": "v-101",
+        "name": "Iri",
+        "jobId": "forager",
+        "efficiency": 1.1,
+        "bed": "camp",
+        "skills": ["Trail marking", "Herbal lore", "Silent movement"],
+        "summary": "A patient forager who paints safe paths on living bark."
+      }
     ],
     "jobs": ["forager", "hunter", "woodcutter", "mason", "smith", "tailor", "builder", "quartermaster"],
     "resources": {
-      "food": 26,
-      "firewood": 15,
+      "food": 24,
+      "firewood": 10,
       "logs": 12,
-      "stone": 9,
+      "stone": 8,
       "clay": 4,
-      "ore": 4,
+      "ore": 3,
       "leather": 2,
       "cloth": 1,
       "tools": 2,
@@ -35,7 +41,7 @@
       "armor": 0
     },
     "buildings": [
-      { "id": "hall", "slug": "town_hall", "x": 0, "y": 0, "tier": 1, "status": "active", "capacity": 4 }
+      { "id": "camp", "slug": "makeshift_shelter", "x": 0, "y": 0, "tier": 1, "status": "active", "capacity": 4 }
     ],
     "buildQueue": [],
     "crafting": [],
@@ -43,41 +49,50 @@
     "morale": 52,
     "stability": 51,
     "readiness": 12,
-    "notifications": ["Imported save example"],
+    "notifications": [
+      "Imported save example",
+      "Iri guides you past lurking shapes and knots saplings into a rain-shedding lean-to."
+    ],
     "summonPaused": false,
     "pauseOnSummon": true,
     "rngSeed": 4567,
-    "lastEventId": null,
+    "lastEventId": "labyrinth_grove",
     "map": [
-      { "x": -2, "y": 2, "biome": "temperate", "features": [] },
-      { "x": -1, "y": 2, "biome": "temperate", "features": [] },
-      { "x": 0, "y": 2, "biome": "temperate", "features": [] },
-      { "x": 1, "y": 2, "biome": "temperate", "features": [] },
-      { "x": 2, "y": 2, "biome": "temperate", "features": [] },
-      { "x": -2, "y": 1, "biome": "temperate", "features": [] },
-      { "x": -1, "y": 1, "biome": "temperate", "features": [] },
-      { "x": 0, "y": 1, "biome": "temperate", "features": [] },
-      { "x": 1, "y": 1, "biome": "temperate", "features": [] },
-      { "x": 2, "y": 1, "biome": "temperate", "features": [] },
-      { "x": -2, "y": 0, "biome": "temperate", "features": [] },
-      { "x": -1, "y": 0, "biome": "temperate", "features": ["dense_forest"] },
-      { "x": 0, "y": 0, "biome": "temperate", "features": [] },
-      { "x": 1, "y": 0, "biome": "temperate", "features": ["dense_forest"] },
-      { "x": 2, "y": 0, "biome": "temperate", "features": [] },
-      { "x": -2, "y": -1, "biome": "temperate", "features": [] },
-      { "x": -1, "y": -1, "biome": "temperate", "features": [] },
-      { "x": 0, "y": -1, "biome": "temperate", "features": ["dense_forest"] },
-      { "x": 1, "y": -1, "biome": "temperate", "features": [] },
-      { "x": 2, "y": -1, "biome": "temperate", "features": [] },
-      { "x": -2, "y": -2, "biome": "temperate", "features": ["river"] },
-      { "x": -1, "y": -2, "biome": "temperate", "features": ["river"] },
-      { "x": 0, "y": -2, "biome": "temperate", "features": ["river"] },
-      { "x": 1, "y": -2, "biome": "temperate", "features": ["mine", "river"], "label": "Mine" },
-      { "x": 2, "y": -2, "biome": "temperate", "features": ["dense_forest", "river"] }
+      { "x": -2, "y": 2, "biome": "temperate_forest", "features": [] },
+      { "x": -1, "y": 2, "biome": "temperate_forest", "features": [] },
+      { "x": 0, "y": 2, "biome": "temperate_forest", "features": [] },
+      { "x": 1, "y": 2, "biome": "temperate_forest", "features": [] },
+      { "x": 2, "y": 2, "biome": "temperate_forest", "features": [] },
+      { "x": -2, "y": 1, "biome": "temperate_forest", "features": [] },
+      { "x": -1, "y": 1, "biome": "temperate_forest", "features": [] },
+      { "x": 0, "y": 1, "biome": "temperate_forest", "features": [] },
+      { "x": 1, "y": 1, "biome": "temperate_forest", "features": [] },
+      { "x": 2, "y": 1, "biome": "temperate_forest", "features": [] },
+      { "x": -2, "y": 0, "biome": "temperate_forest", "features": [] },
+      { "x": -1, "y": 0, "biome": "temperate_forest", "features": ["dense_forest"] },
+      { "x": 0, "y": 0, "biome": "temperate_forest", "features": [] },
+      { "x": 1, "y": 0, "biome": "temperate_forest", "features": ["dense_forest"] },
+      { "x": 2, "y": 0, "biome": "temperate_forest", "features": [] },
+      { "x": -2, "y": -1, "biome": "temperate_forest", "features": [] },
+      { "x": -1, "y": -1, "biome": "temperate_forest", "features": [] },
+      { "x": 0, "y": -1, "biome": "temperate_forest", "features": ["dense_forest"] },
+      { "x": 1, "y": -1, "biome": "temperate_forest", "features": [] },
+      { "x": 2, "y": -1, "biome": "temperate_forest", "features": [] },
+      { "x": -2, "y": -2, "biome": "temperate_forest", "features": ["river"] },
+      { "x": -1, "y": -2, "biome": "temperate_forest", "features": ["river"] },
+      { "x": 0, "y": -2, "biome": "temperate_forest", "features": ["river"] },
+      { "x": 1, "y": -2, "biome": "temperate_forest", "features": ["mine", "river"], "label": "Mine" },
+      { "x": 2, "y": -2, "biome": "temperate_forest", "features": ["dense_forest", "river"] }
     ],
     "awakening": {
       "seen": true,
-      "narrative": "You wake amidst gentle hills where dew-soaked grasses bend beneath the breeze. A nearby river murmurs over stone, promising fish and clay alike. An ancient wood crowds close, trunks thick with moss and stories untold. A scar of exposed rock reveals an old mine mouth, whispering of ore and hidden danger."
+      "narrative": "Iri appears with soft steps, daubing resin on bark to steer you between the prowling silhouettes. She leads you out of the maze and weaves saplings into a rough shelter, promising to guide you back here with real walls once supplies grow."
+    },
+    "creation": {
+      "stage": "complete",
+      "selectedBiome": "temperate_forest",
+      "eventId": "labyrinth_grove",
+      "chosenThought": "grove_forager_mark"
     }
   }
 }
