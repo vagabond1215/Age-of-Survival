@@ -4,3 +4,6 @@ dist
 .vite
 .idea
 coverage
+
+docs/*
+!docs/.gitkeep
