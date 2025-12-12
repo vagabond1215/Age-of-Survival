@@ -7,7 +7,7 @@ import BuildQueue from './ui/BuildQueue';
 import MapGrid from './ui/MapGrid';
 import Notifications from './ui/Notifications';
 import CharacterCreation from './ui/CharacterCreation';
-import { createDefaultState, type GameState, type Villager } from './game/state';
+import { createDefaultState, type GameState, type StartingTask, type Villager } from './game/state';
 import { composeAwakeningNarrative } from './game/narrative';
 import { tickDay } from './game/engine';
 import { assignJob } from './game/systems/jobs';
@@ -17,6 +17,7 @@ import { getBiomeDetail } from './data/biomes';
 import { generateMap } from './game/map';
 import { createRng } from './lib/rng';
 import { getCreationEventById, getCreationEventsForBiome, getThoughtById } from './data/creationEvents';
+import { computeProductionDeltas } from './game/systems/production';
 
 function App() {
   const [state, setState] = useState<GameState>(() => {
@@ -93,7 +94,9 @@ function App() {
           stage: 'awaiting_focus',
           selectedBiome: biomeId,
           eventId: null,
-          chosenThought: null
+          chosenThought: null,
+          helperId: null,
+          startingTask: null
         }
       };
     });
@@ -180,7 +183,54 @@ function App() {
         awakening,
         creation: {
           ...current.creation,
-          stage: 'complete'
+          stage: 'task_assignment',
+          helperId: helper.id,
+          startingTask: null
+        }
+      };
+    });
+  }, []);
+
+  const handleSelectStartingTask = useCallback((task: StartingTask) => {
+    setState((current) => {
+      if (current.creation.stage !== 'task_assignment' || !current.creation.helperId) {
+        return current;
+      }
+
+      const helperIndex = current.villagers.findIndex((villager) => villager.id === current.creation.helperId);
+      if (helperIndex === -1) {
+        return current;
+      }
+
+      const updatedVillagers = current.villagers.map((villager) => ({ ...villager }));
+      const helper = updatedVillagers[helperIndex];
+      const companion = updatedVillagers.find((villager) => villager.id !== helper.id);
+
+      const helperJobId = task === 'gather_materials' ? 'woodcutter' : 'forager';
+      const companionJobId = task === 'gather_materials' ? 'forager' : 'woodcutter';
+
+      helper.jobId = helperJobId;
+      if (companion) {
+        companion.jobId = companionJobId;
+      }
+
+      const deltas = computeProductionDeltas({ ...current, villagers: updatedVillagers });
+
+      const notifications = [
+        ...current.notifications,
+        `${helper.name} will ${task === 'gather_materials' ? 'gather materials' : 'gather food'}.`,
+        companion ? `${companion.name} will ${task === 'gather_materials' ? 'gather food' : 'gather materials'}.` : ''
+      ].filter(Boolean);
+
+      return {
+        ...current,
+        villagers: updatedVillagers,
+        deltas,
+        notifications,
+        creation: {
+          ...current.creation,
+          stage: 'complete',
+          startingTask: task
         }
       };
     });
@@ -193,10 +243,12 @@ function App() {
           creation={state.creation}
           currentBiome={state.biome}
           features={state.features}
+          helper={state.villagers.find((villager) => villager.id === state.creation.helperId) ?? null}
           onSelectBiome={handleSelectBiome}
           onGather={handleGather}
           onResolveThought={handleResolveThought}
           onConfirmArrival={handleConfirmArrival}
+          onSelectStartingTask={handleSelectStartingTask}
         />
       </div>
     );
