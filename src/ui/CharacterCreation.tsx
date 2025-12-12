@@ -137,11 +137,11 @@ export function CharacterCreation({
             </div>
           )}
           <p className="creation-hardship">
-            Together you push past the crisis, throwing up a rough shelter to catch your breath. A true town center will have to
-            wait until you gather enough hands and resources.
+            Together you push past the crisis, and your companion holds position, waiting for your direction on what comes next.
+            The true work will follow your orders.
           </p>
           <button className="gather-button" onClick={onConfirmArrival}>
-            Begin Shelter
+            Assign First Tasks
           </button>
         </div>
       </div>

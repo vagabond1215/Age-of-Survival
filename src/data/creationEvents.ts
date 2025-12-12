@@ -41,10 +41,10 @@ export const CREATION_EVENTS: CreationEvent[] = [
         label: 'Signal Lysa, the rope-slinging builder, before the ledge splinters.',
         description:
           'She braces a piton between slick roots, ready to swing a knotted line past you if she can reach you before the gravel gives way.',
-        arrival:
-          'Lysa barrels out of the fog with a fistful of iron spikes. The line hisses past your ear, catches, and she hauls you up while shards cascade into the ravine. She wastes no time, rigging those same ropes into a tripod shelter against the wind, promising a sturdier hall once your stores allow.',
-        result:
-          'Lysa pulls you clear of the ravine and lashes together a rough shelter from the rescue rigging.',
+          arrival:
+            'Lysa barrels out of the fog with a fistful of iron spikes. The line hisses past your ear, catches, and she hauls you up while shards cascade into the ravine. She steadies you on the ledge, waiting for your next call rather than building anything on her own.',
+          result:
+            'Lysa pulls you clear of the ravine and holds position until you decide the next move.',
         villager: {
           name: 'Lysa',
           jobId: 'builder',
@@ -58,9 +58,9 @@ export const CREATION_EVENTS: CreationEvent[] = [
         label: 'Wave to Rusk, the cliff-runner hunter tracking shaggy goats.',
         description:
           'He dances along the ledges with a hooked spear, able to snag you or distract whatever claws its way up toward you.',
-        arrival:
-          'Rusk vaults from rock to root, planting his spear and giving you a handhold that drags you out of the slide. His goat hide cloak becomes a windbreak as he drives stakes into the soil, promising to scout a proper town center once you can spare timber.',
-        result: 'Rusk steadies the ledge, hauls you free, and throws up a hide break to weather the night.',
+          arrival:
+            'Rusk vaults from rock to root, planting his spear and giving you a handhold that drags you out of the slide. He keeps watch on the ravine lip, ready for instructions instead of throwing up his own camp.',
+          result: 'Rusk steadies the ledge, hauls you free, and waits for orders beside you.',
         villager: {
           name: 'Rusk',
           jobId: 'hunter',
@@ -74,9 +74,9 @@ export const CREATION_EVENTS: CreationEvent[] = [
         label: 'Flag Tor, the stone mason, before the shale wall peels away.',
         description:
           'He carries chisels and wedges, able to carve shallow steps or shore the roots holding you in place.',
-        arrival:
-          'Tor sets his chisel without a word, hammering quick steps that let you clamber back to solid ground. With the same calm rhythm he stacks flat stones into a lean-to, noting that a true town center will have to wait until you quarry more rock.',
-        result: 'Tor carves footholds, guides you up, and stacks a low stone shelter from the debris.',
+          arrival:
+            'Tor sets his chisel without a word, hammering quick steps that let you clamber back to solid ground. Once you are steady, he plants himself nearby, tools ready for whatever work you direct next.',
+          result: 'Tor carves footholds, guides you up, and stands by for your direction.',
         villager: {
           name: 'Tor',
           jobId: 'mason',
@@ -101,9 +101,9 @@ export const CREATION_EVENTS: CreationEvent[] = [
         label: 'Trust Iri the forager to mark a trail through the whispering trees.',
         description:
           'She carries resin and chalk, able to scar trunks and read the subtle tilt of moss that hints at safe footing.',
-        arrival:
-          'Iri appears with soft steps, daubing resin on bark to steer you between the prowling silhouettes. She leads you out of the maze and weaves saplings into a rough shelter, promising to guide you back here with real walls once supplies grow.',
-        result: 'Iri guides you past lurking shapes and knots saplings into a rain-shedding lean-to.',
+          arrival:
+            'Iri appears with soft steps, daubing resin on bark to steer you between the prowling silhouettes. She leads you out of the maze and settles you on firmer ground, waiting for your direction before doing anything more.',
+          result: 'Iri guides you past lurking shapes and pauses for your orders once you are safe.',
         villager: {
           name: 'Iri',
           jobId: 'forager',
@@ -117,9 +117,9 @@ export const CREATION_EVENTS: CreationEvent[] = [
         label: 'Let Kael the hunter draw the shadow-cat away from your route.',
         description:
           'A shadow cat stalks the mist ahead. Kael carries scent-lures and a shortbow, willing to taunt the predator while you slip by.',
-        arrival:
-          'Kael whistles sharply, luring glowing eyes toward him before vanishing into the fog. Moments later he ushers you along a safer trail, stringing his cloak between roots to roof a crude shelter until you can raise a hall.',
-        result: 'Kael distracts a stalking cat and helps you settle beneath a hurried canvas lean-to.',
+          arrival:
+            'Kael whistles sharply, luring glowing eyes toward him before vanishing into the fog. Moments later he ushers you along a safer trail and posts up nearby, watching the mist until you choose the next task.',
+          result: 'Kael distracts a stalking cat, leads you clear, and stands guard awaiting your lead.',
         villager: {
           name: 'Kael',
           jobId: 'hunter',
@@ -133,9 +133,9 @@ export const CREATION_EVENTS: CreationEvent[] = [
         label: 'Ask Sena the tailor to weave a guide line through the briars.',
         description:
           'She threads cord between trunks, keeping you tethered as the mist churns and the forest shifts around you.',
-        arrival:
-          'Sena tosses you a length of braided cord, knotting it around her waist as she threads through the thorns. Her lines keep you from straying, then become ridge poles for a fabric lean-to. A true town center can wait until you can spare better cloth.',
-        result: 'Sena’s woven lines keep you steady and stretch into a quick canvas shelter.',
+          arrival:
+            'Sena tosses you a length of braided cord, knotting it around her waist as she threads through the thorns. Her lines keep you from straying, and she holds the tether while you regain footing, awaiting your instructions.',
+          result: 'Sena’s woven lines keep you steady and she waits, still tethered, for your command.',
         villager: {
           name: 'Sena',
           jobId: 'tailor',
@@ -160,9 +160,9 @@ export const CREATION_EVENTS: CreationEvent[] = [
         label: 'Unfurl Sel the quartermaster’s wind charts before the storm shifts.',
         description:
           'Sel tracks the pull of the gale and knows where the sand will thin. Her canvas and poles could become both signal and shelter.',
-        arrival:
-          'Sel shoves a compass into your palm and angles a wide tarp against the gusts, guiding you along the lee of a dune away from the burrowing threat. She stakes that same tarp into a snug shelter, noting you will need timber and nails before a real town center rises.',
-        result: 'Sel plots a lee-side escape and pins a windbreak shelter into the sand.',
+          arrival:
+            'Sel shoves a compass into your palm and angles a wide tarp against the gusts, guiding you along the lee of a dune away from the burrowing threat. She keeps the tarp ready as a shield, looking to you for the next order instead of pitching a camp.',
+        result: 'Sel plots a lee-side escape and stays nearby with supplies until you decide your course.',
         villager: {
           name: 'Sel',
           jobId: 'quartermaster',
@@ -176,9 +176,9 @@ export const CREATION_EVENTS: CreationEvent[] = [
         label: 'Let Nima the hunter snare the dune wyrm if it surfaces.',
         description:
           'Nima carries weighted bolas and scent-dousing resin, ready to trip the sand-stirring beast long enough to sprint for cover.',
-        arrival:
-          'Nima hurls her bolas as the sand bulges, tangling the wyrm’s rise and buying you moments to follow her into a rocky hollow. She props driftwood and hides into a low shelter, promising sturdier walls after the first haul of lumber.',
-        result: 'Nima tangles the dune threat and throws together a hide-draped refuge.',
+          arrival:
+            'Nima hurls her bolas as the sand bulges, tangling the wyrm’s rise and buying you moments to follow her into a rocky hollow. She plants herself between you and the dunes, ready for your direction rather than building ahead.',
+        result: 'Nima tangles the dune threat, leads you to cover, and waits on your signal.',
         villager: {
           name: 'Nima',
           jobId: 'hunter',
@@ -192,9 +192,9 @@ export const CREATION_EVENTS: CreationEvent[] = [
         label: 'Let Jace the builder rig a sled-screen against the flying grit.',
         description:
           'He lugs salvaged planks and sailcloth, able to create a moving barrier while you angle away from the storm eye.',
-        arrival:
-          'Jace plants his planks into the sand, turning them into a rolling shield that shepherds you toward calmer ground. The boards become the spine of a makeshift shelter, and he sketches where a town center will stand once stone and nails are stockpiled.',
-        result: 'Jace shields you from the gale and builds a plank-framed shelter on the far side.',
+          arrival:
+            'Jace plants his planks into the sand, turning them into a rolling shield that shepherds you toward calmer ground. He sets the planks aside once you are safe, waiting for your instruction before repurposing a single board.',
+        result: 'Jace shields you from the gale, guides you clear, and holds his materials until you choose their use.',
         villager: {
           name: 'Jace',
           jobId: 'builder',
@@ -219,9 +219,9 @@ export const CREATION_EVENTS: CreationEvent[] = [
         label: 'Have Eryk the hunter loose a flare arrow between the circling wolves.',
         description:
           'Eryk carries pitch-soaked shafts and knows how to fire blind by sound alone, buying you room to breathe.',
-        arrival:
-          'A red streak hisses through the snow, and the wolves scatter. Eryk reaches you with a rough cloak, guiding you into a shallow drift where he props shields of ice into a cramped shelter. He swears a proper hall will come once you can cut timber without freezing.',
-        result: 'Eryk scatters the wolves with firelight and shapes an ice-walled windbreak.',
+          arrival:
+            'A red streak hisses through the snow, and the wolves scatter. Eryk reaches you with a rough cloak, guiding you into a shallow drift and keeping lookout until you tell him what comes next.',
+          result: 'Eryk scatters the wolves with firelight, gets you under cover, and awaits direction.',
         villager: {
           name: 'Eryk',
           jobId: 'hunter',
@@ -235,9 +235,9 @@ export const CREATION_EVENTS: CreationEvent[] = [
         label: 'Let Brida the mason carve a snow cave before the frostbite sets in.',
         description:
           'Brida knows where the ice crust is thickest and how to vent it before the drift collapses, even with wolves nearby.',
-        arrival:
-          'Brida’s pick bites into the drift, carving a hollow that muffles the wind. She braces the entrance with cut blocks and says the real town center will need quarried stone after this storm passes.',
-        result: 'Brida cuts you a snug ice cave and braces it against prowling wolves.',
+          arrival:
+            'Brida’s pick bites into the drift, carving a hollow that muffles the wind. She holds the opening while you catch your breath, waiting on your orders rather than shaping anything permanent.',
+          result: 'Brida cuts you free of the wind, then holds position for your next command.',
         villager: {
           name: 'Brida',
           jobId: 'mason',
@@ -251,9 +251,9 @@ export const CREATION_EVENTS: CreationEvent[] = [
         label: 'Follow Una the forager along the wind-sheltered lichen ridge.',
         description:
           'Una reads the way the snow drifts around low rock, keeping you off cracking ice and away from the hungriest wolves.',
-        arrival:
-          'Una appears wrapped in furs, tapping the snow with a staff to reveal a narrow ridge. She ushers you along it to a nook between boulders, pulling furs and branches into a dome that will serve until you can raise warmer walls.',
-        result: 'Una threads you past the wolves and domes the ridge with furs for shelter.',
+          arrival:
+            'Una appears wrapped in furs, tapping the snow with a staff to reveal a narrow ridge. She ushers you along it to a nook between boulders and stays there with you, waiting for your direction before rearranging a single branch.',
+          result: 'Una threads you past the wolves and waits with you at the ridge for your instructions.',
         villager: {
           name: 'Una',
           jobId: 'forager',
@@ -278,9 +278,9 @@ export const CREATION_EVENTS: CreationEvent[] = [
         label: 'Have Mara the woodcutter wedge driftwood under the beast’s bulk.',
         description:
           'She eyes a fallen spar that could jam the creature’s advance long enough to slip past.',
-        arrival:
-          'Mara charges with a sun-bleached spar, ramming it beneath the beast’s jaw to pry space open. She hauls you up the rocks and lashes the spar into a salt-stiff shelter, vowing to frame a town center once lumber and nails arrive.',
-        result: 'Mara jacks the beast aside and raises a salt-scoured lean-to above the tide.',
+          arrival:
+            'Mara charges with a sun-bleached spar, ramming it beneath the beast’s jaw to pry space open. She hauls you up the rocks and keeps the spar ready as leverage, waiting for your command on what to do next.',
+          result: 'Mara jacks the beast aside, gets you to higher ground, and waits for orders.',
         villager: {
           name: 'Mara',
           jobId: 'woodcutter',
@@ -294,9 +294,9 @@ export const CREATION_EVENTS: CreationEvent[] = [
         label: 'Let Tomas the smith brand the beast with a heated spearhead.',
         description:
           'He keeps an ember-pot and can sear the creature’s snout, buying you seconds before the tide closes in.',
-        arrival:
-          'Tomas plunges his spear into the ember-pot, then slams the glowing tip into the beast. The thing recoils and he yanks you toward higher ground. His shield and sailcloth become a slanted shelter; the forge for a town center will wait until ore and fuel are stockpiled.',
-        result: 'Tomas scorches the sea-beast and throws up a shielded shelter above the spray.',
+          arrival:
+            'Tomas plunges his spear into the ember-pot, then slams the glowing tip into the beast. The thing recoils and he yanks you toward higher ground. He braces his shield nearby and looks to you for direction rather than raising a shelter on his own.',
+          result: 'Tomas scorches the sea-beast, pulls you up the rocks, and stands by for instruction.',
         villager: {
           name: 'Tomas',
           jobId: 'smith',
@@ -310,9 +310,9 @@ export const CREATION_EVENTS: CreationEvent[] = [
         label: 'Ask Cal the builder to turn the reef into a trap.',
         description:
           'He sees where the barnacled rocks pinch together and can lash spars across them to bar the creature’s path.',
-        arrival:
-          'Cal splashes into the shallows, wedging spars and rope between reef teeth until the beast thrashes itself still. He guides you past and repurposes the lashings into a cliffside shelter, noting that real foundations will come once you ferry stone inland.',
-        result: 'Cal cages the beast between rocks and hangs a quick shelter on the cliff.',
+          arrival:
+            'Cal splashes into the shallows, wedging spars and rope between reef teeth until the beast thrashes itself still. He guides you past and waits beside the reef tools in hand, asking for your next directive.',
+          result: 'Cal cages the beast between rocks, escorts you through, and awaits your lead.',
         villager: {
           name: 'Cal',
           jobId: 'builder',
@@ -337,9 +337,9 @@ export const CREATION_EVENTS: CreationEvent[] = [
         label: 'Have Garran the woodcutter fell an acacia to carve a firebreak.',
         description:
           'Garran’s axe can drop a green-limbed tree to slow the grass-fire, if he moves before the herd reaches you.',
-        arrival:
-          'Garran swings once, twice, and the acacia crashes down, splitting the flame front. He guides you along the blackened strip and props the wide trunk into a shaded shelter, swearing a town center will rise once you gather sturdier timber.',
-        result: 'Garran splits the fireline and props an acacia trunk into a smoking shelter.',
+          arrival:
+            'Garran swings once, twice, and the acacia crashes down, splitting the flame front. He guides you along the blackened strip and halts with you in the cleared space, waiting for your say before using the fallen trunk.',
+          result: 'Garran splits the fireline, pulls you through the gap, and awaits your instruction.',
         villager: {
           name: 'Garran',
           jobId: 'woodcutter',
@@ -353,9 +353,9 @@ export const CREATION_EVENTS: CreationEvent[] = [
         label: 'Let Ayo the forager lead you into a damp reed gully.',
         description:
           'Ayo knows the low places where the fire thins and the herd will not trample.',
-        arrival:
-          'Ayo whistles and cuts through the smoke toward a damp gully, yanking you into the mud as flames roar overhead. She weaves reeds into a shaded lean-to, noting that a true town center needs more than reeds and hope.',
-        result: 'Ayo shelters you in a damp gully beneath a reed-woven roof.',
+          arrival:
+            'Ayo whistles and cuts through the smoke toward a damp gully, yanking you into the mud as flames roar overhead. She crouches beside you in the wet reeds, asking what you need before she starts any work.',
+          result: 'Ayo shelters you in a damp gully and waits there for your direction.',
         villager: {
           name: 'Ayo',
           jobId: 'forager',
@@ -369,9 +369,9 @@ export const CREATION_EVENTS: CreationEvent[] = [
         label: 'Ask Isi the hunter to turn the stampede back on itself.',
         description:
           'Isi carries signal whistles and a sling; with luck she can bend the herd away from you and toward the rocky rise.',
-        arrival:
-          'Isi’s whistles scatter the front-runners, and a snapped slingstone starts the herd curving away. She pulls you toward the rocks and rigs hides between stones for cover, promising to raise a central hall once the fires die and supplies pile up.',
-        result: 'Isi redirects the herd and hangs hides into a fast shelter among the rocks.',
+          arrival:
+            'Isi’s whistles scatter the front-runners, and a snapped slingstone starts the herd curving away. She pulls you toward the rocks and kneels there with you, waiting to hear your orders now that the stampede has passed.',
+          result: 'Isi redirects the herd, gets you to the rocks, and pauses for your command.',
         villager: {
           name: 'Isi',
           jobId: 'hunter',
@@ -396,9 +396,9 @@ export const CREATION_EVENTS: CreationEvent[] = [
         label: 'Let Kesh the builder lay salvaged planks toward you.',
         description:
           'Kesh carries a bundle of split boards and knows how to float them on the mire without sinking with you.',
-        arrival:
-          'Kesh slides planks ahead of him like stepping stones, his weight spreading across the mire. He drags you onto the boards and then props them into a slatted shelter above the muck, pointing out where a real town center will need piles sunk deep.',
-        result: 'Kesh bridges the mire with planks and props them into a stilted shelter.',
+          arrival:
+            'Kesh slides planks ahead of him like stepping stones, his weight spreading across the mire. He drags you onto the boards and keeps them close, waiting for your call before turning them into anything else.',
+        result: 'Kesh bridges the mire with planks, pulls you free, and waits for orders.',
         villager: {
           name: 'Kesh',
           jobId: 'builder',
@@ -412,9 +412,9 @@ export const CREATION_EVENTS: CreationEvent[] = [
         label: 'Follow Lin the forager across the hidden tussocks.',
         description:
           'Lin reads the tremor of reeds and the shimmer that betrays firm ground in the swamp.',
-        arrival:
-          'Lin taps the surface with a willow pole, finds the path of firmer tussocks, and hauls you along it. She mats reeds into a domed shelter, promising a raised town center once you can cut enough poles.',
-        result: 'Lin guides you over reed hummocks and domes them into shelter.',
+          arrival:
+            'Lin taps the surface with a willow pole, finds the path of firmer tussocks, and hauls you along it. She steadies you on the tussock and looks to you for the next step instead of weaving anything yet.',
+        result: 'Lin guides you over reed hummocks and pauses for your direction.',
         villager: {
           name: 'Lin',
           jobId: 'forager',
@@ -428,9 +428,9 @@ export const CREATION_EVENTS: CreationEvent[] = [
         label: 'Reach for Pavel the hunter’s barbed hook before the mire claims you.',
         description:
           'He hunts river eels and keeps a barbed gaff; with it he can snag you or the croc-eyes rising nearby.',
-        arrival:
-          'Pavel sets his feet against a root, plants the gaff, and yanks you free as bubbles erupt. He then drives the hook into a trunk to anchor a canvas shelter above the muck, muttering that a proper hall will wait until you gather stone and dry timber.',
-        result: 'Pavel hauls you out with his gaff and anchors a canvas shelter to the roots.',
+          arrival:
+            'Pavel sets his feet against a root, plants the gaff, and yanks you free as bubbles erupt. He keeps the hook set as a brace while he waits for your direction on where to head next.',
+        result: 'Pavel hauls you out with his gaff and holds the line while awaiting orders.',
         villager: {
           name: 'Pavel',
           jobId: 'hunter',
@@ -455,9 +455,9 @@ export const CREATION_EVENTS: CreationEvent[] = [
         label: 'Flag down Olek the outrider before the aurochs close.',
         description:
           'He heels his pony through storms, carrying signal banners and a horn to swing the herd aside.',
-        arrival:
-          'Olek wheels his pony between you and the stampede, horn blaring until the lead bulls veer. He hauls you up behind him, then pitches his storm cloak over bent spears to form a windbreak. The ride to a town center can wait until you gather the timber to raise one.',
-        result: 'Olek diverts the herd and throws up a storm-cloak shelter after the charge.',
+          arrival:
+            'Olek wheels his pony between you and the stampede, horn blaring until the lead bulls veer. He hauls you up behind him and circles to safety, holding the cloak at the ready while waiting for your orders.',
+          result: 'Olek diverts the herd, carries you clear, and waits in the lee for instruction.',
         villager: {
           name: 'Olek',
           jobId: 'hunter',
@@ -471,9 +471,9 @@ export const CREATION_EVENTS: CreationEvent[] = [
         label: 'Wave to Mira the steppe forager with her smoke pots.',
         description:
           'Mira mixes pungent herbs that beast herds hate; one toss could split the charge around you.',
-        arrival:
-          'Mira dashes upwind and hurls smoking pots that peel the boars away. She drapes her herb-scented tarps over spare poles, making a low shelter until you can erect something sturdier at the future town center.',
-        result: 'Mira’s smoke parts the herd and her tarps become a fragrant refuge.',
+          arrival:
+            'Mira dashes upwind and hurls smoking pots that peel the boars away. She keeps the tarps bundled under her arm, looking to you for the next move instead of pitching camp.',
+          result: 'Mira’s smoke parts the herd and she lingers beside you, tarps in hand, awaiting direction.',
         villager: {
           name: 'Mira',
           jobId: 'forager',
@@ -487,9 +487,9 @@ export const CREATION_EVENTS: CreationEvent[] = [
         label: 'Call Dagan the quartermaster to brace a shield wall against the hail.',
         description:
           'He hauls a folding sled and spare shields, able to dig in and weather both ice shards and stray hooves.',
-        arrival:
-          'Dagan slams his sled into the dirt and stacks shields into a low wall, catching the hail as the herd splits around you. Once calm, he props those shields into a slanted shelter and marks the spot for a true town center once supplies pile up.',
-        result: 'Dagan walls you off from hail and crafts a shield-sled shelter afterward.',
+          arrival:
+            'Dagan slams his sled into the dirt and stacks shields into a low wall, catching the hail as the herd splits around you. When the ground stills he keeps the shields close, waiting for your direction before reshaping anything.',
+          result: 'Dagan walls you off from hail, steadies the shields, and looks to you for orders.',
         villager: {
           name: 'Dagan',
           jobId: 'quartermaster',
@@ -514,9 +514,9 @@ export const CREATION_EVENTS: CreationEvent[] = [
         label: 'Follow Vera the mason along the cooling basalt ridge.',
         description:
           'She knows which black stone will hold and which will crumble, even with ash hounds prowling.',
-        arrival:
-          'Vera taps the basalt with her hammer, steering you across the solid ridges and batting aside an ash hound with her chisel. She stacks flat stones into a heat-shielded shelter, marking out where a real hall will rise once ore and clay are plentiful.',
-        result: 'Vera guides you over cooling stone and stacks a heat-shielding shelter.',
+          arrival:
+            'Vera taps the basalt with her hammer, steering you across the solid ridges and batting aside an ash hound with her chisel. Once you reach steady ground she posts up beside you, waiting for your direction before shaping anything else.',
+          result: 'Vera guides you over cooling stone and holds her tools ready for your orders.',
         villager: {
           name: 'Vera',
           jobId: 'mason',
@@ -530,9 +530,9 @@ export const CREATION_EVENTS: CreationEvent[] = [
         label: 'Let Kato the smith raise his quenched shield against the ash.',
         description:
           'Kato carries a metal shield soaked in water and a hammer that can ring the ash hounds back.',
-        arrival:
-          'Kato slams his quenched shield over your head as ash hisses down, driving the hounds away with ringing blows. He props the shield and spare timbers into a sloped shelter, promising a forge-fed town center after you bank enough ore.',
-        result: 'Kato wards off ash and beasts, then roofs you under his quenched shield.',
+          arrival:
+            'Kato slams his quenched shield over your head as ash hisses down, driving the hounds away with ringing blows. He keeps the shield raised beside you and waits for your command on how to use his gear next.',
+          result: 'Kato wards off ash and beasts, then remains at your side awaiting instruction.',
         villager: {
           name: 'Kato',
           jobId: 'smith',
@@ -546,9 +546,9 @@ export const CREATION_EVENTS: CreationEvent[] = [
         label: 'Ask Nessa the builder to rig a path over the fissure.',
         description:
           'She carries planks and hooks to bridge the crack before it widens and belches more fumes.',
-        arrival:
-          'Nessa tosses hooked planks across the fissure, snatching you across before the next tremor. Those boards become a rough shelter against the sulfur wind, and she sketches where a town center will sit once the ground stops shaking and stores are stocked.',
-        result: 'Nessa bridges the fissure and leans her planks into a sulfur-screened shelter.',
+          arrival:
+            'Nessa tosses hooked planks across the fissure, snatching you across before the next tremor. She gathers the boards once you are safe and looks to you to decide the next use for them.',
+          result: 'Nessa bridges the fissure, collects her planks, and waits for your direction.',
         villager: {
           name: 'Nessa',
           jobId: 'builder',
@@ -572,9 +572,9 @@ export const CREATION_EVENTS: CreationEvent[] = [
         label: 'Let Niall the mason shore the nearest tunnel before it collapses.',
         description:
           'He can wedge stone and fungus logs to keep the ceiling from shedding shards as you escape.',
-        arrival:
-          'Niall slides down beside you, jamming braces into the ceiling and waving you toward a steadier tunnel. He walls off the growling echo and props the braces into a low shelter, promising proper stonework once you haul materials to daylight.',
-        result: 'Niall shores the tunnel and walls off a nook for shelter underground.',
+          arrival:
+            'Niall slides down beside you, jamming braces into the ceiling and waving you toward a steadier tunnel. He stays near the bracing, waiting on your orders before shaping anything more.',
+          result: 'Niall shores the tunnel, steadies the braces, and looks to you for the next move.',
         villager: {
           name: 'Niall',
           jobId: 'mason',
@@ -588,9 +588,9 @@ export const CREATION_EVENTS: CreationEvent[] = [
         label: 'Let Sive the hunter track the growl by echo and scent.',
         description:
           'She listens for airflow and knows which tunnel breathes fresh air instead of predator musk.',
-        arrival:
-          'Sive sniffs, tilts her head, and pulls you toward a tunnel that exhales cool air. Her cloak becomes a curtain across the passage, turning the corner into a sheltered alcove until you can build aboveground.',
-        result: 'Sive guides you by echo to a safe passage and curtains it into shelter.',
+          arrival:
+            'Sive sniffs, tilts her head, and pulls you toward a tunnel that exhales cool air. She keeps her cloak ready but holds position with you, waiting for your lead.',
+          result: 'Sive guides you by echo to a safe passage and stands by for your command.',
         villager: {
           name: 'Sive',
           jobId: 'hunter',
@@ -604,9 +604,9 @@ export const CREATION_EVENTS: CreationEvent[] = [
         label: 'Ask Pree the forager which fungi lead to surface drafts.',
         description:
           'She knows which glow-moss grows only where wind creeps through cracks, hinting at the exit route.',
-        arrival:
-          'Pree points out pale fungi bending toward a hidden draft and guides you that way. She pulls broad caps into a layered shelter against the damp, noting that a proper town center will wait for sunlight and timber.',
-        result: 'Pree follows the glow-moss draft and layers fungi caps into a dry shelter.',
+          arrival:
+            'Pree points out pale fungi bending toward a hidden draft and guides you that way. She keeps the broad caps at her side, asking what you need before arranging anything.',
+          result: 'Pree follows the glow-moss draft, brings you to the airflow, and awaits direction.',
         villager: {
           name: 'Pree',
           jobId: 'forager',
