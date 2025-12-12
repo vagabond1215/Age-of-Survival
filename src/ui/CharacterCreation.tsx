@@ -3,26 +3,30 @@ import { type BiomeId, type FeatureId } from '../game/constants';
 import { composeAwakeningNarrative } from '../game/narrative';
 import { BIOME_LIST, getBiomeDetail } from '../data/biomes';
 import { getCreationEventById, getCreationEventsForBiome, getThoughtById } from '../data/creationEvents';
-import { type CreationState } from '../game/state';
+import { type CreationState, type StartingTask, type Villager } from '../game/state';
 
 interface CharacterCreationProps {
   creation: CreationState;
   currentBiome: BiomeId;
   features: FeatureId[];
+  helper: Villager | null;
   onSelectBiome: (biome: BiomeId) => void;
   onGather: () => void;
   onResolveThought: (thoughtId: string) => void;
   onConfirmArrival: () => void;
+  onSelectStartingTask: (task: StartingTask) => void;
 }
 
 export function CharacterCreation({
   creation,
   currentBiome,
   features,
+  helper,
   onSelectBiome,
   onGather,
   onResolveThought,
-  onConfirmArrival
+  onConfirmArrival,
+  onSelectStartingTask
 }: CharacterCreationProps) {
   const panelRef = useRef<HTMLDivElement | null>(null);
   const [thoughtListHeight, setThoughtListHeight] = useState<number | null>(null);
@@ -143,6 +147,65 @@ export function CharacterCreation({
           <button className="gather-button" onClick={onConfirmArrival}>
             Assign First Tasks
           </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (creation.stage === 'task_assignment') {
+    const tasks: { id: StartingTask; title: string; helperJob: string; companionJob: string; summary: string }[] = [
+      {
+        id: 'gather_materials',
+        title: 'Gather Materials',
+        helperJob: 'woodcutter',
+        companionJob: 'forager',
+        summary: 'Your ally scavenges wood while you secure food.'
+      },
+      {
+        id: 'gather_food',
+        title: 'Gather Food',
+        helperJob: 'forager',
+        companionJob: 'woodcutter',
+        summary: 'Your ally seeks provisions while you stockpile lumber.'
+      }
+    ];
+
+    return (
+      <div className="creation-backdrop">
+        <div className="creation-panel">
+          <h2>Divide the First Tasks</h2>
+          <p className="creation-narrative">
+            With the danger past, your companion waits for direction. Which duty will they take on first? You will tackle the
+            other.
+          </p>
+          {helper && (
+            <div className="helper-card">
+              <div className="helper-header">
+                <span className="helper-name">{helper.name}</span>
+                <span className="helper-role">{helper.jobId}</span>
+              </div>
+              <p className="helper-summary">{helper.summary}</p>
+              <div className="helper-skills" aria-label="Helper skills">
+                {helper.skills.map((skill) => (
+                  <span key={skill} className="helper-skill">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+          <div className="thought-grid">
+            {tasks.map((task) => (
+              <button key={task.id} className="thought-card" onClick={() => onSelectStartingTask(task.id)}>
+                <span className="thought-label">{task.title}</span>
+                <span className="thought-description">{task.summary}</span>
+                <div className="thought-helper">
+                  <div className="thought-helper__name">Helper: {task.helperJob}</div>
+                  <div className="thought-helper__role">You: {task.companionJob}</div>
+                </div>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     );

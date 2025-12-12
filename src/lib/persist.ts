@@ -94,7 +94,14 @@ function migrateState(value: unknown): GameState | null {
         narrative: composeAwakeningNarrative(biome, features)
       };
 
-  const creationStages = new Set(['biome_selection', 'awaiting_focus', 'event', 'arrival', 'complete']);
+  const creationStages = new Set([
+    'biome_selection',
+    'awaiting_focus',
+    'event',
+    'arrival',
+    'task_assignment',
+    'complete'
+  ]);
   const creation = candidate.creation && typeof candidate.creation === 'object'
     ? {
         stage: creationStages.has(String((candidate.creation as { stage?: unknown }).stage))
@@ -110,6 +117,15 @@ function migrateState(value: unknown): GameState | null {
         chosenThought:
           typeof (candidate.creation as { chosenThought?: unknown }).chosenThought === 'string'
             ? ((candidate.creation as { chosenThought: string }).chosenThought)
+            : null,
+        helperId:
+          typeof (candidate.creation as { helperId?: unknown }).helperId === 'string'
+            ? ((candidate.creation as { helperId: string }).helperId)
+            : null,
+        startingTask:
+          (candidate.creation as { startingTask?: unknown }).startingTask === 'gather_materials' ||
+          (candidate.creation as { startingTask?: unknown }).startingTask === 'gather_food'
+            ? ((candidate.creation as { startingTask: GameState['creation']['startingTask'] }).startingTask)
             : null
       }
     : hasProgress

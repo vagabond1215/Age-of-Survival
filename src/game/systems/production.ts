@@ -13,12 +13,7 @@ const featureProductionBonus: Record<FeatureId, Partial<Record<ResourceId, numbe
   dense_forest: { logs: 2 }
 };
 
-export function applyProduction(state: GameState): GameState {
-  const next: GameState = {
-    ...state,
-    resources: { ...state.resources },
-    deltas: { ...state.deltas }
-  };
+export function computeProductionDeltas(state: GameState): Record<ResourceId, number> {
   const gains: Partial<Record<ResourceId, number>> = {};
   const uses: Partial<Record<ResourceId, number>> = {};
 
@@ -53,10 +48,27 @@ export function applyProduction(state: GameState): GameState {
     }
   }
 
+  const deltas: Record<ResourceId, number> = { ...state.deltas };
   for (const resource of Object.keys(state.resources) as ResourceId[]) {
     const gain = gains[resource] ?? 0;
     const use = uses[resource] ?? 0;
-    const net = gain - use;
+    deltas[resource] = gain - use;
+  }
+
+  return deltas;
+}
+
+export function applyProduction(state: GameState): GameState {
+  const next: GameState = {
+    ...state,
+    resources: { ...state.resources },
+    deltas: { ...state.deltas }
+  };
+
+  const deltas = computeProductionDeltas(state);
+
+  for (const resource of Object.keys(state.resources) as ResourceId[]) {
+    const net = deltas[resource] ?? 0;
     next.deltas[resource] = net;
     next.resources[resource] = Math.max(0, next.resources[resource] + net);
     clampResource(next.resources, resource);

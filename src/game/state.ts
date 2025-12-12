@@ -73,11 +73,15 @@ export const AwakeningStateSchema = z.object({
 });
 export type AwakeningState = z.infer<typeof AwakeningStateSchema>;
 
+export type StartingTask = 'gather_materials' | 'gather_food';
+
 export const CreationStateSchema = z.object({
-  stage: z.enum(['biome_selection', 'awaiting_focus', 'event', 'arrival', 'complete']),
+  stage: z.enum(['biome_selection', 'awaiting_focus', 'event', 'arrival', 'task_assignment', 'complete']),
   selectedBiome: biomeIdSchema.nullable(),
   eventId: z.string().nullable(),
-  chosenThought: z.string().nullable()
+  chosenThought: z.string().nullable(),
+  helperId: z.string().nullable(),
+  startingTask: z.enum(['gather_materials', 'gather_food']).nullable()
 });
 export type CreationState = z.infer<typeof CreationStateSchema>;
 
@@ -205,7 +209,9 @@ export function createDefaultState(): GameState {
       stage: 'biome_selection',
       selectedBiome: null,
       eventId: null,
-      chosenThought: null
+      chosenThought: null,
+      helperId: null,
+      startingTask: null
     }
   };
 }
