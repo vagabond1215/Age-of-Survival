@@ -4,14 +4,17 @@ import DayControls from './ui/DayControls';
 import JobManager from './ui/JobManager';
 import CraftPlanner from './ui/CraftPlanner';
 import BuildQueue from './ui/BuildQueue';
+import ConstructionPlanner from './ui/ConstructionPlanner';
 import MapGrid from './ui/MapGrid';
 import Notifications from './ui/Notifications';
 import CharacterCreation from './ui/CharacterCreation';
 import { createDefaultState, type GameState, type StartingTask, type Villager } from './game/state';
 import { composeAwakeningNarrative } from './game/narrative';
 import { tickDay } from './game/engine';
+import { CONSTRUCTION_PLANS, type ConstructionPlan } from './game/constructionPlans';
 import { assignJob } from './game/systems/jobs';
 import { ensureCraftTarget } from './game/systems/crafting';
+import { enqueueConstruction } from './game/systems/construction';
 import { loadFromLocalStorage, saveToLocalStorage, exportToFile, importFromFile, resetSave } from './lib/persist';
 import { getBiomeDetail } from './data/biomes';
 import { generateMap } from './game/map';
@@ -49,6 +52,10 @@ function App() {
 
   const handleCraftTarget = useCallback((recipeId: string, target: number) => {
     setState((current) => ensureCraftTarget(current, recipeId, Math.max(0, target)));
+  }, []);
+
+  const handlePlanConstruction = useCallback((plan: ConstructionPlan) => {
+    setState((current) => enqueueConstruction(current, plan));
   }, []);
 
   const handleExport = useCallback(() => {
@@ -286,6 +293,7 @@ function App() {
       />
       <JobManager villagers={state.villagers} stateForCaps={state} onAssign={handleAssign} />
       <CraftPlanner crafting={state.crafting} onUpdate={handleCraftTarget} />
+      <ConstructionPlanner resources={state.resources} plans={CONSTRUCTION_PLANS} onPlan={handlePlanConstruction} />
       <BuildQueue queue={state.buildQueue} buildings={state.buildings} onCancel={cancelBuild} />
       <MapGrid buildings={state.buildings} tiles={state.map} />
       <Notifications notifications={state.notifications} />
