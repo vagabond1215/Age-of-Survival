@@ -1,8 +1,18 @@
-import { DEFAULT_BED_CAPACITY } from '../constants';
-import { type BuildQueueItem, type Building, type GameState } from '../state';
+import { DEFAULT_BED_CAPACITY, type ResourceId } from '../constants';
+import { clampResource, type BuildQueueItem, type Building, type GameState, type ResourceMap } from '../state';
 import { getLogisticsSpeed } from './logistics';
 
 export type ConstructionKind = BuildQueueItem['type'];
+
+type ResourceCost = Partial<ResourceMap>;
+
+const BUILDING_COSTS: Record<string, ResourceCost> = {
+  makeshift_shelter: { logs: 6, cloth: 1 },
+  log_cabin: { logs: 8, firewood: 6 },
+  stone_hall: { logs: 6, stone: 6, tools: 1 },
+  town_hall: { logs: 4, stone: 6, cloth: 1, tools: 1 },
+  hall_ruins: {}
+};
 
 function cloneState(state: GameState): GameState {
   return {
@@ -26,12 +36,66 @@ export interface EnqueueOptions {
   capacityDelta: number;
 }
 
+export function getConstructionCost(slug: string): ResourceCost {
+  return BUILDING_COSTS[slug] ?? {};
+}
+
+function getMissingResources(resources: ResourceMap, cost: ResourceCost): Array<{ id: ResourceId; deficit: number }> {
+  const missing: Array<{ id: ResourceId; deficit: number }> = [];
+  for (const [id, amount] of Object.entries(cost)) {
+    const resourceId = id as ResourceId;
+    const needed = amount ?? 0;
+    if (needed <= 0) continue;
+    const have = resources[resourceId] ?? 0;
+    if (have < needed) {
+      missing.push({ id: resourceId, deficit: needed - have });
+    }
+  }
+  return missing;
+}
+
+function deductResources(resources: ResourceMap, cost: ResourceCost): void {
+  for (const [id, amount] of Object.entries(cost)) {
+    const resourceId = id as ResourceId;
+    const delta = amount ?? 0;
+    if (delta <= 0) continue;
+    resources[resourceId] = (resources[resourceId] ?? 0) - delta;
+    clampResource(resources, resourceId);
+  }
+}
+
 function ensureBuilding(next: GameState, id: string): Building | undefined {
   return next.buildings.find((b) => b.id === id);
 }
 
+export function canAffordConstruction(resources: ResourceMap, targetSlug: string): boolean {
+  const cost = getConstructionCost(targetSlug);
+  return getMissingResources(resources, cost).length === 0;
+}
+
+export function getConstructionShortages(
+  resources: ResourceMap,
+  targetSlug: string
+): Array<{ id: ResourceId; deficit: number }> {
+  const cost = getConstructionCost(targetSlug);
+  return getMissingResources(resources, cost);
+}
+
 export function enqueueConstruction(state: GameState, options: EnqueueOptions): GameState {
+  const cost = getConstructionCost(options.targetSlug);
+  const missing = getMissingResources(state.resources, cost);
+  if (missing.length > 0) {
+    const message = `Not enough resources to build ${options.targetSlug}: ${missing
+      .map((item) => `${item.deficit} ${item.id}`)
+      .join(', ')}`;
+    if (state.notifications.includes(message)) {
+      return state;
+    }
+    return { ...state, notifications: [...state.notifications, message] };
+  }
+
   const next = cloneState(state);
+  deductResources(next.resources, cost);
   const id = `build-${state.day}-${state.buildQueue.length + 1}`;
   const queueItem: BuildQueueItem = {
     id,
