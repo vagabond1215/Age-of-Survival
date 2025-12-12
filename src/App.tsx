@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState, type ChangeEvent } from 'react';
+import { useCallback, useEffect, useMemo, useState, type ChangeEvent } from 'react';
 import ResourceBar from './ui/ResourceBar';
 import DayControls from './ui/DayControls';
 import JobManager from './ui/JobManager';
@@ -15,6 +15,7 @@ import { CONSTRUCTION_PLANS, type ConstructionPlan } from './game/constructionPl
 import { assignJob } from './game/systems/jobs';
 import { ensureCraftTarget } from './game/systems/crafting';
 import { enqueueConstruction } from './game/systems/construction';
+import { evaluateJobPlans } from './game/systems/jobRequirements';
 import { loadFromLocalStorage, saveToLocalStorage, exportToFile, importFromFile, resetSave } from './lib/persist';
 import { getBiomeDetail } from './data/biomes';
 import { generateMap } from './game/map';
@@ -28,6 +29,7 @@ function App() {
     return loaded ?? createDefaultState();
   });
   const [importError, setImportError] = useState<string | null>(null);
+  const jobPlans = useMemo(() => evaluateJobPlans(state), [state]);
 
   useEffect(() => {
     saveToLocalStorage(state);
@@ -291,8 +293,18 @@ function App() {
         onTogglePause={handleTogglePauseOnSummon}
         pauseOnSummon={state.pauseOnSummon}
       />
-      <JobManager villagers={state.villagers} stateForCaps={state} onAssign={handleAssign} />
-      <CraftPlanner crafting={state.crafting} onUpdate={handleCraftTarget} />
+      <JobManager
+        villagers={state.villagers}
+        stateForCaps={state}
+        onAssign={handleAssign}
+        jobSummaries={jobPlans.summaries}
+      />
+      <CraftPlanner
+        crafting={state.crafting}
+        onUpdate={handleCraftTarget}
+        jobSummaries={jobPlans.summaries}
+        state={state}
+      />
       <ConstructionPlanner resources={state.resources} plans={CONSTRUCTION_PLANS} onPlan={handlePlanConstruction} />
       <BuildQueue queue={state.buildQueue} buildings={state.buildings} onCancel={cancelBuild} />
       <MapGrid buildings={state.buildings} tiles={state.map} />

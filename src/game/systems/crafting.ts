@@ -1,7 +1,10 @@
 import recipes from '../../data/recipes.json';
+import jobs from '../../data/jobs.json';
 import { type GameState } from '../state';
+import { getRequirementForRecipe, isRecipeUnlocked } from './jobRequirements';
 
 const recipeMap = new Map(recipes.map((r) => [r.id, r]));
+const jobNameMap = new Map(jobs.map((job) => [job.id, job.name] as const));
 
 function cloneState(state: GameState): GameState {
   return {
@@ -18,6 +21,15 @@ export function applyCraftingTargets(state: GameState): GameState {
   for (const target of next.crafting) {
     const recipe = recipeMap.get(target.recipeId);
     if (!recipe) continue;
+    if (!isRecipeUnlocked(next, recipe.id)) {
+      const requirement = getRequirementForRecipe(recipe.id);
+      const jobName = jobNameMap.get(requirement?.jobId ?? '') ?? requirement?.jobId ?? 'assigned worker';
+      const message = `${recipe.name} is locked: assign and equip a ${jobName} with the right workspace.`;
+      if (!next.notifications.includes(message)) {
+        next.notifications.push(message);
+      }
+      continue;
+    }
     const needed = Math.max(0, target.targetCount - target.onHand);
     if (needed <= 0) continue;
 

@@ -2,6 +2,7 @@ import biomes from '../../data/biomes.json';
 import jobs from '../../data/jobs.json';
 import { FEATURES, type FeatureId, type ResourceId } from '../constants';
 import { clampResource, type GameState } from '../state';
+import { evaluateJobPlans } from './jobRequirements';
 
 const biomeMap = new Map(biomes.map((b) => [b.id, b.modifiers as Record<ResourceId, number>]));
 const jobIndex = new Map(jobs.map((job) => [job.id, job]));
@@ -17,20 +18,22 @@ export function computeProductionDeltas(state: GameState): Record<ResourceId, nu
   const gains: Partial<Record<ResourceId, number>> = {};
   const uses: Partial<Record<ResourceId, number>> = {};
 
-  for (const villager of state.villagers) {
-    const job = jobIndex.get(villager.jobId);
-    if (!job) continue;
-    for (const [resource, value] of Object.entries(job.production ?? {})) {
-      const amount = value * villager.efficiency;
+  const { plans } = evaluateJobPlans(state);
+
+  for (const plan of plans) {
+    const job = jobIndex.get(plan.job.id);
+    if (!job || plan.mode === 'blocked') continue;
+
+    const production = plan.mode === 'toolless' ? plan.requirement?.toolLessProduction ?? {} : job.production ?? {};
+    const consumption = job.consumption ?? {};
+
+    for (const [resource, value] of Object.entries(production)) {
+      const amount = value * plan.villager.efficiency;
       gains[resource as ResourceId] = (gains[resource as ResourceId] ?? 0) + amount;
     }
-  }
 
-  for (const villager of state.villagers) {
-    const job = jobIndex.get(villager.jobId);
-    if (!job) continue;
-    for (const [resource, value] of Object.entries(job.consumption ?? {})) {
-      const amount = value * villager.efficiency;
+    for (const [resource, value] of Object.entries(consumption)) {
+      const amount = value * plan.villager.efficiency;
       uses[resource as ResourceId] = (uses[resource as ResourceId] ?? 0) + amount;
     }
   }
