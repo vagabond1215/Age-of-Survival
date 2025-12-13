@@ -5,12 +5,32 @@ import { MapTileSchema, createDefaultState, isGameState, type GameState } from '
 
 const STORAGE_KEY = 'haven-savegame';
 
+function getStorage(): Storage | null {
+  if (typeof localStorage === 'undefined') return null;
+  try {
+    // Some environments (e.g., blocked third-party storage) throw on access.
+    localStorage.getItem(STORAGE_KEY);
+    return localStorage;
+  } catch (error) {
+    console.warn('Local storage unavailable, falling back to defaults.', error);
+    return null;
+  }
+}
+
 export function saveToLocalStorage(state: GameState): void {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  const storage = getStorage();
+  if (!storage) return;
+  try {
+    storage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch (error) {
+    console.warn('Failed to write save', error);
+  }
 }
 
 export function loadFromLocalStorage(): GameState | null {
-  const raw = localStorage.getItem(STORAGE_KEY);
+  const storage = getStorage();
+  if (!storage) return null;
+  const raw = storage.getItem(STORAGE_KEY);
   if (!raw) return null;
   try {
     const parsed = JSON.parse(raw);
@@ -47,7 +67,13 @@ export async function importFromFile(file: File): Promise<GameState> {
 }
 
 export function resetSave(): void {
-  localStorage.removeItem(STORAGE_KEY);
+  const storage = getStorage();
+  if (!storage) return;
+  try {
+    storage.removeItem(STORAGE_KEY);
+  } catch (error) {
+    console.warn('Failed to clear save', error);
+  }
 }
 
 function isBiome(value: unknown): value is GameState['biome'] {
