@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { createDefaultState } from '../src/game/state';
-import { loadFromLocalStorage } from '../src/lib/persist';
+import { loadFromLocalStorage, resetSave, saveToLocalStorage } from '../src/lib/persist';
 
 describe('default state loading', () => {
   afterEach(() => {
@@ -54,5 +54,27 @@ describe('default state loading', () => {
     expect(migrated?.biome).toBe('temperate_forest');
     expect(migrated?.creation.stage).toBe('complete');
     expect(migrated?.creation.selectedBiome).toBe('temperate_forest');
+  });
+
+  it('falls back gracefully when storage is blocked', () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const failure = new Error('denied');
+    vi.stubGlobal('localStorage', {
+      getItem: vi.fn(() => {
+        throw failure;
+      }),
+      setItem: vi.fn(() => {
+        throw failure;
+      }),
+      removeItem: vi.fn(() => {
+        throw failure;
+      })
+    });
+
+    expect(loadFromLocalStorage()).toBeNull();
+    expect(() => saveToLocalStorage(createDefaultState())).not.toThrow();
+    expect(() => resetSave()).not.toThrow();
+    expect(warn).toHaveBeenCalled();
+    warn.mockRestore();
   });
 });
