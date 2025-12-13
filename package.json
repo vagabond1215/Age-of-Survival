@@ -8,6 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",
+    "test:build": "vitest run tests/buildOutput.spec.ts",
     "lint": "eslint . --ext .ts,.tsx"
   },
   "dependencies": {

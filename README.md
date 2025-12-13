@@ -108,6 +108,8 @@ npm run preview
 
 `npm run build` writes the static site to `docs/`, and `vite preview` serves that build with the same base path behavior you will get in production.
 
+If you see a browser console error such as `main.tsx:1 Failed to load resource: the server responded with a status of 404`, the page is being served without the Vite dev server or the compiled `docs/` bundle. Use `npm run dev` during development or point your static host at the contents of `docs/` (after running `npm run build`). Opening `index.html` directly from the repository root will not work because `/src/main.tsx` is only available when Vite is running.
+
 ## Deployment
 
 - The production build lives in `docs/` (see `vite.config.ts`), so any static host that can serve that folder will work. For a quick manual check, run `npx serve docs` or point your web server's document root at `docs/`.
@@ -122,9 +124,12 @@ Run linting, tests, and builds before submitting changes:
 npm run lint
 npm run test
 npm run build
+npm run test:build
 ```
 
 Vitest tests cover deterministic ticks, crafting targets, replacement accounting, and schema guards. Contributions should maintain determinism, update documentation, and respect the single-writer architecture.
+
+`npm run test:build` validates the production bundle and fails if `index.html` ever points at missing assets (e.g., an entry file served from `/src/`). Keep it in CI to catch regressions that would otherwise surface as runtime 404s after deployment.
 
 ## Preferred Git Workflow
 
