@@ -90,7 +90,7 @@ The repository keeps a single authoritative implementation under `src/` and rela
 
 Legacy alternates (such as the previous `from gpt5` directory) have been removed to avoid drift; the files in the repository root are the canonical versions to edit.
 
-## Development
+## Development & Preview
 
 Install dependencies once and use Vite for local development:
 
@@ -99,11 +99,20 @@ npm install
 npm run dev
 ```
 
-## GitHub Pages Deployment
+To preview the production build locally, run:
 
-1. `vite.config.ts` sets `base: '/Age-of-Survival/'` to serve correctly from GitHub Pages.
-2. `.github/workflows/pages.yml` builds the project with Node 20 and deploys the `dist` folder using the Pages workflow.
-3. Enable GitHub Pages from the **Pages** settings, targeting the workflow-generated deployment.
+```bash
+npm run build
+npm run preview
+```
+
+`npm run build` writes the static site to `docs/`, and `vite preview` serves that build with the same base path behavior you will get in production.
+
+## Deployment
+
+- The production build lives in `docs/` (see `vite.config.ts`), so any static host that can serve that folder will work. For a quick manual check, run `npx serve docs` or point your web server's document root at `docs/`.
+- Vite uses `base: './'` for build commands and `base: '/'` during dev/preview, so assets resolve correctly whether GitHub Pages publishes at `https://<user>.github.io/<repo>/` or you serve the files from a subdirectory.
+- The GitHub Pages workflow `.github/workflows/pages.yml` runs on `main`, builds with Node 20, uploads `docs/` as the artifact, and deploys via `actions/deploy-pages@v4`. Ensure the repository's Pages settings are set to **Source: GitHub Actions** to use this pipeline.
 
 ## Testing & Contributing
 
@@ -143,8 +152,13 @@ Vitest tests cover deterministic ticks, crafting targets, replacement accounting
 ## Indexing & Search Tips
 
 - Use `rg` for fast searches. Common filters:
-  - `rg "tick" src/game` to search only gameplay systems.
+  - `rg "tick" src/game` to search gameplay systems (tick order, logistics, crafting targets).
   - `rg --glob "*.ts" "TODO" src` to find TypeScript TODOs.
+  - `rg "useState" src/ui` to scan UI interaction patterns.
   - `rg --type-add 'vitest:*.spec.ts' --type vitest "describe" tests` for test suites.
-- Follow path conventions: gameplay logic lives under `src/game/`, UI components under `src/components/`, and test helpers under `tests/`. Keep new files aligned with these conventions to make navigation predictable.
+- Directory landmarks:
+  - `src/` – Source of truth for the app: `game/` for engine logic, `ui/` for React components, `lib/` for persistence/helpers, `data/` for static JSON, and entry points in `main.tsx`/`App.tsx`.
+  - `docs/` – The generated production build; inspect this if you need to verify the final asset layout or debug static hosting issues.
+  - Configuration: `vite.config.ts` (build/base/output), `tsconfig*.json` (TypeScript), `.github/workflows/pages.yml` (Pages deploy), and `public/` (static assets copied verbatim).
+- Keep new files aligned with these conventions to make navigation predictable.
 
